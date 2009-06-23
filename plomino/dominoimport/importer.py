@@ -59,7 +59,6 @@ class DominoImporter(object):
                 results['resources'][0] += 1
             except:
                 results['resources'][1] += 1
-        print results
 
         # create agents
         for agent in myDxlParser.getAgents():
@@ -76,6 +75,7 @@ class DominoImporter(object):
                 results['forms'][0] += 1
             except:
                 results['forms'][1] += 1
+        print results
 
         # create views
         for view in myDxlParser.getViews():

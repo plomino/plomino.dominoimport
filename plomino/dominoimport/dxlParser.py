@@ -19,7 +19,7 @@ __docformat__ = 'plaintext'
 from xml.dom.minidom import parse, getDOMImplementation
 
 import re
-p_for_id = re.compile('^[A-Za-z0-9][A-Za-z0-9_.]+$')
+p_for_id = re.compile('^[A-Za-z0-9][A-Za-z0-9_. ]+$')
 p_for_title = re.compile('^[A-Za-z0-9][A-Za-z0-9_. ]+$')
 
 from dxlConfig import *
@@ -81,19 +81,19 @@ class DXLParser(object):
         
         if dxlFileContent is not None:
             self.extractResourcesFromDXL(dxlFileContent)
+            self.extractForms(dxlFileContent)
 
     def extractResourcesFromDXL(self, dxlFileContent):
         """
-        Extract file ressource from the DXL parsed file
+        Extract file resources from the DXL parsed file
         """
-        
-        file = {}
-        
+
         # Get all the image resources of the DXL file
         fileNodes = dxlFileContent.getElementsByTagName("imageresource")
         print 'extract resource'
 
         for fileElement in fileNodes:
+            file = {}
             file['name'] = fileElement.getAttribute('name')
 
             # Get the file content from jpeg or else node 
@@ -110,18 +110,61 @@ class DXLParser(object):
 
         for r in self.resources:
             print r['name']
+    
+    def extractForms(self, dxlFileContent):
+        """
+        Extract forms from the DXL parsed file
+        """
         
+        print 'extracting forms'
+        # For all forms, create them in the current database
+        forms = dxlFileContent.getElementsByTagName("form") + dxlFileContent.getElementsByTagName("subform")
+
+        for form in forms:
+            dico = {}
+            dico['type'] = 'PlominoForm'
+            dico['id'], dico['title'] = self.getIdTitleAttributes(form)
+            
+            # self.extractInsertedFiles(form)
+                
+            # set the layout from "body" element
+            dico['formLayout'] = self.richtext2Html(form.getElementsByTagName("body")[0])
+            
+            self.forms.append(dico)
+            #self.context.getForm(formId).setFormLayout(formLayout)
+            
+            # import all the fields included in this form
+            # self.extractFields(form)
         
-    def getIdTitleAttributes(self):
+    def extractViews(self, dxlFileContent):
+        """
+        Extract views from the DXL parsed file
+        """
+        
+        print 'extracting views'
+        # For all forms, create them in the current database
+        views = dxlFileContent.getElementsByTagName("view")
+
+        for view in views:
+            dico = {}
+            dico['type'] = 'PlominoView'
+            dico['id'], dico['title'] = self.getIdTitleAttributes(view)
+            
+            # import all the columns included in this view
+            # self.extractColumns(view)
+            
+            self.forms.append(dico)
+        
+    def getIdTitleAttributes(self, dxlFileContent):
         """
         Get the Id and the Title from a DXLFileContent
         @return tuple :
         """
         # check if the data match the correct pattern
         if p_for_id.match(dxlFileContent.getAttribute('name')) is not None:
-            id = dxlFileContent.getAttribute('name')
+            id = str(dxlFileContent.getAttribute('name')).replace(' ', '_')
         elif p_for_id.match(dxlFileContent.getElementsByTagName('noteinfo')[0].getAttribute('unid')) is not None:
-            id = dxlFileContent.getElementsByTagName('noteinfo')[0].getAttribute('unid')
+            id = str(dxlFileContent.getElementsByTagName('noteinfo')[0].getAttribute('unid')).replace(' ', '_')
         else:
             id = ''
         
@@ -132,12 +175,12 @@ class DXLParser(object):
             
         return (id, title)
 
-    def richtext2Html(self):
+    def richtext2Html(self, dxlFileContent):
         """
         transform a richtext element from dxl to html, using an xsl stylesheet
         @return string :
         """
-        pass
+        return ''
 
     def richtextToHtml(self, node, formId=None, deep_header=1, gettext=True):
         """

@@ -37,7 +37,16 @@ class PlominoBuilder(object):
         @return string :
         @author
         """
-        pass
+        
+        print 'creating form:', formInfos['id']
+        formId = self.createElementInDatabase(formInfos)
+        print formId
+        if formId is not None:
+            self.plominoDatabase.getForm(formId).setTitle(formInfos['title'])
+            #self.importInsertedFiles(form, self.context.getForm(formId))
+            
+            # set the layout
+            #self.context.getForm(formId).setFormLayout(formLayout)
 
     def createView(self, viewInfos):
         """
@@ -75,13 +84,14 @@ class PlominoBuilder(object):
         @param dict resourceInfos : 
         @return string :
         """
-        print 'creating resource in database: ', resourceInfos['name'] 
+        print 'creating resource in database:', resourceInfos['name'] 
         #if not(hasattr(self.plominoDatabase.resources, resourceInfos['name'])):
         self.plominoDatabase.manage_addFile('truc')
         bidon1 = getattr(self.plominoDatabase.ressources, 'truc')
+        print bidon1
+
         self.plominoDatabase.manage_addFile(resourceInfos['name'])
         obj = getattr(self.plominoDatabase.resources, resourceInfos['name'])
-        print bidon1
         print self.plominoDatabase.resources._objects
         #obj.meta_type = fileMimeType
         #print resourceInfos['content']
@@ -99,7 +109,21 @@ class PlominoBuilder(object):
         @param dict elementInfos : 
         @return  :
         """
-        pass
+        elementId = None
+        
+        try:
+            elementId=self.plominoDatabase.invokeFactory(elementInfos['type'], 
+                                              id=elementInfos['id'])
+    
+        except ImportDXLException, e:
+            logger.info('Error during import ' + elementInfos['type'] + ': ' + str(type(e)) + " - " + str(e))
+            print str(type(e)) + " - " + str(e)
+            
+        except Exception, e:
+            logger.info('Error during import ' + elementInfos['type'] + ': ' + str(type(e)) + " - " + str(e))
+            print str(type(e)) + " - " + str(e)
+        
+        return elementId
 
     def addFileInDocument(self, fileInfos):
         """
