@@ -1,0 +1,165 @@
+Plomino importer
+================
+
+Create a database
+-----------------
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    
+Import os to generate file from path
+
+    >>> import os.path
+    >>> dir, _f = os.path.split(os.path.abspath(__file__))
+    
+    >>> self.setRoles(['Manager'])
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+    
+    >>> from plomino.dominoimport.interfaces import IDominoImporter
+    >>> i=IDominoImporter(db)
+    >>> i.__class__.__name__
+    'DominoImporter'
+    
+    >>> i.context.id
+    'mydb'
+    
+Import a DXL File
+-----------------
+
+DXL file imported is the database design one: the file is parsed in a xml object
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabase.xml")
+    >>> dxlDoc = i.processImportDXL(dxlFile)
+    
+Create forms with their fields
+------------------------------
+
+Forms in the database ?
+    >>> allForms = db.getForms()
+    >>> len(allForms)
+    2
+    
+    >>> if allForms[0].getFormName() != 'info':
+    ...     allForms.reverse()
+    
+    >>> allForms
+    [<PlominoForm at /plone/Members/test_user_1_/mydb/info>, <PlominoForm at /plone/Members/test_user_1_/mydb/project>]
+
+Fields in the correct forms ?
+    >>> for form in allForms:
+    ...     form.getFormName()
+    ...     allFields = form.getFields()
+    ...     allFields
+    ...     for field in allFields:
+    ...         field.getId()
+    ...         field.title
+    ...         field.getFieldType()
+    ...     form.getFormLayout()
+    'info'
+    [<PlominoField at /plone/Members/test_user_1_/mydb/info/name>, <PlominoField at /plone/Members/test_user_1_/mydb/info/address>]
+    'name'
+    u'name'
+    'TEXT'
+    'address'
+    u'address'
+    'TEXT'
+    '<p></p><p>Enter your name:<span class="plominoFieldClass">name</span></p><p></p><p>Enter your address:<span class="plominoFieldClass">address</span></p>'
+    'project'
+    [<PlominoField at /plone/Members/test_user_1_/mydb/project/desc>, <PlominoField at /plone/Members/test_user_1_/mydb/project/customer>]
+    'desc'
+    u'desc'
+    'TEXT'
+    'customer'
+    u'customer'
+    'TEXT'
+    '<p></p><p>Enter your name:<span class="plominoFieldClass">desc</span></p><p></p><p>Enter your address:<span class="plominoFieldClass">customer</span></p>'
+
+Create views
+------------
+
+Views in the database ?
+    >>> allViews = db.getViews()
+    >>> allViews
+    [<PlominoView at /plone/Members/test_user_1_/mydb/customer>]
+    
+Columns in the correct view ?
+    >>> for view in allViews:
+    ...     view.getViewName()
+    ...     view.title
+    ...     view.getSelectionFormula()
+    ...     allColumns = view.getColumns()
+    ...     allColumns
+    ...     for column in allColumns:
+    ...         column.getId()
+    ...         column.title
+    ...         column.getFormula()
+    ...         column.getPosition()
+    'customer'
+    u'customer'
+    'True'
+    [<PlominoColumn at /plone/Members/test_user_1_/mydb/customer/name>, <PlominoColumn at /plone/Members/test_user_1_/mydb/customer/address>]
+    'name'
+    u'Name'
+    'plominoDocument.name'
+    1
+    'address'
+    u'Address'
+    'plominoDocument.address'
+    2
+    
+Formula:
+- Selection formula for the view itself : python code returning a boolean value, to select wich document to view
+- Column formula: python code returning the column value
+
+Create Documents
+----------------
+from another DXL file, we get the database data
+Documents are created with their item, and also form is set if the attribute 'form' is provided
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDocument.xml")
+    >>> dxlDoc = i.processImportDXL(dxlFile)
+
+Docs in the database ?
+    >>> allDocs = db.getAllDocuments()
+    >>> allDocs is not None
+    True
+    
+Items in the correct document ?
+    >>> for doc in allDocs:
+    ...     doc.getForm().getFormName()
+    ...     docItems = doc.getItems()
+    ...     docItems.sort()
+    ...     for itemKey in docItems:
+    ...         str(itemKey) + ": " + str(doc.getItem(itemKey))
+    'info'
+    'Form: info'
+    "Plomino_Authors: ['test_user_1_']"
+    'address: 34 Grand Blvd, Oklahoma City'
+    'name: Harry Hill'
+    'info'
+    'Form: info'
+    "Plomino_Authors: ['test_user_1_']"
+    'address: 10 oxford Street, London'
+    'name: Joe Strummer'
+    
+OpenView ?
+    >>> view = allViews[0]
+    >>> view.checkBeforeOpenView() != ''
+    True
+
+Correct form layout ?
+    >>> form = allForms[0]
+    >>> form.getFormLayout() 
+    '<p></p><p>Enter your name:<span class="plominoFieldClass">name</span></p><p></p><p>Enter your address:<span class="plominoFieldClass">address</span></p>'
+    >>> field = form.getFields()[0]
+    >>> field.at_post_create_script()
+    >>> db.getIndex().refresh()
+    >>> field.setId(field.getId())
+    >>> field.reindexObject()
+    >>> form.formLayout() #field.setId(field.getId())
+    u'<input type=\'hidden\' name=\'Form\' value=\'info\' /><p></p><p>Enter your name:<span>\n\t\n\t\t<input type="text" name="name" value="" />\n\t\n\t\n</span>\n</p><p></p><p>Enter your address:<span>\n\t\n\t\t<input type="text" name="address" value="" />\n\t\n\t\n</span>\n</p>'
+        
+    >>> self.folder.manage_delObjects(["mydb"])
+    

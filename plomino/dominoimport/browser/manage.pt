@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
+           tal:define="kssClassesView context/@@kss_field_decorator_view;
+                       getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                       templateId template/getId;">
+
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 class="documentFirstHeading"><tal:block tal:content="object_title">Title or id</tal:block> design</h1>
+        
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+        
+        <tal:permission tal:define="dummy here/checkDesignPermission"/>
+        
+        <h3>Import from Lotus Domino DXL File</h3>
+    <p class="formHelp">To import a Domino DXL file, you have to create a new Database.</p>
+    <p class="formHelp">(if database does not exists, the followning form should not appear)</p>
+        <form name="importDXL" id="importDXL" action="manageImportDXL" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="mode" value="refresh" />
+            <table>
+                <tr>
+                    <td>DXL File</td>
+                    <td><input type="file" id="import_file" name="filename" class="context" /></td>
+                </tr> 
+                
+                <tr><td><input type="submit" class="context" value="Import DXL" name="submit_import_dxl"/></td><td></td></tr>
+            </table>
+        </form>
+
+    <!--<span tal:replace="message python:here.getInfoMsg()" />
+    <span tal:replace="structure python:here.REQUEST"/>-->
+    
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>

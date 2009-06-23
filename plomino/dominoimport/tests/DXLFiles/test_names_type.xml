@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='utf-8'?>
+<database xmlns='http://www.lotus.com/dxl' version='6.5' replicaid='C12575C3002B6B52'
+ path='test.nsf' title='test'>
+<databaseinfo dbid='C12575C3002B6B52' odsversion='43' diskspace='458752' percentused='66.6852678571429'
+ numberofdocuments='8'><datamodified><datetime dst='true'>20090529T135915,34+02</datetime></datamodified><designmodified
+><datetime dst='true'>20090529T135840,66+02</datetime></designmodified></databaseinfo>
+<acl maxinternetaccess='editor'>
+<aclentry name='-Default-' default='true' level='noaccess' readpublicdocs='true'
+ writepublicdocs='true'/>
+<aclentry name='CN=Eric BREHAULT/O=Eric BREHAULT' type='person' level='manager'
+ deletedocs='true'/>
+<aclentry name='OtherDomainServers' type='servergroup' level='noaccess' readpublicdocs='false'
+ writepublicdocs='false'/>
+<aclentry name='LocalDomainServers' type='servergroup' level='manager' deletedocs='true'/>
+<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT added OtherDomainServers</logentry>
+<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT added LocalDomainServers</logentry>
+<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT updated Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT added Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT updated -Default-</logentry></acl>
+
+<form name='namesForm' publicaccess='false' designerversion='6.5'>
+<noteinfo noteid='186' unid='DADFDD3FE21E9B82C12575C5003A5799' sequence='7'>
+<created><datetime dst='true'>20090529T123715,13+02</datetime></created>
+<modified><datetime dst='true'>20090529T135840,66+02</datetime></modified>
+<revised><datetime dst='true'>20090529T135840,65+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090529T135840,65+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090529T124106,83+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<wassignedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></wassignedby>
+<body><richtext>
+<pardef id='1'/>
+<par def='1'>article: 
+<field type='richtext' kind='editable' name='article'/></par>
+<par>auteur: 
+<field choicesdialog='acl' type='names' kind='editable' name='auteur'/></par>
+<par>contributeurs: 
+<field choicesdialog='addressbook' type='names' allowmultivalues='true' kind='editable'
+ name='contributeurs' listinputseparators='comma' listdisplayseparator='comma'/></par>
+<par>auteur2: 
+<field choicesdialog='addressbook' type='authors' kind='editable' name='auteur2'/></par>
+<par>contributeurs2: 
+<field choicesdialog='acl' type='authors' allowmultivalues='true' kind='editable'
+ name='contributeurs2' listinputseparators='comma' listdisplayseparator='comma'/></par>
+<par>auteur3: 
+<field choicesdialog='acl' type='readers' kind='editable' name='auteur3'/></par>
+<par>contributeurs3: 
+<field choicesdialog='acl' type='readers' allowmultivalues='true' kind='editable'
+ name='contributeurs3' listinputseparators='comma' listdisplayseparator='comma'/></par></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>namesForm</text></item></form>
+
+<document form='namesForm'>
+<noteinfo noteid='906' unid='27CF070394A919C9C12575C5003E92F5' sequence='1'>
+<created><datetime dst='true'>20090529T132328,53+02</datetime></created>
+<modified><datetime dst='true'>20090529T132415,86+02</datetime></modified>
+<revised><datetime dst='true'>20090529T132415,85+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090529T132415,85+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090529T132415,85+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<item name='article'><richtext>
+<pardef id='1'/>
+<par def='1'>blah blah blah blah blah blah </par>
+<par/>
+<par>blah blah blah blah </par>
+<par>blah blah </par></richtext></item>
+<item name='auteur' names='true'><text>manue</text></item>
+<item name='contributeur' names='true'><textlist><text>marie</text><text>truc</text><text
+>bidule</text></textlist></item>
+<item name='auteur2' authors='true' names='true'><text>CN=Eric BREHAULT/O=Eric BREHAULT</text></item>
+<item name='contributeurs2' authors='true' names='true'><text>CN=Eric BREHAULT/O=Eric BREHAULT</text></item></document>
+
+<document form='namesForm'>
+<noteinfo noteid='90a' unid='476C6C0681C4D7C4C12575C5003EC4A6' sequence='2'>
+<created><datetime dst='true'>20090529T132535,74+02</datetime></created>
+<modified><datetime dst='true'>20090529T132705,63+02</datetime></modified>
+<revised><datetime dst='true'>20090529T132705,62+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090529T132705,62+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090529T132610,40+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<item name='article'><richtext>
+<pardef id='1'/>
+<par def='1'/></richtext></item>
+<item name='auteur' names='true'><text>CN=Eric BREHAULT/O=Eric BREHAULT</text></item>
+<item name='contributeur' names='true'><textlist><text>LocalDomainServers</text><text
+>OtherDomainServers</text></textlist></item>
+<item name='auteur2' authors='true' names='true'><text>LocalDomainServers</text></item>
+<item name='contributeurs2' authors='true' names='true'><text>CN=Eric BREHAULT/O=Eric BREHAULT</text></item>
+<item name='$Revisions'><datetime dst='true'>20090529T132610,41+02</datetime></item></document>
+
+<document form='namesForm'>
+<noteinfo noteid='90e' unid='42A866CED370D04EC12575C5003F058C' sequence='1'>
+<created><datetime dst='true'>20090529T132821,88+02</datetime></created>
+<modified><datetime dst='true'>20090529T132842,65+02</datetime></modified>
+<revised><datetime dst='true'>20090529T132842,64+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090529T132842,63+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090529T132842,63+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<item name='article'><richtext>
+<pardef id='1'/>
+<par def='1'/></richtext></item>
+<item name='auteur' names='true'><text>OtherDomainServers</text></item>
+<item name='contributeur' names='true'><text>LocalDomainServers</text></item>
+<item name='auteur2' authors='true' names='true'><text>CN=Eric BREHAULT/O=Eric BREHAULT</text></item>
+<item name='contributeurs2' authors='true' names='true'><textlist><text>CN=Eric BREHAULT/O=Eric BREHAULT</text><text
+>OtherDomainServers</text></textlist></item></document>
+
+<document form='namesForm'>
+<noteinfo noteid='912' unid='B4885CC537C3C6B8C12575C50041CD8B' sequence='2'>
+<created><datetime dst='true'>20090529T135844,59+02</datetime></created>
+<modified><datetime dst='true'>20090529T135915,34+02</datetime></modified>
+<revised><datetime dst='true'>20090529T135915,33+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090529T135915,33+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090529T135853,66+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<item name='article'><richtext>
+<pardef id='1'/>
+<par def='1'/></richtext></item>
+<item name='auteur' names='true'><text>CN=Eric BREHAULT/O=Eric BREHAULT</text></item>
+<item name='contributeur' names='true'><text>LocalDomainServers</text></item>
+<item name='auteur2' authors='true' names='true'><text>CN=Eric BREHAULT/O=Eric BREHAULT</text></item>
+<item name='contributeurs2' authors='true' names='true'><text>CN=Eric BREHAULT/O=Eric BREHAULT</text></item>
+<item name='auteur3' names='true' readers='true'><text>CN=Eric BREHAULT/O=Eric BREHAULT</text></item>
+<item name='contributeurs3' names='true' readers='true'><textlist><text>CN=Eric BREHAULT/O=Eric BREHAULT</text><text
+>OtherDomainServers</text></textlist></item>
+<item name='$Revisions'><datetime dst='true'>20090529T135853,67+02</datetime></item></document></database>

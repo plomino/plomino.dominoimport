@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE database SYSTEM 'xmlschemas/domino_6_5.dtd'>
+
+<database xmlns="http://www.lotus.com/dxl" version="1.0" path="xmlexample.nsf" title="xmlexample">
+
+
+<document form="info">
+
+<noteinfo noteid="942" unid="1ff1eda64869f772b8fc74f9ecaf0cea" sequence="1">
+
+<created>
+<datetime dst="true">20010522T103636,81-04</datetime>
+</created>
+
+<modified>
+<datetime dst="true">20010522T103709,78-04</datetime>
+</modified>
+
+<revised>
+<datetime dst="true">20010522T103709,77-04</datetime>
+</revised>
+
+<lastaccessed>
+<datetime dst="true">20010522T103709,77-04</datetime>
+</lastaccessed>
+
+<addedtofile>
+<datetime dst="true">20010522T103709,77-04</datetime>
+</addedtofile>
+
+</noteinfo>
+
+<updatedby>
+<name>CN=Michelle Lally/OU=CAM/O=Acme</name>
+</updatedby>
+
+<item name="name">
+<text>Harry Hill</text>
+</item>
+
+<item name="address">
+<text>34 Grand Blvd, Oklahoma City</text>
+</item>
+
+</document>
+
+
+
+<document form="info">
+
+<noteinfo noteid="942" unid="431A199A6FCC9C0985256A54005041A1" sequence="1">
+
+<created>
+<datetime dst="true">20010522T103636,81-04</datetime>
+</created>
+
+<modified>
+<datetime dst="true">20010522T103709,78-04</datetime>
+</modified>
+
+<revised>
+<datetime dst="true">20010522T103709,77-04</datetime>
+</revised>
+
+<lastaccessed>
+<datetime dst="true">20010522T103709,77-04</datetime>
+</lastaccessed>
+
+<addedtofile>
+<datetime dst="true">20010522T103709,77-04</datetime>
+</addedtofile>
+
+</noteinfo>
+
+<updatedby>
+<name>CN=Michelle Lally/OU=CAM/O=Acme</name>
+</updatedby>
+
+<item name="name">
+<text>Joe Strummer</text>
+</item>
+
+<item name="address">
+<text>10 oxford Street, London</text>
+</item>
+
+</document>
+
+
+
+<document form="info">
+
+<noteinfo noteid="942" unid="431A199A6FCC9C0985256A54005041A1" sequence="1">
+
+<created>
+<datetime dst="true">20010522T103636,81-04</datetime>
+</created>
+
+<modified>
+<datetime dst="true">20010522T103709,78-04</datetime>
+</modified>
+
+<revised>
+<datetime dst="true">20010522T103709,77-04</datetime>
+</revised>
+
+<lastaccessed>
+<datetime dst="true">20010522T103709,77-04</datetime>
+</lastaccessed>
+
+<addedtofile>
+<datetime dst="true">20010522T103709,77-04</datetime>
+</addedtofile>
+
+</noteinfo>
+
+<updatedby>
+<name>CN=Michelle Lally/OU=CAM/O=Acme</name>
+</updatedby>
+
+<item name="name">
+<text>Joe Strummer</text>
+</item>
+
+<item name="address">
+<text>10 oxford Street, London</text>
+</item>
+
+</document>
+
+</database>

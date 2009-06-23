@@ -1,0 +1,2 @@
+include *.txt *.py
+recursive-include plomino/dominoimport include *.txt *.py *.gif *.zcml *.pt *.xml *.xsl

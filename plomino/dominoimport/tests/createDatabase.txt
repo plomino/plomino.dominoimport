@@ -1,0 +1,24 @@
+Plomino importFileDXL
+=========================
+
+test of a database and a form creation
+
+	>>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+
+Create a database
+    >>> self.setRoles(['Manager'])
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> id
+    'mydb'
+    
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+
+Create a form
+    >>> id=db.invokeFactory('PlominoForm', id='frm1', Title='Form 1')
+    >>> id
+    'frm1'
+    
+    >>> self.folder.manage_delObjects(["mydb"])
+    

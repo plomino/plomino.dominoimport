@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='utf-8'?>
+<database xmlns='http://www.lotus.com/dxl' version='6.5' replicaid='C12575C3002B6B52'
+ path='test.nsf' title='test'>
+<databaseinfo dbid='C12575C3002B6B52' odsversion='43' diskspace='393216' percentused='87.109375'
+ numberofdocuments='2'><datamodified><datetime dst='true'>20090527T115404,69+02</datetime></datamodified><designmodified
+><datetime dst='true'>20090527T114206,93+02</datetime></designmodified></databaseinfo>
+
+<acl maxinternetaccess='editor'>
+<aclentry name='-Default-' default='true' level='noaccess' readpublicdocs='true'
+ writepublicdocs='true'/>
+<aclentry name='CN=Eric BREHAULT/O=Eric BREHAULT' type='person' level='manager'
+ deletedocs='true'/>
+<aclentry name='OtherDomainServers' type='servergroup' level='noaccess' readpublicdocs='false'
+ writepublicdocs='false'/>
+<aclentry name='LocalDomainServers' type='servergroup' level='manager' deletedocs='true'/>
+<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT added OtherDomainServers</logentry>
+<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT added LocalDomainServers</logentry>
+<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT updated Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT added Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT updated -Default-</logentry></acl>
+
+<form name='etatCivil' publicaccess='false' designerversion='6.5'>
+<noteinfo noteid='166' unid='9F7BDB8EAE3D6B04C12575C3003343A9' sequence='3'>
+<created><datetime dst='true'>20090527T111956,57+02</datetime></created>
+<modified><datetime dst='true'>20090527T112737,60+02</datetime></modified>
+<revised><datetime dst='true'>20090527T112737,59+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090527T112737,59+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090527T112642,55+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<wassignedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></wassignedby>
+
+<body><richtext>
+<pardef id='1'/>
+<par def='1'>Nom:
+<field type='text' kind='editable' name='nom'/></par>
+<par>Prenom:
+<field type='text' kind='editable' name='prenom'/></par>
+<horizrule />
+<par>date de naissance:
+<field type='datetime' kind='editable' name='datenaissance'><datetimeformat
+ show='date' date='yearmonthday' fourdigityearfor21stcentury='true' zone='never'/></field></par>
+<par>Biographie:
+<field type='richtext' kind='editable' name='biography'/></par>
+<par>Nombre d'enfants:
+<field type='number' kind='editable' name='nbenfants'><numberformat format='fixed'
+ digits='0' punctuated='false' parens='false' percent='false'/></field></par>
+<par>Situation familiale:
+<field usenotesstyle='false' height='0.2500in' width='1in' multiline='true'
+ type='keyword' kind='editable' name='situation'><keywords helperbutton='false'
+ columns='1' borderstyle='inset' ui='combobox'><textlist><text>célibataire</text><text
+>marié</text><text>veuf</text><text>divorcé</text><text>vie maritale</text><text
+>pacsé</text></textlist></keywords></field></par></richtext></body>
+
+<item name='$$ScriptName' summary='false' sign='true'><text>etatCivil</text></item>
+<item name='nbenfants' summary='false'><number>0</number></item></form>
+</database>

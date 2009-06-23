@@ -1,0 +1,27 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:five="http://namespaces.zope.org/five">
+
+  <browser:view
+        for="*"
+        name="isPlominoDatabase"
+        permission="zope.Public"
+        class=".isPlominoDatabase"
+        />
+        
+    <browser:page
+       for="Products.CMFPlomino.interfaces.IPlominoDatabase"
+       name="dominoimport"
+       class=".manager.DominoImportManager"
+       template="manage.pt"
+       permission="zope2.View"
+       />
+    <browser:page
+       for="Products.CMFPlomino.interfaces.IPlominoDatabase"
+       name="manageImportDXL"
+       class=".manager.DominoImportManager"
+       attribute="manageImportDXL"
+       permission="zope2.View"
+       />
+</configure>
+       

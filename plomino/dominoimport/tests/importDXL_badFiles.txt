@@ -1,0 +1,230 @@
+Plomino importFileDXL : test of bad files
+=========================================
+test of a database design import with a simple DXL file
+In theses tests, a class ImportDXL is used for the import operations
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    
+Import os to generate file from path
+
+    >>> import os.path
+    >>> dir, _f = os.path.split(os.path.abspath(__file__))
+
+Create a database
+-----------------
+A database is created in the plomino instance
+
+    >>> self.setRoles(['Manager'])
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+    
+    >>> from plomino.dominoimport.interfaces import IDominoImporter
+    >>> i=IDominoImporter(db)
+    >>> i.__class__.__name__
+    'DominoImporter'
+    
+    >>> i.context.id
+    'mydb'
+
+Error: no DXL to import
+=======================
+
+Import DXL file
+---------------
+DXL file imported is the database design one: the file is parsed in a xml object
+dxlDoc = db.processImportDXL(REQUEST)
+Trouver une REQUEST à lui donner
+
+Error: DXL doc does not exists
+==============================
+
+Import DXL file
+---------------
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseBidon.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+
+Error: non valid DXL files
+==========================
+
+Import DXL file
+---------------
+File with bad XML
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseBadXML.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+
+File with correct XML but DXL element which not exists in DTD
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseBadDXL.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+
+Error: forms with same Id
+=========================
+
+Import DXL file
+---------------
+DXL file imported is the database design one: the file is parsed in a xml object
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseFormsErrorSameId.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+
+Create forms with their fields
+------------------------------
+From the DXL xml object, this method will extract the forms elements with their field, 
+and create them in the database
+For the moment, only fields are created as object, but the layout is not set
+
+    >>> i.importForms(dxlDoc)
+    (1, 1)
+
+Forms in the database ?
+    >>> allForms = db.getForms()
+    >>> allForms
+    [<PlominoForm at /plone/Members/test_user_1_/mydb/info>]
+
+Fields in the correct forms ?
+    >>> for form in allForms:
+    ...     form.getFormName()
+    ...     allFields = form.getFields()
+    ...     allFields
+    ...     for field in allFields:
+    ...         field.getId()
+    ...         field.title
+    ...         field.getFieldType()
+    ...     form.getFormLayout()
+    'info'
+    [<PlominoField at /plone/Members/test_user_1_/mydb/info/name>, <PlominoField at /plone/Members/test_user_1_/mydb/info/address>]
+    'name'
+    u'name'
+    'TEXT'
+    'address'
+    u'address'
+    'TEXT'
+    '<p></p><p>Enter your name:<span class="plominoFieldClass">name</span></p><p></p><p>Enter your address:<span class="plominoFieldClass">address</span></p>'
+
+    >>> self.folder.manage_delObjects(["mydb"])
+    
+Error: views with same Id
+=========================
+
+New database:
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+    >>> i=IDominoImporter(db)
+    
+Import DXL file
+---------------
+DXL file imported is the database design one: the file is parsed in a xml object
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseViewsErrorSameId.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+
+Create views
+------------
+Views are created with their columns from the DXL xml object
+
+    >>> i.importViews(dxlDoc)
+    (1, 1)
+
+Views in the database ?
+    >>> allViews = db.getViews()
+    >>> allViews
+    [<PlominoView at /plone/Members/test_user_1_/mydb/customer>]
+    
+    >>> self.folder.manage_delObjects(["mydb"])
+    
+Error: Columns with same Id
+===========================
+
+New database:
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+    >>> i=IDominoImporter(db)
+    
+Import DXL file
+---------------
+DXL file imported is the database design one: the file is parsed in a xml object
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseColumnErrorSameId.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+
+Create views
+------------
+Views are created with their columns from the DXL xml object
+
+    >>> i.importViews(dxlDoc)
+    (1, 0)
+
+Views in the database ?
+    >>> allViews = db.getViews()
+    >>> allViews
+    [<PlominoView at /plone/Members/test_user_1_/mydb/customer>]
+
+    >>> view = allViews[0]
+    >>> view.getViewName()
+    'customer'
+    >>> allColumns = view.getColumns()
+    >>> allColumns
+    [<PlominoColumn at /plone/Members/test_user_1_/mydb/customer/name>, <PlominoColumn at /plone/Members/test_user_1_/mydb/customer/address>]
+    >>> for column in allColumns:
+    ...     column.getId()
+    'name'
+    'address'
+    
+Formula:
+- Selection formula for the view itself : python code returning a boolean value, to select wich document to view
+- Column formula: python code returning the column value
+
+    >>> self.folder.manage_delObjects(["mydb"])
+    
+Error: documents with same Id
+=============================
+
+New database:
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+    >>> i=IDominoImporter(db)
+    
+Import DXL file
+---------------
+DXL file imported is the database design one: the file is parsed in a xml object
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseFormsErrorSameId.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+
+Create forms with their fields
+------------------------------
+From the DXL xml object, this method will extract the forms elements with their field, 
+and create them in the database
+For the moment, only fields are created as object, but the layout is not set
+
+    >>> i.importForms(dxlDoc)
+    (1, 1)
+    
+Create Documents
+----------------
+from another DXL file, we get the database data
+Documents are created with their item, and also form is set if the attribute 'form' is provided
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDocumentErrorSameId.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+    
+    >>> i.importDocs(dxlDoc)
+    (2, 1)
+
+How many docs in the database ?
+    >>> allDocs = db.getAllDocuments()
+    >>> len(allDocs)
+    2
+    
+    >>> if allDocs[0].id != '1ff1eda64869f772b8fc74f9ecaf0cea':
+    ...     allDocs.reverse()
+    
+id of the documents
+    >>> for doc in allDocs:
+    ...     doc.id
+    '1ff1eda64869f772b8fc74f9ecaf0cea'
+    '431A199A6FCC9C0985256A54005041A1'

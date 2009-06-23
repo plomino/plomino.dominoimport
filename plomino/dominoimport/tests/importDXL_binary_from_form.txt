@@ -1,0 +1,118 @@
+Plomino importFileDXL (test import layer)
+=========================================
+test of a database design import with a simple DXL file
+In theses tests, a class ImportDXL is used for the import operations
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+
+Import os to generate file from path
+
+    >>> import os.path
+    >>> dir, _f = os.path.split(os.path.abspath(__file__))
+
+Create a database
+-----------------
+A database is created in the plomino instance
+
+    >>> self.setRoles(['Manager'])
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+    
+    >>> from plomino.dominoimport.interfaces import IDominoImporter
+    >>> i=IDominoImporter(db)
+    >>> i.__class__.__name__
+    'DominoImporter'
+    
+    >>> i.context.id
+    'mydb'
+
+Import DXL file
+---------------
+DXL file imported is the database design one: the file is parsed in a xml object
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binary_forms.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+    
+Get binaries
+------------
+    >>> i.importResourcesFromDXL(dxlDoc)
+    (1, 0)
+    
+    >>> db.resources._objects
+    ({'meta_type': 'File', 'id': 'overlord59-tux-samourai-1773.jpg'},)
+    
+Create forms with their fields
+------------------------------
+From the DXL xml object, this method will extract the forms elements with their field, 
+and create them in the database
+
+The imported file has an field type error, one field has 'truc' instead of 'text', it should become a TEXT type by default
+
+    >>> i.importForms(dxlDoc)
+    (4, 0)
+
+Form is in the database ?
+
+Form "create > object"
+----------------------
+
+    >>> form = db.getForm('bfrm1')
+    
+correct Form name and Layout ?
+    >>> form.getFormName()
+    'bfrm1'
+    >>> form.getFormLayout()
+    '<p>create object: <a href="resources/EXT02505.jpg" /></p><p>article:</p><p><span class="plominoFieldClass">article</span></p>'
+
+    >>> db.resources._objects
+    ({'meta_type': 'File', 'id': 'overlord59-tux-samourai-1773.jpg'}, {'meta_type': 'File', 'id': 'EXT02505.jpg'})
+
+Form "create > resource image"
+------------------------------
+
+    >>> form = db.getForm('bfrm2')
+    
+correct Form name and Layout ?
+    >>> form.getFormName()
+    'bfrm2'
+    >>> form.getFormLayout()
+    '<p>Create image resource: <img src="resources/overlord59-tux-samourai-1773.jpg" /></p><p>article:</p><p><span class="plominoFieldClass">article</span></p>'
+
+    >>> db.resources._objects
+    ({'meta_type': 'File', 'id': 'overlord59-tux-samourai-1773.jpg'}, {'meta_type': 'File', 'id': 'EXT02505.jpg'})
+    
+Form "attach file"
+------------------
+
+    >>> form = db.getForm('bfrm3')
+    
+correct Form name and Layout ?
+    >>> form.getFormName()
+    'bfrm3'
+    >>> form.getFormLayout()
+    '<p>Attach file: <img src="resources/overlord59-tux-samourai-1774.jpg" /></p><p>article:</p><p><span class="plominoFieldClass">article</span></p>'
+
+    >>> db.resources._objects
+    ({'meta_type': 'File', 'id': 'overlord59-tux-samourai-1773.jpg'}, {'meta_type': 'File', 'id': 'EXT02505.jpg'}, {'meta_type': 'File', 'id': 'overlord59-tux-samourai-1774.jpg'})
+    
+Form "create > picture"
+------------------------------
+
+    >>> form = db.getForm('bfrm4')
+    
+correct Form name and Layout ?
+    >>> form.getFormName()
+    'bfrm4'
+    >>> form.getFormLayout()
+    '<p>Create picture: <img src="resources/image1.jpg" /></p><p>article:</p><p><span class="plominoFieldClass">article</span></p>'
+
+    >>> db.resources._objects
+    ({'meta_type': 'File', 'id': 'overlord59-tux-samourai-1773.jpg'}, {'meta_type': 'File', 'id': 'EXT02505.jpg'}, {'meta_type': 'File', 'id': 'overlord59-tux-samourai-1774.jpg'}, {'meta_type': 'File', 'id': 'image1.jpg'})
+    
+Import view
+-----------
+
+    >>> i.importViews(dxlDoc)
+    (1, 0)

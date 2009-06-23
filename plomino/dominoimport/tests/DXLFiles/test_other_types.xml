@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='utf-8'?>
+<database xmlns='http://www.lotus.com/dxl' version='6.5' replicaid='C12575CA003EA65F'
+ path='test_other_types.nsf' title='test_other_types'>
+<databaseinfo dbid='C12575CA003EA65F' odsversion='43' diskspace='327680' percentused='87.109375'
+ numberofdocuments='1'><datamodified><datetime dst='true'>20090603T132837,51+02</datetime></datamodified><designmodified
+><datetime dst='true'>20090603T132753,32+02</datetime></designmodified></databaseinfo>
+<acl maxinternetaccess='editor'>
+<aclentry name='-Default-' default='true' level='noaccess' readpublicdocs='true'
+ writepublicdocs='true'/>
+<aclentry name='CN=Eric BREHAULT/O=Eric BREHAULT' type='person' level='manager'
+ deletedocs='true'/>
+<aclentry name='OtherDomainServers' type='servergroup' level='noaccess' readpublicdocs='false'
+ writepublicdocs='false'/>
+<aclentry name='LocalDomainServers' type='servergroup' level='manager' deletedocs='true'/>
+<logentry>03/06/2009 01:24:19 PM Eric BREHAULT/Eric BREHAULT added OtherDomainServers</logentry>
+<logentry>03/06/2009 01:24:19 PM Eric BREHAULT/Eric BREHAULT added LocalDomainServers</logentry>
+<logentry>03/06/2009 01:24:19 PM Eric BREHAULT/Eric BREHAULT updated Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>03/06/2009 01:24:19 PM Eric BREHAULT/Eric BREHAULT added Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>03/06/2009 01:24:19 PM Eric BREHAULT/Eric BREHAULT updated -Default-</logentry></acl>
+
+<view showinmenu='true' publicaccess='false' default='true' noviewformat='true'>
+<noteinfo noteid='116' unid='BC6F0BD88A4BFF95C12575CA003EA6A7' sequence='1'>
+<created><datetime dst='true'>20090603T132418,95+02</datetime></created>
+<modified><datetime dst='true'>20090603T132737,95+02</datetime></modified>
+<revised><datetime dst='true'>20090603T132418,95+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090603T132737,94+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090603T132418,96+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby><code
+ event='selection'><formula>@All</formula></code></view>
+
+<form name='otherForms' publicaccess='false' designerversion='6.5'>
+<noteinfo noteid='142' unid='5CB4378CA26EA9E3C12575CA003EAAB3' sequence='1'>
+<created><datetime dst='true'>20090603T132429,31+02</datetime></created>
+<modified><datetime dst='true'>20090603T132753,32+02</datetime></modified>
+<revised><datetime dst='true'>20090603T132753,31+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090603T132753,31+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090603T132753,31+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<wassignedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></wassignedby>
+<body><richtext>
+<pardef id='1'/>
+<par def='1'>password: 
+<field type='password' kind='editable' seal='true' name='password'/></par>
+<par>timezone: 
+<field type='timezone' usenotesstyle='false' height='0.2500in' width='1in'
+ multiline='true' kind='editable' name='timezone'/></par>
+<par>color: 
+<field type='color' usenotesstyle='false' height='0.2500in' width='1in' multiline='true'
+ kind='editable' name='color'/></par></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>otherForms</text></item></form>
+
+<document form='otherForms'>
+<noteinfo noteid='8f6' unid='0B42094119583D67C12575CA003EFBCE' sequence='3'>
+<created><datetime dst='true'>20090603T132756,94+02</datetime></created>
+<modified><datetime dst='true'>20090603T132837,51+02</datetime></modified>
+<revised><datetime dst='true'>20090603T132837,50+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090603T132837,50+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090603T132816,52+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<revisions><datetime dst='true'>20090603T132816,52+02</datetime><datetime
+ dst='true'>20090603T132824,84+02</datetime></revisions>
+<item name='password' seal='true'><text>cozo</text></item>
+<item name='timezone'><text>Z=-4505$DO=0$ZX=55$ZN=Nepal</text></item>
+<item name='color'><text>003F8080</text></item></document></database>

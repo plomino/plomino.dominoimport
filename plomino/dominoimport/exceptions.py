@@ -1,0 +1,2 @@
+class ImportDXLException(Exception):
+    pass

@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='utf-8'?>
+<database xmlns='http://www.lotus.com/dxl' version='6.5' replicaid='C12575C90051572F'
+ path='test_documents.nsf' title='test_documents'>
+<databaseinfo dbid='C12575C90051572F' odsversion='43' diskspace='327680' percentused='87.734375'
+ numberofdocuments='3'><datamodified><datetime dst='true'>20090602T165858,57+02</datetime></datamodified><designmodified
+><datetime dst='true'>20090602T170025,08+02</datetime></designmodified></databaseinfo>
+<acl maxinternetaccess='editor'>
+<aclentry name='-Default-' default='true' level='noaccess' readpublicdocs='true'
+ writepublicdocs='true'/>
+<aclentry name='CN=Eric BREHAULT/O=Eric BREHAULT' type='person' level='manager'
+ deletedocs='true'/>
+<aclentry name='OtherDomainServers' type='servergroup' level='noaccess' readpublicdocs='false'
+ writepublicdocs='false'/>
+<aclentry name='LocalDomainServers' type='servergroup' level='manager' deletedocs='true'/>
+<logentry>02/06/2009 04:48:27 PM Eric BREHAULT/Eric BREHAULT added OtherDomainServers</logentry>
+<logentry>02/06/2009 04:48:27 PM Eric BREHAULT/Eric BREHAULT added LocalDomainServers</logentry>
+<logentry>02/06/2009 04:48:27 PM Eric BREHAULT/Eric BREHAULT updated Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>02/06/2009 04:48:27 PM Eric BREHAULT/Eric BREHAULT added Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>02/06/2009 04:48:27 PM Eric BREHAULT/Eric BREHAULT updated -Default-</logentry></acl>
+
+<view name='tous' showinmenu='false' publicaccess='false' designerversion='6.5'
+ default='true' unreadmarks='none' onopengoto='lastopened' onrefresh='displayindicator'
+ headers='beveled' opencollapsed='false' showresponsehierarchy='true' showmargin='true'
+ shrinkrows='false' extendlastcolumn='false' unreadcolor='black' totalscolor='gray'
+ rowlinecount='1' headerlinecount='1' rowspacing='1' bgcolor='white' headerbgcolor='white'
+ boldunreadrows='false' evaluateactions='false' allownewdocuments='false'
+ allowcustomizations='false' hidemarginborder='false' marginwidth='0px' marginbgcolor='white'
+ uniquekeys='false'>
+<noteinfo noteid='116' unid='5FF20CBC9D178B04C12575C900515749' sequence='2'>
+<created><datetime dst='true'>20090602T164827,61+02</datetime></created>
+<modified><datetime dst='true'>20090602T165038,52+02</datetime></modified>
+<revised><datetime dst='true'>20090602T165038,51+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090602T165038,51+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090602T164827,61+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<wassignedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></wassignedby><code
+ event='selection'><formula>@All</formula></code>
+<actionbar bgcolor='#d4d0c8' bordercolor='black'>
+<actionbuttonstyle bgcolor='#d4d0c8'/><font size='9pt' color='system'/><border
+ style='solid' width='0px 0px 1px'/>
+<action title='Categori_ze' showinbar='false' systemcommand='categorize'/>
+<action title='_Edit Document' showinbar='false' systemcommand='edit'/>
+<action title='_Send Document' showinbar='false' systemcommand='send'/>
+<action title='_Forward' showinbar='false' systemcommand='forward'/>
+<action title='_Move To Folder...' showinbar='false' systemcommand='movetofolder'/>
+<action title='_Remove From Folder' showinbar='false' systemcommand='removefromfolder'/></actionbar>
+<column itemname='name' width='10' resizable='true' separatemultiplevalues='false'
+ sortnoaccent='true' sortnocase='true' showaslinks='false'><columnheader title='Name'><font
+ size='9pt' style='bold'/></columnheader><datetimeformat show='datetime' date='yearmonthday'
+ time='hourminutesecond' zone='never'/><numberformat format='general' digits='0'
+ punctuated='false' parens='false' percent='false'/><code event='value'><formula
+>name</formula></code></column>
+<column itemname='age' width='10' resizable='true' separatemultiplevalues='false'
+ sortnoaccent='false' sortnocase='true' showaslinks='false'><columnheader
+ title='Age'><font size='9pt' style='bold'/></columnheader><datetimeformat
+ show='datetime' date='yearmonthday' time='hourminutesecond' zone='never'/><numberformat
+ format='general' digits='0' punctuated='false' parens='false' percent='false'/><code
+ event='value'><formula>age</formula></code></column>
+<item name='$Index' sign='true'><text/></item></view>
+
+<form name='info' publicaccess='false' designerversion='6.5'>
+<noteinfo noteid='132' unid='C49D80D6DADCAC06C12575C900515D72' sequence='2'>
+<created><datetime dst='true'>20090602T164843,38+02</datetime></created>
+<modified><datetime dst='true'>20090602T164850,76+02</datetime></modified>
+<revised><datetime dst='true'>20090602T164850,75+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090602T164850,76+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090602T164843,43+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<wassignedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></wassignedby>
+<body><richtext>
+<pardef id='1'/>
+<par def='1'>name: 
+<field type='text' kind='editable' name='name'/></par>
+<par>age: 
+<field type='number' kind='editable' name='age'><numberformat format='general'
+ digits='varying' punctuated='false' parens='false' percent='false'/></field></par></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>info</text></item>
+<item name='age' summary='false'><number>0</number></item></form>
+
+<document form='info'>
+<noteinfo noteid='8f6' unid='B152B61013440583C12575C90051910C' sequence='1'>
+<created><datetime dst='true'>20090602T165055,48+02</datetime></created>
+<modified><datetime dst='true'>20090602T165109,71+02</datetime></modified>
+<revised><datetime dst='true'>20090602T165109,70+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090602T165109,70+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090602T165109,70+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<item name='name'><text>Joe Strummer</text></item>
+<item name='age'><number>58</number></item></document>
+
+<document form='info'>
+<noteinfo noteid='8fa' unid='D491A14259408B24C12575C9005198B2' sequence='1'>
+<created><datetime dst='true'>20090602T165115,06+02</datetime></created>
+<modified><datetime dst='true'>20090602T165141,86+02</datetime></modified>
+<revised><datetime dst='true'>20090602T165141,85+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090602T165141,85+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090602T165141,85+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<item name='name'><text>Ian Curtis</text></item>
+<item name='age'><number>24</number></item></document>
+
+</database>

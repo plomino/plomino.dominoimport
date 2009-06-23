@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE database SYSTEM 'xmlschemas/domino_6_5.dtd'>
+
+<database xmlns="http://www.lotus.com/dxl" version="1.0" path="xmlexample.nsf" title="xmlexample">
+
+<databaseinfo dbid="85256A38005F8BFC" replicaid="85256A38005F8BFC" odsversion="41" diskspace="262144" percentused="84.765625" numberofdocuments="2">
+
+<datamodified>
+<datetime dst="true">20010424T132608,39-04</datetime>
+</datamodified>
+
+<designmodified>
+<datetime dst="true">20010424T132738,59-04</datetime>
+</designmodified>
+
+</databaseinfo>
+
+
+
+
+<view name="customer" showinmenu="false" publicaccess="false" designerversion="6" default="true" unreadmarks="none" onopengoto="lastopened" onrefresh="displayindicator" headers="beveled" opencollapsed="false" showresponsehierarchy="true" showmargin="true" shrinkrows="false" extendlastcolumn="false" unreadcolor="black" totalscolor="gray" rowlinecount="1" headerlinecount="1" rowspacing="1" bgcolor="white" uniquekeys="false">
+
+<noteinfo noteid="116" unid="963D5D730761E29285256A38005F8C13" sequence="2">
+<created>
+<datetime dst="true">20010424T132337,79-04</datetime>
+</created>
+
+<modified>
+<datetime dst="true">20010424T132458,35-04</datetime> </modified>
+
+<revised>
+<datetime dst="true">20010424T132444,36-04</datetime> </revised>
+
+<lastaccessed>
+<datetime dst="true">20010424T132458,34-04</datetime> </lastaccessed>
+
+<addedtofile>
+<datetime dst="true">20010424T132337,79-04</datetime> </addedtofile>
+
+</noteinfo>
+
+
+
+<updatedby>
+<name>CN=Mary Lally/OU=CAM/O=Condor</name>
+</updatedby>
+
+<code event="selection">
+<formula>@All</formula>
+</code>
+
+<column itemname="name" width="10" resizable="true" separatemultiplevalues="false" sortnoaccent="true" sortnocase="true" showaslinks="false">
+
+<columnheader title="Name">
+<font size="9pt" style="bold" />
+</columnheader>
+
+<datetimeformat date="yearmonthday" time="hourminutesecond" zone="never" show="datetime" />
+
+<numberformat format="general" digits="0" punctuated="false" parens="false" percent="false" />
+
+<code event="value">
+<formula>name</formula>
+</code>
+
+</column>
+
+
+
+<column itemname="address" width="10" resizable="true" separatemultiplevalues="false" sortnoaccent="false" sortnocase="true" showaslinks="false">
+
+<columnheader title="Address">
+<font size="9pt" style="bold" />
+</columnheader>
+
+<datetimeformat date="yearmonthday" time="hourminutesecond" zone="never" show="datetime" />
+
+<numberformat format="general" digits="0" punctuated="false" parens="false" percent="false" />
+
+<code event="value">
+<formula>address</formula>
+</code>
+
+</column>
+
+
+
+<item name="$Index" sign="true">
+<text />
+</item>
+
+</view>
+
+
+
+
+
+
+
+<note default="true" class="icon">
+
+<noteinfo noteid="11a" unid="B1E74D85C6C1C40685256A38005F8C15" sequence="3">
+
+<created>
+<datetime dst="true">20010424T132337,81-04</datetime>
+</created>
+
+<modified>
+<datetime dst="true">20010424T132337,87-04</datetime> </modified>
+
+<revised>
+<datetime dst="true">20010424T132337,86-04</datetime> </revised>
+
+<lastaccessed>
+<datetime dst="true">20010424T132337,85-04</datetime> </lastaccessed>
+
+<addedtofile>
+<datetime dst="true">20010424T132337,84-04</datetime>
+</addedtofile>
+
+</noteinfo>
+
+<updatedby>
+<name>CN=Mary Lally/OU=CAM/O=Condor</name>
+</updatedby>
+
+<item name="IconBitmap" summary="true">
+<itemdata type="6">AiAgAQAA/gH///gAf//wAB//4AAP/8AAB//AAAP/gAAB/4AAAP+AAAD/gAAAf4AAAD+AAAA/gAAA H4AAAA/AAAAPwAAAB8AAAAfgAAAH4AAAA/AAAAPwAAAD+AAAA/gAAAP8AAAD/gAAA/8AAAP/gAAD /8AAA//gAAf/8AAP//wAH///AH8AAAAKoAAKoAAAAAAAAAAAAAAKpN3USgCgAAAAAAAAAAAApP1N 3d3UoKAAAAAAAAAACk/qqkCrRESgAAAAAAAAAKR+rapKCrq0SgAAAAAAAACn7traRAuruqSgAAAA AAAKTf2tSkoKu7rqSgAAAAAACk/e1NpEC766rqSgAAAAAApNfU1ESgvrupqZSgAAAAAKTX1NREoL 67qamUoAAAAABPze1ESgu765OZmUoAAAAATG9E1AC+vruZmZmkoAAAAE9mbUqr6+vrk5mZmkAAAA BOZjRAq7W+u5k5mZqkAAAATGadSgtb6+u9mZ4A/uAAAARmTtSgtb6+sP2U0R/gAAAEZuftoPtbuq UdlKER/gAABPb+dA8Wu6thOZ0PEf4AAADGb0rxYbuiYZmZrhEeAAAA72ZmZmK+uiaTma4RH+AAAA hmZmYb6+uhOTkPER/gAAAOj2Zmbl6+phOQ8REf4AAAAE5mFmLl6iFhYRERH0AAAABI9mZmXqIWFh FhER9AAAAABI9mFmFhYWFhEREfoAAAAABI9mYWFhYWFhFhHqAAAAAABIxhYWFhYWFhER6gAAAAAA CojxYWFhYWFhH6oAAAAAAACkCPZmFhYWEfpEAAAAAAAACkoI9mFhYW6kQAAAAAAAAACkRADu7uAK RAAAAAAAAAAAAEREREREREAAAA==</itemdata>
+</item>
+
+<item name="$Flags">
+<text>J</text>
+</item>
+
+<item name="$TITLE">
+<text>xmlexample</text>
+</item>
+
+</note>
+
+
+
+
+
+
+
+<form name="info" publicaccess="false" designerversion="6">
+
+<noteinfo noteid="12e" unid="FF49A05A2A7C56C685256A38005F8D40" sequence="1">
+
+<created>
+<datetime dst="true">20010424T132340,80-04</datetime>
+</created>
+
+<modified>
+<datetime dst="true">20010424T132416,12-04</datetime>
+</modified>
+
+<revised>
+<datetime dst="true">20010424T132416,11-04</datetime>
+</revised>
+
+<lastaccessed>
+<datetime dst="true">20010424T132416,12-04</datetime>
+</lastaccessed>
+
+<addedtofile>
+<datetime dst="true">20010424T132416,12-04</datetime>
+</addedtofile>
+
+</noteinfo>
+
+
+
+
+<updatedby>
+<name>CN=Mary Lally/OU=CAM/O=Condor</name>
+</updatedby>
+
+<body>
+<richtext>
+<par ></par>
+<pardef id="1" />
+<par def="1">
+Enter your name:
+<field type="text" kind="editable" name="name" />
+</par>
+<par />
+<par>
+Enter your address:
+<field type="text" kind="editable" name="address" />
+</par>
+</richtext>
+</body>
+
+<item name="$Form_RepId" sign="true">
+<datetime dst="true">20010424T132337,56-04</datetime>
+</item>
+
+<item name="$$ScriptName" summary="false" sign="true">
+<text>info</text>
+</item>
+
+</form>
+
+
+
+<form name="project" publicaccess="false" designerversion="6">
+
+<noteinfo noteid="12e" unid="FF49A05A2A7C56C685256A38005F8D40" sequence="1">
+
+<created>
+<datetime dst="true">20010424T132340,80-04</datetime>
+</created>
+
+<modified>
+<datetime dst="true">20010424T132416,12-04</datetime>
+</modified>
+
+<revised>
+<datetime dst="true">20010424T132416,11-04</datetime>
+</revised>
+
+<lastaccessed>
+<datetime dst="true">20010424T132416,12-04</datetime>
+</lastaccessed>
+
+<addedtofile>
+<datetime dst="true">20010424T132416,12-04</datetime>
+</addedtofile>
+
+</noteinfo>
+
+
+
+
+<updatedby>
+<name>CN=Mary Lally/OU=CAM/O=Condor</name>
+</updatedby>
+
+<body>
+<richtext>
+<par />
+<pardef id="1" />
+<par def="1">
+Enter your name:
+<field type="text" kind="editable" name="desc" />
+</par>
+<par />
+<par>
+Enter your address:
+<field type="text" kind="editable" name="customer" />
+</par>
+</richtext>
+</body>
+
+<item name="$Form_RepId" sign="true">
+<datetime dst="true">20010424T132337,56-04</datetime>
+</item>
+
+<item name="$$ScriptName" summary="false" sign="true">
+<text>info</text>
+</item>
+
+</form>
+
+
+</database> 

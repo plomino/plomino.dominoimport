@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE database SYSTEM 'xmlschemas/domino_6_5.dtd'>
+
+<database xmlns="http://www.lotus.com/dxl" version="1.0" path="xmlexample.nsf" title="xmlexample">
+
+<databaseinfo dbid="85256A38005F8BFC" replicaid="85256A38005F8BFC" odsversion="41" diskspace="262144" percentused="84.765625" numberofdocuments="2">
+
+<datamodified>
+<datetime dst="true">20010424T132608,39-04</datetime>
+</datamodified>
+
+<designmodified>
+<datetime dst="true">20010424T132738,59-04</datetime>
+</designmodified>
+
+</databaseinfo>
+
+
+
+
+<view name="customer" showinmenu="false" publicaccess="false" designerversion="6" default="true" unreadmarks="none" onopengoto="lastopened" onrefresh="displayindicator" headers="beveled" opencollapsed="false" showresponsehierarchy="true" showmargin="true" shrinkrows="false" extendlastcolumn="false" unreadcolor="black" totalscolor="gray" rowlinecount="1" headerlinecount="1" rowspacing="1" bgcolor="white" uniquekeys="false">
+
+<noteinfo noteid="116" unid="963D5D730761E29285256A38005F8C13" sequence="2">
+<created>
+<datetime dst="true">20010424T132337,79-04</datetime>
+</created>
+
+<modified>
+<datetime dst="true">20010424T132458,35-04</datetime> </modified>
+
+<revised>
+<datetime dst="true">20010424T132444,36-04</datetime> </revised>
+
+<lastaccessed>
+<datetime dst="true">20010424T132458,34-04</datetime> </lastaccessed>
+
+<addedtofile>
+<datetime dst="true">20010424T132337,79-04</datetime> </addedtofile>
+
+</noteinfo>
+
+
+
+<updatedby>
+<name>CN=Mary Lally/OU=CAM/O=Condor</name>
+</updatedby>
+
+<code event="selection">
+<formula>@All</formula>
+</code>
+
+<column itemname="name" width="10" resizable="true" separatemultiplevalues="false" sortnoaccent="true" sortnocase="true" showaslinks="false">
+
+<columnheader title="Name">
+<font size="9pt" style="bold" />
+</columnheader>
+
+<datetimeformat date="yearmonthday" time="hourminutesecond" zone="never" show="datetime" />
+
+<numberformat format="general" digits="0" punctuated="false" parens="false" percent="false" />
+
+<code event="value">
+<formula>name</formula>
+</code>
+
+</column>
+
+
+
+<column itemname="address" width="10" resizable="true" separatemultiplevalues="false" sortnoaccent="false" sortnocase="true" showaslinks="false">
+
+<columnheader title="Address">
+<font size="9pt" style="bold" />
+</columnheader>
+
+<datetimeformat date="yearmonthday" time="hourminutesecond" zone="never" show="datetime" />
+
+<numberformat format="general" digits="0" punctuated="false" parens="false" percent="false" />
+
+<code event="value">
+<formula>address</formula>
+</code>
+
+</column>
+
+
+
+<item name="$Index" sign="true">
+<text />
+</item>
+
+</view>
+
+
+<view name="customer" showinmenu="false" publicaccess="false" designerversion="6" default="true" unreadmarks="none" onopengoto="lastopened" onrefresh="displayindicator" headers="beveled" opencollapsed="false" showresponsehierarchy="true" showmargin="true" shrinkrows="false" extendlastcolumn="false" unreadcolor="black" totalscolor="gray" rowlinecount="1" headerlinecount="1" rowspacing="1" bgcolor="white" uniquekeys="false">
+
+<noteinfo noteid="116" unid="963D5D730761E29285256A38005F8C13" sequence="2">
+<created>
+<datetime dst="true">20010424T132337,79-04</datetime>
+</created>
+
+<modified>
+<datetime dst="true">20010424T132458,35-04</datetime> </modified>
+
+<revised>
+<datetime dst="true">20010424T132444,36-04</datetime> </revised>
+
+<lastaccessed>
+<datetime dst="true">20010424T132458,34-04</datetime> </lastaccessed>
+
+<addedtofile>
+<datetime dst="true">20010424T132337,79-04</datetime> </addedtofile>
+
+</noteinfo>
+
+
+
+<updatedby>
+<name>CN=Mary Lally/OU=CAM/O=Condor</name>
+</updatedby>
+
+<code event="selection">
+<formula>@All</formula>
+</code>
+
+<column itemname="name" width="10" resizable="true" separatemultiplevalues="false" sortnoaccent="true" sortnocase="true" showaslinks="false">
+
+<columnheader title="Name">
+<font size="9pt" style="bold" />
+</columnheader>
+
+<datetimeformat date="yearmonthday" time="hourminutesecond" zone="never" show="datetime" />
+
+<numberformat format="general" digits="0" punctuated="false" parens="false" percent="false" />
+
+<code event="value">
+<formula>name</formula>
+</code>
+
+</column>
+
+
+
+<column itemname="address" width="10" resizable="true" separatemultiplevalues="false" sortnoaccent="false" sortnocase="true" showaslinks="false">
+
+<columnheader title="Address">
+<font size="9pt" style="bold" />
+</columnheader>
+
+<datetimeformat date="yearmonthday" time="hourminutesecond" zone="never" show="datetime" />
+
+<numberformat format="general" digits="0" punctuated="false" parens="false" percent="false" />
+
+<code event="value">
+<formula>address</formula>
+</code>
+
+</column>
+
+
+
+<item name="$Index" sign="true">
+<text />
+</item>
+
+</view>
+
+
+</database> 

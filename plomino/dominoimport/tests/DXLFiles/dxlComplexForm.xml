@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE database SYSTEM 'xmlschemas/domino_6_5.dtd'>
+
+<database xmlns="http://www.lotus.com/dxl" version="1.0" path="xmlexample.nsf" title="xmlexample">
+
+<databaseinfo dbid="85256A38005F8BFC" replicaid="85256A38005F8BFC" odsversion="41" diskspace="262144" percentused="84.765625" numberofdocuments="2">
+
+<datamodified>
+<datetime dst="true">20010424T132608,39-04</datetime>
+</datamodified>
+
+<designmodified>
+<datetime dst="true">20010424T132738,59-04</datetime>
+</designmodified>
+
+</databaseinfo>
+
+<form name="info" publicaccess="false" designerversion="6">
+
+<noteinfo noteid="12e" unid="FF49A05A2A7C56C685256A38005F8D40" sequence="1">
+
+<created>
+<datetime dst="true">20010424T132340,80-04</datetime>
+</created>
+
+<modified>
+<datetime dst="true">20010424T132416,12-04</datetime>
+</modified>
+
+<revised>
+<datetime dst="true">20010424T132416,11-04</datetime>
+</revised>
+
+<lastaccessed>
+<datetime dst="true">20010424T132416,12-04</datetime>
+</lastaccessed>
+
+<addedtofile>
+<datetime dst="true">20010424T132416,12-04</datetime>
+</addedtofile>
+
+</noteinfo>
+
+<updatedby>
+<name>CN=Mary Lally/OU=CAM/O=Condor</name>
+</updatedby>
+
+<body>
+<richtext>
+<par />
+<pardef id="1" />
+<par def="1">
+Enter your name:
+<field type="text" kind="editable" name="name" />
+</par>
+
+<par>
+Enter your address:
+<field type="truc" kind="editable" name="address" />
+</par>
+
+<horizrule />
+
+
+<par>
+Enter the number of children:
+<field type="number" kind="editable" name="nbchild" />
+</par>
+
+<par>
+Enter your birthdate:
+<field type="datetime" kind="editable" name="birthdate" />
+</par>
+
+<par>
+Your biography: <break />
+<field type="richtext" kind="editable" name="malife" />
+</par>
+
+<par />
+
+
+<pardef id="1" align="center" />
+
+<par def="1">
+<run>
+<font size="24pt" color="blue" />
+Bridesmaid Dresses
+</run>
+</par>
+
+<table widthtype="fitmargins" cellbordercolor="yellow" leftmargin="1in" cellborderstyle="ridge" colorstyle="solid" bgcolor="silver" insidewrap="true" insidewrapheight="1in">
+
+<border style="solid" width="2px" color="olive" dropshadow="true" />
+
+<tablecolumn width="66.58%" />
+
+<tablecolumn width="33.42%" />
+
+<tablerow>
+<tablecell bgcolor="#e0ffbf">
+<pardef id="3" align="center" leftmargin="0.0313in" keepwithnext="true" keeptogether="true" />
+<par def="3">
+<picture height="341px" width="218px" alttext="caldesigns white two-piece dress">
+<imageref name="design1.jpg" />
+<caption>CALDesigns</caption>
+</picture>
+</par>
+</tablecell>
+
+<tablecell colorstyle="vgradient" bgcolor="none" altbgcolor="#a1e2ff">
+<pardef id="4" align="center" leftmargin="0.0313in" keepwithnext="true" keeptogether="true" />
+
+<par def="4" />
+
+<pardef id="5" leftmargin="0.0313in" keepwithnext="true" keeptogether="true" />
+
+<par def="5">
+<run>
+<font size="24pt" color="blue" />
+$250
+</run>
+</par>
+
+</tablecell>
+
+</tablerow>
+
+<tablerow>
+
+<tablecell bgcolor="#ffe1dc">
+
+<pardef id="6" leftmargin="0.0313in" keepwithnext="true" keeptogether="true" />
+
+<par def="6">
+<imagemap lastdefaultid="8" lastcircleid="1" lastrectangleid="55">
+<picture height="341px" width="219px" alttext="PERDesigns pink two-piece sleeveless dress">
+<border style="dot" width="1px" color="#ff4040" />
+<imageref name="design2.jpg" />
+<caption>PERDesigns</caption>
+</picture>
+
+<area type="circle" htmlid="bracelet">
+<point x="5" y="82" />
+<point x="81" y="158" />
+<urllink href="http://www.PERDesigns.com/jewelry" />
+</area>
+</imagemap>
+</par>
+
+</tablecell>
+
+<tablecell>
+<cellbackground repeat="hrepeat">
+<imageref name="graphic.gif" />
+</cellbackground>
+
+<par def="5" />
+
+<par>
+<run>
+<font size="24pt" color="blue" />
+$300
+</run>
+</par>
+
+</tablecell>
+
+</tablerow>
+
+</table>
+
+<pardef id="7" />
+
+<par def="7">
+<namedelementlink showborder="true" type="page" name="ordering">
+<run>
+<font size="14pt" color="teal" />
+Order a dress
+</run>
+</namedelementlink>
+</par>
+
+<anchor name="lasection" />
+<section>
+
+<sectiontitle>Mon titre</sectiontitle>
+<par>Test de section</par>
+
+<section>
+<sectiontitle>Mon sous-titre</sectiontitle>
+<par><span>Test de sous-section</span></par>
+</section>
+
+</section>
+
+<block>
+
+<par>test d'un bloc</par>
+<par>Mon subform</par>
+
+<subformref name="colourinfo">
+<par>ça passe quand même ici ????????</par>
+</subformref>
+
+
+<par>test d'un subform inclus</par>
+
+<subform name="music" publicaccess="false" designerversion="6">
+
+<noteinfo noteid="12e" unid="FF49A05A2A7C56C685256A38005F8D74" sequence="1">
+
+<created>
+<datetime dst="true">20010424T132340,80-04</datetime>
+</created>
+
+<modified>
+<datetime dst="true">20010424T132416,12-04</datetime>
+</modified>
+
+<revised>
+<datetime dst="true">20010424T132416,11-04</datetime>
+</revised>
+
+<lastaccessed>
+<datetime dst="true">20010424T132416,12-04</datetime>
+</lastaccessed>
+
+<addedtofile>
+<datetime dst="true">20010424T132416,12-04</datetime>
+</addedtofile>
+
+</noteinfo>
+
+<updatedby>
+<name>CN=Mary Lally/OU=CAM/O=Condor</name>
+</updatedby>
+
+<body>
+<richtext>
+
+<par>
+Enter your favorite song:
+<field type="text" kind="editable" name="favsong" />
+</par>
+
+</richtext>
+</body>
+
+<item name="$Form_RepId" sign="true">
+<datetime dst="true">20010424T132337,56-04</datetime>
+</item>
+
+<item name="$$ScriptName" summary="false" sign="true">
+<text>info</text>
+</item>
+
+</subform>
+
+
+</block>
+
+</richtext>
+</body>
+
+<item name="$Form_RepId" sign="true">
+<datetime dst="true">20010424T132337,56-04</datetime>
+</item>
+
+<item name="$$ScriptName" summary="false" sign="true">
+<text>info</text>
+</item>
+
+</form>
+
+
+<form name="colourinfo" publicaccess="false" designerversion="6">
+
+<noteinfo noteid="12e" unid="FF49A05A2A7C56C685256A38005F8D52" sequence="1">
+
+<created>
+<datetime dst="true">20010424T132340,80-04</datetime>
+</created>
+
+<modified>
+<datetime dst="true">20010424T132416,12-04</datetime>
+</modified>
+
+<revised>
+<datetime dst="true">20010424T132416,11-04</datetime>
+</revised>
+
+<lastaccessed>
+<datetime dst="true">20010424T132416,12-04</datetime>
+</lastaccessed>
+
+<addedtofile>
+<datetime dst="true">20010424T132416,12-04</datetime>
+</addedtofile>
+
+</noteinfo>
+
+<updatedby>
+<name>CN=Mary Lally/OU=CAM/O=Condor</name>
+</updatedby>
+
+<body>
+<richtext>
+
+<par>
+Enter your favorite colour:
+<field type="text" kind="editable" name="colour" />
+</par>
+
+</richtext>
+</body>
+
+<item name="$Form_RepId" sign="true">
+<datetime dst="true">20010424T132337,56-04</datetime>
+</item>
+
+<item name="$$ScriptName" summary="false" sign="true">
+<text>info</text>
+</item>
+
+</form>
+
+
+</database> 

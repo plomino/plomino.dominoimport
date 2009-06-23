@@ -1,0 +1,167 @@
+Plomino importer : test formulas and script import
+==================================================
+
+Create a database
+-----------------
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    
+Import os to generate file from path
+
+    >>> import os.path
+    >>> dir, _f = os.path.split(os.path.abspath(__file__))
+    
+    >>> self.setRoles(['Manager'])
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+    
+    >>> from plomino.dominoimport.interfaces import IDominoImporter
+    >>> i=IDominoImporter(db)
+    >>> i.__class__.__name__
+    'DominoImporter'
+    
+    >>> i.context.id
+    'mydb'
+    
+Import a DXL File
+-----------------
+
+DXL file imported is the database design one: the file is parsed in a xml object
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "test_formulas.xml")
+    >>> dxlDoc = i.processImportDXL(dxlFile)
+    {"PlominoForm": (2, 0), "PlominoField": (6, 0), "PlominoView": (3, 0), "PlominoColumn": (6, 0), "PlominoAgent": (2, 0), "PlominoAction": (0, 0), "PlominoDocument": (4, 0), "resources": (0, 0), "inserted_files": (0, 0)}
+    
+Forms
+    
+    >>> allForms = db.getForms()
+    >>> form = db.getForm('infos')
+
+Fields
+
+    >>> for form in allForms:
+    ...     form.getFormName()
+    'web'
+    'infos'
+
+    >>> allFields = form.getFields()
+    >>> allFields.sort()
+    >>> allFields
+    [<PlominoField at /plone/Members/test_user_1_/mydb/infos/biography>, <PlominoField at /plone/Members/test_user_1_/mydb/infos/age>, <PlominoField at /plone/Members/test_user_1_/mydb/infos/birthdate>, <PlominoField at /plone/Members/test_user_1_/mydb/infos/name>]
+    
+    >>> for field in allFields:
+    ...     field.getId()
+    ...     field.getFormula()
+    ...     field.getValidationFormula()
+    'biography'
+    ''
+    ''
+    'age'
+    '# @Year(12/12/2006)
+    ''
+    'name'
+    ''
+    ''
+    'birthdate'
+    ''
+    ''
+    
+form.getFormLayout()
+'<p>nom: <span class="plominoFieldClass">name</span></p><p>date de naissance: <span class="plominoFieldClass">birthdate</span></p><p>\xc3\xa2ge: <span class="plominoFieldClass">age</span></p><p>biographie: <span class="plominoFieldClass">biography</span></p><p></p>'
+
+Views
+    
+    >>> allViews = db.getViews()
+    >>> allViews.sort()
+    >>> allViews
+    [<PlominoView at /plone/Members/test_user_1_/mydb/All>, <PlominoView at /plone/Members/test_user_1_/mydb/biographie>, <PlominoView at /plone/Members/test_user_1_/mydb/C8580A2BBAE54584C12575D90044D63B>]
+
+Check Columns
+-------------
+
+    >>> for view in allViews:
+    ...     view.getViewName()
+    ...     view.getSelectionFormula()
+    ...     view.getFormFormula()
+    ...     allColumns = view.getColumns()
+    ...     print "Columns : "
+    ...     for column in allColumns:
+    ...         column.getId()
+    ...         column.getFormula()
+    ...     print '----'
+    'All'
+    'True'
+    ''
+    Columns :
+    'name'
+    'plominoDocument.name'
+    ----
+    'biographie'
+    '# (age < 5)'
+    '# biography != ""'
+    Columns :
+    'name'
+    'plominoDocument.name'
+    'biography'
+    'plominoDocument.biography'
+    ----
+    'InfosMail'
+    'True'
+    '# web'
+    Columns :
+    'name'
+    'plominoDocument.name'
+    'site'
+    'plominoDocument.site'
+    'email'
+    'plominoDocument.email'
+    ----
+    
+Docs
+
+    >>> allDocs = db.getAllDocuments()
+    >>> len(allDocs)
+    4
+    
+Check agent
+-----------
+
+    >>> allAgents = db.getAgents()
+    >>> for agent in allAgents:
+    ...     agent.getId()
+    ...     agent.getContent()
+    ...     agent.getScheduled()
+    ...     agent.getAgentUser()
+    ...     agent.getCron()
+    'exporter'
+    ''
+    '0'
+    ''
+    ''
+    'capitalize'
+    ''
+    '1'
+    ''
+    ''
+
+    Delete database
+    >>> self.folder.manage_delObjects(["mydb"])
+    
+Import actions
+==============
+
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+    >>> i=IDominoImporter(db)
+    
+    
+DXL file imported is the database design one: the file is parsed in a xml object
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "test_formulas.xml")
+    >>> dxlDoc = i.processImportDXL(dxlFile)
+    {"PlominoForm": (2, 0), "PlominoField": (2, 0), "PlominoView": (1, 0), "PlominoColumn": (6, 0), "PlominoAgent": (2, 0), "PlominoAction": (2, 0), "PlominoDocument": (2, 0), "resources": (0, 0), "inserted_files": (0, 0)}
+    
+allActions = db.portal_catalog.search({'portal_type': ['PlominoAction'], 'path': '/'.join(view.getPhysicalPath())})

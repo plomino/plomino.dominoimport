@@ -1,0 +1,13 @@
+Changelog
+=========
+
+0.2dev
+------
+
+* import formulas as comments
+* bugs fixes
+
+0.1 - Unreleased
+----------------
+
+* Initial release

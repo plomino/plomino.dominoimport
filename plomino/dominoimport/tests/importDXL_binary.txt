@@ -1,0 +1,266 @@
+Plomino importFileDXL (test import layer)
+=========================================
+test of a database design import with a simple DXL file
+In theses tests, a class ImportDXL is used for the import operations
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+
+Import os to generate file from path
+
+    >>> import os.path
+    >>> dir, _f = os.path.split(os.path.abspath(__file__))
+
+Create a database
+-----------------
+A database is created in the plomino instance
+
+    >>> self.setRoles(['Manager'])
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+    
+    >>> from plomino.dominoimport.interfaces import IDominoImporter
+    >>> i=IDominoImporter(db)
+    >>> i.__class__.__name__
+    'DominoImporter'
+    
+    >>> i.context.id
+    'mydb'
+
+Import DXL file
+---------------
+DXL file imported is the database design one: the file is parsed in a xml object
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binaries.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+    
+Get binaries
+------------
+    >>> i.importResourcesFromDXL(dxlDoc)
+    (1, 0)
+    
+    >>> db.resources._objects
+    ({'meta_type': 'File', 'id': 'overlord59-tux-samourai-1772.jpg'},)
+    
+Create forms with their fields
+------------------------------
+From the DXL xml object, this method will extract the forms elements with their field, 
+and create them in the database
+
+The imported file has an field type error, one field has 'truc' instead of 'text', it should become a TEXT type by default
+
+    >>> i.importForms(dxlDoc)
+    (1, 0)
+
+Form is in the database ?
+
+    >>> form = db.getForm('binaryForm')
+
+In the form
+-----------
+correct Form name and Layout ?
+    >>> form.getFormName()
+    'binaryForm'
+    >>> form.getFormLayout()
+    '<p>article:</p><p><span class="plominoFieldClass">article</span></p>'
+
+Create the docs
+---------------
+
+    >>> i.importDocs(dxlDoc)
+    (5, 0)
+    
+    >>> allDocs = db.getAllDocuments()
+    >>> allDocs.sort()
+    
+Items in the correct document ?
+    >>> for doc in allDocs:
+    ...     doc.id
+    ...     docItems = doc.getItems()
+    ...     docItems.sort()
+    ...     for itemKey in docItems:
+    ...         str(itemKey) + ": " + str(doc.getItem(itemKey))
+    ...     doc.getFilenames() 
+    '14AC27B496003398C12575CB0044834E'
+    'Form: binaryForm'
+    "Plomino_Authors: ['test_user_1_']"
+    'article: <p>image:</p><p><img src="getfile?filename=image1.jpg" /></p><p>Create > Picture</p>'
+    ['overlord59-tux-samourai-1773.png']
+    '00EC4B087FB0920CC12575CB00434F9A'
+    'Form: binaryForm'
+    "Plomino_Authors: ['test_user_1_']"
+    'article: <p>image attachee: </p><p><a href="getfile?filename=overlord59-tux-samourai-1773.jpg">overlord59-tux-samourai-1773.jpg</a><p></p><p></p><p>icon : attach</p>'
+    [overlord59-tux-samourai-1773.jpg]
+    '7513D0AFE47864CBC12575CB00442A05'
+    'Form: binaryForm'
+    "Plomino_Authors: ['test_user_1_']"
+    'article: <p>image:</p><p><img src="resources/overlord59-tux-samourai-1772.jpg" />caption</p><p>Create > image ressource</p>'
+    []
+    '7513D0AFE47864CBC12575CB00442A7A'
+    'Form: binaryForm'
+    "Plomino_Authors: ['test_user_1_']"
+    'article: <p>image:</p><p><img src="resources/overlord59-tux-samourai-1773.jpg" />caption</p><p>Create > Insert ressource</p>'
+    []
+    '7F6DA2761FCEFFF4C12575CB004437CF'
+    'Form: binaryForm'
+    "Plomino_Authors: ['test_user_1_']"
+    'article: <p>fichier:</p><p><a href="getfile?filename=EXT14519.xml">EXT14519.xml</a></p><p>Create > object</p>'
+    ['EXT14519.xml']
+
+
+    >>> doc.getForm().getFields()
+    [<PlominoField at /plone/Members/test_user_1_/mydb/binaryForm/article>, <PlominoField at /plone/Members/test_user_1_/mydb/binaryForm/imported_files>]
+    >>> doc.getForm().getFormField('imported_files').getFieldType()
+    'ATTACHMENT'
+    >>> doc.getForm().getFormLayout()
+    '<p>article:</p><p><span class="plominoFieldClass">article</span></p><p>Imported files: <span class="plominoFieldClass">imported_files</span></p>'
+
+
+    Delete form
+self.folder.manage_delObjects(["binaryForm"])
+         
+Doc with Image ressource created in database
+--------------------------------------------
+rem: it is the same as create > insert Ressource, when ressource has already been created in Domino
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binary_3.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+
+    >>> i.importResourcesFromDXL(dxlDoc)
+    (1, 0)
+    
+    >>> db.resources._objects
+    ({'meta_type': 'File', 'id': 'overlord59-tux-samourai-1772.jpg'}, {'meta_type': 'File', 'id': 'overlord59-tux-samourai-1773.jpg'})
+    
+i.importForms(dxlDoc)
+    
+    >>> i.importDocs(dxlDoc)
+    (1, 0)
+    
+    >>> doc = db.getAllDocuments()[5]
+    
+Items in the correct document ?
+    >>> doc.id
+    '34271BB6DD504DD9C12575CC004F4EDD'
+    >>> docItems = doc.getItems()
+    >>> docItems.sort()
+    >>> for itemKey in docItems:
+    ...     str(itemKey) + ": " + str(doc.getItem(itemKey))
+    'Form: binaryForm'
+    "Plomino_Authors: ['test_user_1_']"
+    'article: <p>Create Image ressource:</p><p><img src="resources/overlord59-tux-samourai-1773.jpg" /></p>'
+
+    >>> doc.getFilenames()
+    []
+    
+    >>> doc.getForm().getFields()
+    [<PlominoField at /plone/Members/test_user_1_/mydb/binaryForm/article>, <PlominoField at /plone/Members/test_user_1_/mydb/binaryForm/imported_files>]
+    >>> doc.getForm().getFormField('imported_files').getFieldType()
+    'ATTACHMENT'
+    >>> doc.getForm().getFormLayout()
+    '<p>article:</p><p><span class="plominoFieldClass">article</span></p><p>Imported files: <span class="plominoFieldClass">imported_files</span></p>'
+
+Doc with file attached
+----------------------
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binary_1.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+
+    >>> i.importDocs(dxlDoc)
+    (1, 0)
+    
+    >>> doc = db.getAllDocuments()[6]
+    
+Items in the correct document ?
+    >>> doc.id
+    '74BE4CAAD0AEDACEC12575CC0045AF61'
+    >>> docItems = doc.getItems()
+	>>> docItems.sort()
+    >>> for itemKey in docItems:
+    ...		str(itemKey) + ": " + str(doc.getItem(itemKey))
+    'Form: binaryForm'
+    "Plomino_Authors: ['test_user_1_']"
+    'article: <p>Attachement:</p><p><a href="getfile?filename=overlord59-tux-samourai-1773.png">overlord59-tux-samourai-1773.png</a></p>'
+
+    >>> doc.getFilenames()
+    ['overlord59-tux-samourai-1773.png']
+
+    >>> doc.getForm().getFields()
+    [<PlominoField at /plone/Members/test_user_1_/mydb/binaryForm/article>, <PlominoField at /plone/Members/test_user_1_/mydb/binaryForm/imported_files>]
+    >>> doc.getForm().getFormField('imported_files').getFieldType()
+    'ATTACHMENT'
+    >>> doc.getForm().getFormLayout()
+    '<p>article:</p><p><span class="plominoFieldClass">article</span></p><p>Imported files: <span class="plominoFieldClass">imported_files</span></p>'
+
+doc.getForm().getFormField('imported_files')
+    
+Doc with picture created in richtext
+------------------------------------
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binary_2.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+
+    >>> i.importDocs(dxlDoc)
+    (1, 0)
+    
+    >>> doc = db.getAllDocuments()[7]
+    
+Items in the correct document ?
+    >>> doc.id
+    'EB9222B5A0506298C12575CC004A5CAF'
+    >>> docItems = doc.getItems()
+    >>> docItems.sort()
+    >>> for itemKey in docItems:
+    ...     str(itemKey) + ": " + str(doc.getItem(itemKey))
+    'Form: binaryForm'
+    "Plomino_Authors: ['test_user_1_']"
+    'article: <p>Create picture:</p><p><img src="getfile?filename=image1.jpeg" /></p>'
+    
+    >>> doc.getFilenames()
+    ['image1.jpeg']
+
+    >>> doc.getForm().getFields()
+    [<PlominoField at /plone/Members/test_user_1_/mydb/binaryForm/article>, <PlominoField at /plone/Members/test_user_1_/mydb/binaryForm/imported_files>]
+    >>> doc.getForm().getFormField('imported_files').getFieldType()
+    'ATTACHMENT'
+    >>> doc.getForm().getFormLayout()
+    '<p>article:</p><p><span class="plominoFieldClass">article</span></p><p>Imported files: <span class="plominoFieldClass">imported_files</span></p>'
+
+Doc with File object created in richtext
+----------------------------------------
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binary_4.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+
+    >>> i.importResourcesFromDXL(dxlDoc)
+    (0, 0)
+    
+    >>> db.resources._objects
+    ({'meta_type': 'File', 'id': 'overlord59-tux-samourai-1772.jpg'}, {'meta_type': 'File', 'id': 'overlord59-tux-samourai-1773.jpg'})
+    
+    >>> i.importDocs(dxlDoc)
+    (1, 0)
+    
+    >>> doc = db.getAllDocuments()[8]
+    
+Items in the correct document ?
+    >>> doc.id
+    '8512F274254F9791C12575CF00519817'
+    >>> docItems = doc.getItems()
+    >>> docItems.sort()
+    >>> for itemKey in docItems:
+    ...     str(itemKey) + ": " + str(doc.getItem(itemKey))
+    'Form: binaryForm'
+    "Plomino_Authors: ['test_user_1_']"
+    'article: <p>Create object:</p><p><a href="getfile?filename=EXT64403.pdf">EXT64403.pdf</a></p>'
+    
+    >>> doc.getFilenames()
+    ['EXT64403.pdf']
+
+    >>> doc.getForm().getFields()
+    [<PlominoField at /plone/Members/test_user_1_/mydb/binaryForm/article>, <PlominoField at /plone/Members/test_user_1_/mydb/binaryForm/imported_files>]
+    >>> doc.getForm().getFormField('imported_files').getFieldType()
+    'ATTACHMENT'
+    >>> doc.getForm().getFormLayout()
+    '<p>article:</p><p><span class="plominoFieldClass">article</span></p><p>Imported files: <span class="plominoFieldClass">imported_files</span></p>'

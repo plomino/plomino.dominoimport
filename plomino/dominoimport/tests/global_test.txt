@@ -1,0 +1,191 @@
+Plomino importer
+================
+Overview of the dominoimport module features
+For complete tests, please run all specific tests
+ 
+Create a database
+-----------------
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    
+Import os to generate file from path
+
+    >>> import os.path
+    >>> dir, _f = os.path.split(os.path.abspath(__file__))
+    
+    >>> self.setRoles(['Manager'])
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+    
+    >>> from plomino.dominoimport.interfaces import IDominoImporter
+    >>> i=IDominoImporter(db)
+    >>> i.__class__.__name__
+    'DominoImporter'
+    
+    >>> i.context.id
+    'mydb'
+    
+Import a DXL File
+-----------------
+
+DXL file imported is the database design one: the file is parsed in a xml object
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "test_overview.xml")
+    >>> dxlDoc = i.processImportDXL(dxlFile)
+    
+Check agents
+------------
+
+    >>> db.getAgents()
+    [<PlominoAgent at /plone/Members/test_user_1_/mydb/exporter>]
+    
+Check resources
+---------------
+
+    >>> db.resources._objects
+    ({'meta_type': 'File', 'id': 'overlord59-tux-samourai-1772.jpg'},)
+    
+Check forms with their fields
+-----------------------------
+
+Forms in the database ?
+    >>> allForms = db.getForms()
+    >>> len(allForms)
+    2
+    
+    >>> if allForms[0].getFormName() != 'infos':
+    ...     allForms.reverse()
+    
+    >>> allForms
+    [<PlominoForm at /plone/Members/test_user_1_/mydb/infos>, <PlominoForm at /plone/Members/test_user_1_/mydb/project>]
+
+Fields in the correct forms ?
+    >>> for form in allForms:
+    ...     form.getFormName()
+    ...     allFields = form.getFields()
+    ...     allFields
+    ...     for field in allFields:
+    ...         field.getId()
+    ...         field.title
+    ...         field.getFieldType()
+    ...     form.getFormLayout()
+    'infos'
+    [<PlominoField at /plone/Members/test_user_1_/mydb/infos/name>, <PlominoField at /plone/Members/test_user_1_/mydb/infos/address>, <PlominoField at /plone/Members/test_user_1_/mydb/infos/status>]
+    'name'
+    u'name'
+    'TEXT'
+    'address'
+    u'address'
+    'RICHTEXT'
+    'status'
+    u'status'
+    'SELECTION'
+    '<p>Name:<span class="plominoFieldClass">name</span></p><p>Address:<span class="plominoFieldClass">address</span></p><p>Status:<span class="plominoFieldClass">status</span></p>'
+    'project'
+    [<PlominoField at /plone/Members/test_user_1_/mydb/project/startdate>, <PlominoField at /plone/Members/test_user_1_/mydb/project/owner>, <PlominoField at /plone/Members/test_user_1_/mydb/project/hours>]
+    'startdate'
+    u'startdate'
+    'TEXT'
+    'owner'
+    u'owner'
+    'NAMES'
+    'hours'
+    u'hours'
+    'NUMBER'
+    '<p>Start date:<span class="plominoFieldClass">startdate</span></p><p>Project Owner:<span class="plominoFieldClass">owner</span></p><p>Hours:<span class="plominoFieldClass">hours</span></p>'
+
+Check views
+-----------
+
+Views in the database ?
+    >>> allViews = db.getViews()
+    >>> len(allViews)
+    2
+
+    >>> if allViews[0].getViewName() != 'allCustomer':
+    ...     allViews.reverse()
+    >>> allViews
+    [<PlominoView at /plone/Members/test_user_1_/mydb/allCustomers>, <PlominoView at /plone/Members/test_user_1_/mydb/allProjects>]
+    
+Columns in the correct view ?
+    >>> for view in allViews:
+    ...     view.getViewName()
+    ...     view.title
+    ...     view.getSelectionFormula()
+    ...     allColumns = view.getColumns()
+    ...     allColumns
+    ...     for column in allColumns:
+    ...         column.getId()
+    ...         column.title
+    ...         column.getFormula()
+    ...         column.getPosition()
+    'allCustomers'
+    u'allCustomers'
+    '# name != none'
+    [<PlominoColumn at /plone/Members/test_user_1_/mydb/customer/name>, <PlominoColumn at /plone/Members/test_user_1_/mydb/customer/address>]
+    'name'
+    u'Name'
+    'plominoDocument.name'
+    1
+    'address'
+    u'Address'
+    'plominoDocument.address'
+    2
+    'allProjects'
+    u'allProjects'
+    '# owner != none'
+    [<PlominoColumn at /plone/Members/test_user_1_/mydb/customer/startdate>, <PlominoColumn at /plone/Members/test_user_1_/mydb/customer/owner>, <PlominoColumn at /plone/Members/test_user_1_/mydb/customer/hours>]
+    'startdate'
+    u'Start date'
+    'plominoDocument.startdate'
+    1
+    'owner'
+    u'Owner'
+    'plominoDocument.owner'
+    2
+    'hours'
+    u'Hours'
+    'plominoDocument.hours'
+    3
+    
+Formula:
+- Selection formula for the view itself : python code returning a boolean value, to select wich document to view
+- Column formula: python code returning the column value
+
+Check Documents
+---------------
+
+Docs in the database ?
+    >>> allDocs = db.getAllDocuments()
+    >>> len(allDocs)
+    3
+    
+    
+    
+Items in the correct document ?
+    >>> for doc in allDocs:
+    ...     doc.getId()
+    ...     docItems = doc.getItems()
+    ...     docItems.sort()
+    ...     for itemKey in docItems:
+    ...         str(itemKey) + ": " + str(doc.getItem(itemKey))
+    ''
+    'infos'
+    "Plomino_Authors: ['test_user_1_']"
+    'address: 34 Grand Blvd, Oklahoma City'
+    'name: Harry Hill'
+    'status: provider'
+    ''
+    'infos'
+    "Plomino_Authors: ['test_user_1_']"
+    'address: 10 oxford Street, London'
+    'name: Joe Strummer'
+    'status: customer'
+    ''
+    'projects'
+    "Plomino_Authors: ['test_user_1_']"
+    'address: 10 oxford Street, London'
+    'name: Joe Strummer'
+    'status: provider'

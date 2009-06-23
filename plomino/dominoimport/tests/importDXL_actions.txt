@@ -1,0 +1,72 @@
+Plomino importer : test formulas and script import
+==================================================
+
+Create a database
+-----------------
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    
+Import os to generate file from path
+
+    >>> import os.path
+    >>> dir, _f = os.path.split(os.path.abspath(__file__))
+    
+    >>> self.setRoles(['Manager'])
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+    
+    >>> from plomino.dominoimport.interfaces import IDominoImporter
+    >>> i=IDominoImporter(db)
+    >>> i.__class__.__name__
+    'DominoImporter'
+    
+    >>> i.context.id
+    'mydb'
+    
+Import a DXL File
+-----------------
+
+DXL file imported is the database design one: the file is parsed in a xml object
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "test_actions.xml")
+    >>> dxlDoc = i.processImportDXL(dxlFile)
+    {"PlominoForm": (2, 0), "PlominoField": (2, 0), "PlominoView": (1, 0), "PlominoColumn": (6, 0), "PlominoAgent": (1, 0), "PlominoAction": (2, 0), "PlominoDocument": (2, 0), "resources": (0, 0), "inserted_files": (0, 0)}
+
+Actions located in forms:
+------------------------
+
+    >>> allForms = db.getForms()
+    >>> for form in allForms:
+    ...     form.getFormName()
+    ...     allActions = form.portal_catalog.search({'portal_type': ['PlominoAction'], 'path': '/'.join(form.getPhysicalPath())})
+    ...     for action in allActions:
+    ...         obj = action.getObject()
+    ...         obj.getId()
+    ...         obj.getActionType()
+    ...         obj.getDisplay()
+    ...         obj.getContent()
+    ...         obj.getHidewhen()
+    ...         obj.getInActionBar()
+    ...         print '----'
+    ...     print '===='
+
+Actions located in views:
+------------------------
+
+    >>> allViews = db.getViews()
+    >>> for view in allViews:
+    ...     view.getId()
+    ...     allActions = view.portal_catalog.search({'portal_type': ['PlominoAction'], 'path': '/'.join(view.getPhysicalPath())})
+    ...     for action in allActions:
+    ...         obj = action.getObject()
+    ...         obj.getId()
+    ...         obj.getActionType()
+    ...         obj.getDisplay()
+    ...         obj.getContent()
+    ...         obj.getHidewhen()
+    ...         obj.getInActionBar()
+    ...         print '----'
+    ...     print '===='
+

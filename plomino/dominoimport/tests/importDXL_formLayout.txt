@@ -1,0 +1,211 @@
+Plomino importFileDXL (test import layer)
+=========================================
+test of a database design import with a simple DXL file
+In theses tests, a class ImportDXL is used for the import operations
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+
+    >>> import os.path
+    >>> dir, _f = os.path.split(os.path.abspath(__file__))
+    
+A database is created in the plomino instance
+
+    >>> self.setRoles(['Manager'])
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+    
+    >>> from plomino.dominoimport.interfaces import IDominoImporter
+    >>> i=IDominoImporter(db)
+    >>> i.__class__.__name__
+    'DominoImporter'
+    
+    >>> i.context.id
+    'mydb'
+
+Import DXL file
+---------------
+DXL file imported is the database design one: the file is parsed in a xml object
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlComplexForm.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.parseDXL('/home/makina/tests/dev/plomino.dominoimport/plomino/dominoimport/tests/DXLFiles/dxlComplexForm.xml')
+
+Create forms with their fields
+------------------------------
+From the DXL xml object, this method will extract the forms elements with their field, 
+and create them in the database
+
+The imported file has an field type error, one field has 'truc' instead of 'text', it should become a TEXT type by default
+
+    >>> i.importForms(dxlDoc)
+    (3, 0)
+
+Form is in the database ?
+
+    >>> allForms = db.getForms()
+    >>> len(allForms)
+    3
+
+    >>> if allForms[0].getFormName() == 'info':
+    ...     form = allForms[0]
+    ...     if allForms[1].getFormName() == 'colourinfo':
+    ...         subform_colourinfo = allForms[1]
+    ...         subform_music = allForms[2]
+    ...     else:
+    ...         subform_colourinfo = allForms[2]
+    ...         subform_music = allForms[1]
+    ... elif allForms[1].getFormName() == 'info':
+    ...     form = allForms[1]
+    ...     if allForms[0].getFormName() == 'colourinfo':
+    ...         subform_colourinfo = allForms[0]
+    ...         subform_music = allForms[2]
+    ...     else:
+    ...         subform_colourinfo = allForms[2]
+    ...         subform_music = allForms[0]
+    ... else:
+    ...     form = allForms[2]
+    ...     if allForms[1].getFormName() == 'colourinfo':
+    ...         subform_colourinfo = allForms[1]
+    ...         subform_music = allForms[0]
+    ...     else:
+    ...         subform_colourinfo = allForms[0]
+    ...         subform_music = allForms[1]    
+
+In the form
+-----------
+correct Form name and Layout ?
+    >>> form.getFormName()
+    'info'
+    >>> form.getFormLayout()
+    '<p></p><p>Enter your name:<span class="plominoFieldClass">name</span></p><p>Enter your address:<span class="plominoFieldClass">address</span></p><hr /><p>Enter the number of children:<span class="plominoFieldClass">nbchild</span></p><p>Enter your birthdate:<span class="plominoFieldClass">birthdate</span></p><p>Your biography: <br /><span class="plominoFieldClass">malife</span></p><p></p><p>Bridesmaid Dresses</p><table><tr><td><p><img src="resources/design1.jpg" />CALDesigns</p></td><td><p></p><p>$250</p></td></tr><tr><td><p><img src="resources/design2.jpg" />PERDesigns</p></td><td><img src="resources/graphic.gif" /><p></p><p>$300</p></td></tr></table><p>Order a dress</p><a name="lasection"></a><h2>Mon titre</h2><p>Test de section</p><h3>Mon sous-titre</h3><p><span>Test de sous-section</span></p><div><p>test d\'un bloc</p><p>Mon subform</p><span class="plominoSubformClass">colourinfo</span><p>test d\'un subform inclus</p><span class="plominoSubformClass">music</span></div>'
+
+Check the subforms
+    >>> form.getSubforms()
+    ['colourinfo', 'music']
+    
+Check the fields ?
+
+    >>> allFields = form.getFields()
+    >>> allFields
+    [<PlominoField at /plone/Members/test_user_1_/mydb/info/name>, <PlominoField at /plone/Members/test_user_1_/mydb/info/address>, <PlominoField at /plone/Members/test_user_1_/mydb/info/nbchild>, <PlominoField at /plone/Members/test_user_1_/mydb/info/birthdate>, <PlominoField at /plone/Members/test_user_1_/mydb/info/malife>, <PlominoField at /plone/Members/test_user_1_/mydb/info/favsong>]
+    >>> for field in allFields:
+    ...     field.getId()
+    ...     field.title
+    ...     field.getFieldType()
+    ...     field.getFieldMode()
+    'name'
+    u'name'
+    'TEXT'
+    'EDITABLE'
+    'address'
+    u'address'
+    'TEXT'
+    'EDITABLE'
+    'nbchild'
+    u'nbchild'
+    'NUMBER'
+    'EDITABLE'
+    'birthdate'
+    u'birthdate'
+    'DATETIME'
+    'EDITABLE'
+    'malife'
+    u'malife'
+    'RICHTEXT'
+    'EDITABLE'
+    'favsong'
+    u'favsong'
+    'TEXT'
+    'EDITABLE'
+    
+
+In the subform colourinfo
+-------------------------
+correct Form name and Layout ?
+    >>> subform_colourinfo.getFormName()
+    'colourinfo'
+    >>> subform_colourinfo.getFormLayout()
+    '<p>Enter your favorite colour:<span class="plominoFieldClass">colour</span></p>'
+
+Check the fields ?
+
+    >>> allFields = subform_colourinfo.getFields()
+    >>> allFields
+    [<PlominoField at /plone/Members/test_user_1_/mydb/colourinfo/colour>]
+    >>> for field in allFields:
+    ...     field.getId()
+    ...     field.title
+    ...     field.getFieldType()
+    ...     field.getFieldMode()
+    'colour'
+    u'colour'
+    'TEXT'
+    'EDITABLE'
+    
+In the subform music
+--------------------
+correct Form name and Layout ?
+    >>> subform_music.getFormName()
+    'music'
+    >>> subform_music.getFormLayout()
+    '<p>Enter your favorite song:<span class="plominoFieldClass">favsong</span></p>'
+
+Check the fields ?
+
+    >>> allFields = subform_music.getFields()
+    >>> allFields
+    [<PlominoField at /plone/Members/test_user_1_/mydb/music/favsong>]
+    >>> for field in allFields:
+    ...     field.getId()
+    ...     field.title
+    ...     field.getFieldType()
+    ...     field.getFieldMode()
+    'favsong'
+    u'favsong'
+    'TEXT'
+    'EDITABLE'
+    
+Delete database
+    >>> self.folder.manage_delObjects(["mydb"])
+    
+Layout with list elements
+=========================
+
+New database:
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+    >>> i=IDominoImporter(db)
+
+Import DXL file
+---------------
+DXL file imported is the database design one: the file is parsed in a xml object
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "test_richtext.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+
+Create forms with their fields
+------------------------------
+From the DXL xml object, this method will extract the forms elements with their field, 
+and create them in the database
+
+The imported file has an field type error, one field has 'truc' instead of 'text', it should become a TEXT type by default
+
+    >>> i.importForms(dxlDoc)
+    (1, 0)
+    
+Form is in the database ?
+
+    >>> form = db.getForm("richtextForm")
+    
+In the form
+-----------
+correct Form name and Layout ?
+    >>> form.getFormName()
+    'richtextForm'
+    >>> form.getFormLayout()
+    '<h2>Lists</h2><p>Lists</p><ul><li>item 1</li><li>item 2</li></ul><p>ordered list:</p><ol><li>item 1</li><li>item 2</li></ol><p></p><p></p>'
+
+    

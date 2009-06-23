@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="plomino.dominoimport">
+
+    <five:registerPackage package="." initialize=".initialize" />
+
+  <include file="profiles.zcml" />
+      
+  <include package=".browser" />
+  
+    <adapter
+        for="Products.CMFPlomino.interfaces.IPlominoDatabase"
+        provides=".interfaces.IDominoImporter"
+        factory=".importer.DominoImporter"
+        />
+  <five:traversable class="Products.CMFPlomino.interfaces.IPlominoDatabase" />
+  
+</configure>

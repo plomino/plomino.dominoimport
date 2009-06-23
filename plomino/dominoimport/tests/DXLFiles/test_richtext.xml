@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8'?>
+<database xmlns='http://www.lotus.com/dxl' version='6.5' replicaid='C12575CA00535BAB'
+ path='test_richtext.nsf' title='test_richtext'>
+<databaseinfo dbid='C12575CA00535BAB' odsversion='43' diskspace='327680' percentused='87.1875'
+ numberofdocuments='1'><datamodified><datetime dst='true'>20090603T172054,39+02</datetime></datamodified><designmodified
+><datetime dst='true'>20090603T171953,05+02</datetime></designmodified></databaseinfo>
+<acl maxinternetaccess='editor'>
+<aclentry name='-Default-' default='true' level='noaccess' readpublicdocs='true'
+ writepublicdocs='true'/>
+<aclentry name='CN=Eric BREHAULT/O=Eric BREHAULT' type='person' level='manager'
+ deletedocs='true'/>
+<aclentry name='OtherDomainServers' type='servergroup' level='noaccess' readpublicdocs='false'
+ writepublicdocs='false'/>
+<aclentry name='LocalDomainServers' type='servergroup' level='manager' deletedocs='true'/>
+<logentry>03/06/2009 05:10:29 PM Eric BREHAULT/Eric BREHAULT added OtherDomainServers</logentry>
+<logentry>03/06/2009 05:10:29 PM Eric BREHAULT/Eric BREHAULT added LocalDomainServers</logentry>
+<logentry>03/06/2009 05:10:29 PM Eric BREHAULT/Eric BREHAULT updated Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>03/06/2009 05:10:29 PM Eric BREHAULT/Eric BREHAULT added Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>03/06/2009 05:10:29 PM Eric BREHAULT/Eric BREHAULT updated -Default-</logentry></acl>
+
+<view showinmenu='true' publicaccess='false' default='true' noviewformat='true'>
+<noteinfo noteid='116' unid='79AF7214E0B11F67C12575CA00535BC9' sequence='1'>
+<created><datetime dst='true'>20090603T171029,85+02</datetime></created>
+<modified><datetime dst='true'>20090603T171217,44+02</datetime></modified>
+<revised><datetime dst='true'>20090603T171029,85+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090603T171217,43+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090603T171029,85+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby><code
+ event='selection'><formula>@All</formula></code></view>
+
+<form name='richtextForm' publicaccess='false' designerversion='6.5'>
+<noteinfo noteid='13a' unid='07B4793FAF4B6CDAC12575CA00536308' sequence='2'>
+<created><datetime dst='true'>20090603T171048,40+02</datetime></created>
+<modified><datetime dst='true'>20090603T171953,05+02</datetime></modified>
+<revised><datetime dst='true'>20090603T171953,04+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090603T171953,04+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090603T171205,34+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<wassignedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></wassignedby>
+<body><richtext>
+<section><sectiontitle pardef='1' color='teal'><text>Lists</text></sectiontitle>
+<par def='2'>Lists</par>
+<pardef id='3' leftmargin='1.2500in' list='bullet'><parstyle name='Bullet'
+ incyclekey='true' alldocuments='true' username='Eric BREHAULT-'><font size='10pt'
+ color='black' name='sans-serif'/></parstyle></pardef>
+<par def='3'>item 1</par>
+<par>item 2</par>
+<pardef id='4' leftmargin='1in' spaceafter='1.5'><parstyle name='Basic' incyclekey='true'
+ alldocuments='true' username='Eric BREHAULT-'><font size='10pt' color='black'
+ name='sans-serif'/></parstyle></pardef>
+<par def='4'>ordered list:</par>
+<pardef id='5' leftmargin='1.2500in' list='number'/>
+<par def='5'>item 1</par>
+<par>item 2</par>
+<par def='4'/></section>
+<par def='4'/></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>richtextForm</text></item></form>
+
+<document form='richtextForm'>
+<noteinfo noteid='8f6' unid='7C976C617A8E6F86C12575CA00544C8B' sequence='1'>
+<created><datetime dst='true'>20090603T172046,19+02</datetime></created>
+<modified><datetime dst='true'>20090603T172054,39+02</datetime></modified>
+<revised><datetime dst='true'>20090603T172054,38+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090603T172054,38+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090603T172054,38+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby></document>
+
+</database>

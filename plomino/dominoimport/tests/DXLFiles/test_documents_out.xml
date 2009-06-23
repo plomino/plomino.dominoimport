@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<database xmlns='http://www.lotus.com/dxl' version='6.5' replicaid='C12575C3002B6B52'
+ path='test.nsf' title='test'>
+<databaseinfo dbid='C12575C3002B6B52' odsversion='43' diskspace='458752' percentused='65.1227678571429'
+ numberofdocuments='1'><datamodified><datetime dst='true'>20090602T165722,69+02</datetime></datamodified><designmodified
+><datetime dst='true'>20090602T170040,76+02</datetime></designmodified></databaseinfo>
+<acl maxinternetaccess='editor'>
+<aclentry name='-Default-' default='true' level='noaccess' readpublicdocs='true'
+ writepublicdocs='true'/>
+<aclentry name='CN=Eric BREHAULT/O=Eric BREHAULT' type='person' level='manager'
+ deletedocs='true'/>
+<aclentry name='OtherDomainServers' type='servergroup' level='noaccess' readpublicdocs='false'
+ writepublicdocs='false'/>
+<aclentry name='LocalDomainServers' type='servergroup' level='manager' deletedocs='true'/>
+<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT added OtherDomainServers</logentry>
+<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT added LocalDomainServers</logentry>
+<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT updated Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT added Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT updated -Default-</logentry></acl>
+
+<document form='ent'>
+<noteinfo noteid='8fe' unid='E8019E7CE062EB6EC12575C900524950' sequence='1'>
+<created><datetime dst='true'>20090602T165847,20+02</datetime></created>
+<modified><datetime dst='true'>20090602T165858,57+02</datetime></modified>
+<revised><datetime dst='true'>20090602T165858,56+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090602T165858,56+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090602T165858,56+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<item name='name'><text>Sid Vicious</text></item>
+<item name='age'><number>27</number></item></document>
+
+<document form='info'>
+<noteinfo noteid='916' unid='475B601D414C6173C12575C90052206F' sequence='1'>
+<created><datetime dst='true'>20090602T165702,55+02</datetime></created>
+<modified><datetime dst='true'>20090602T165722,69+02</datetime></modified>
+<revised><datetime dst='true'>20090602T165722,67+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090602T165722,69+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090602T165722,69+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<item name='place'><text>rue de la joie</text></item>
+<item name='society'><text>Cannonical</text></item>
+
+</document></database>

@@ -1,0 +1,383 @@
+<?xml version='1.0' encoding='utf-8'?>
+<database xmlns='http://www.lotus.com/dxl' version='6.5' replicaid='C12575CC004F42B6'
+ path='test_bainary_3.nsf' title='test_bainary_3'>
+<databaseinfo dbid='C12575CC004F42B6' odsversion='43' diskspace='327680' percentused='91.328125'
+ numberofdocuments='1'><datamodified><datetime dst='true'>20090605T162701,45+02</datetime></datamodified><designmodified
+><datetime dst='true'>20090605T162653,31+02</datetime></designmodified></databaseinfo>
+<acl maxinternetaccess='editor'>
+<aclentry name='-Default-' default='true' level='noaccess' readpublicdocs='true'
+ writepublicdocs='true'/>
+<aclentry name='CN=Eric BREHAULT/O=Eric BREHAULT' type='person' level='manager'
+ deletedocs='true'/>
+<aclentry name='OtherDomainServers' type='servergroup' level='noaccess' readpublicdocs='false'
+ writepublicdocs='false'/>
+<aclentry name='LocalDomainServers' type='servergroup' level='manager' deletedocs='true'/>
+<logentry>05/06/2009 04:25:44 PM Eric BREHAULT/Eric BREHAULT added OtherDomainServers</logentry>
+<logentry>05/06/2009 04:25:44 PM Eric BREHAULT/Eric BREHAULT added LocalDomainServers</logentry>
+<logentry>05/06/2009 04:25:44 PM Eric BREHAULT/Eric BREHAULT updated Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>05/06/2009 04:25:44 PM Eric BREHAULT/Eric BREHAULT added Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>05/06/2009 04:25:44 PM Eric BREHAULT/Eric BREHAULT updated -Default-</logentry></acl>
+<view showinmenu='true' publicaccess='false' default='true' noviewformat='true'>
+<noteinfo noteid='116' unid='C516D943CB4E13CAC12575CC004F42CD' sequence='1'>
+<created><datetime dst='true'>20090605T162544,45+02</datetime></created>
+<modified><datetime dst='true'>20090605T162611,85+02</datetime></modified>
+<revised><datetime dst='true'>20090605T162544,45+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090605T162611,85+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090605T162544,45+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby><code
+ event='selection'><formula>@All</formula></code></view>
+<note default='true' class='icon'>
+<noteinfo noteid='11a' unid='B3481412D554587FC12575CC004F42CE' sequence='3'>
+<created><datetime dst='true'>20090605T162544,46+02</datetime></created>
+<modified><datetime dst='true'>20090605T162544,49+02</datetime></modified>
+<revised><datetime dst='true'>20090605T162544,48+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090605T162544,45+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090605T162544,45+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<item name='IconBitmap' summary='true'>
+<itemdata type='6'>
+AiAgAQAA///////wD///gAH//gAAf/wAAD/4AAAf8AAAD+AAAAfgAAAHwAAAA8AAAAPAAAADgAAA
+AYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAHAAAADwAAAA8AAAAPgAAAH4AAAB/AAAA/4AAAf
+/AAAP/4AAH//gAH///AP//////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAiIiIiAAAAAAAAAAAAAAI
+jPZmZm/IgAAAAAAAAAAIjGZmZmZmZsiAAAAAAAAAjGZmZmZmZmZmyAAAAAAACMZmZmZmZmZmZmyA
+AAAAAIxmZmZmZmZmZmZmyAAAAAjGZmZmZmZmZmZmZmyAAAAIZmbyL2byL2byL2ZmgAAAjGZmIiJm
+IiJmIiJmZsgAAIZmZiIiZiIiZiIiZmZoAADGZmYiImYiImYiImZmbAAI9mZmIiJmIiJmIiJmZm+A
+CGZmZiIiZiIiZiIiZmZmgAhmZmYiImYiImYiImZmZoAIZmZmIiJmIiJmIiJmZmaACGZvIiIiZiIi
+ZiIiIvZmgAhmYiIiImYiImYiIiImZoAIZm8iIi9m8i9m8iIi9maACPZmZmZmZmZmZmZmZmZvgADG
+ZmbyL2byL2byL2ZmbAAAj2ZmIiJmIiJmIiJmZvgAAIxmZiIiZiIiZiIiZmbIAAAI9mbyL2byL2by
+L2ZvgAAACMZmZmZmZmZmZmZmbIAAAACMZmZmZmZmZmZmZsgAAAAACMZmZmZmZmZmZmyAAAAAAACM
+9mZmZmZmZm/IAAAAAAAACIz2ZmZmZm/IgAAAAAAAAAAIiMZmZmyIgAAAAAAAAAAAAACIiIiIAAAA
+AAAAAAAAAAAAkAAAAIAA5QEmAA==
+</itemdata></item>
+<item name='$Flags'><text>J</text></item>
+<item name='$TITLE'><text>test_bainary_3</text></item></note>
+<agent name='exporter' hide='v3' publicaccess='false' designerversion='6.5'>
+<noteinfo noteid='136' unid='3E76CF02386EA1A6C12575CC004F44AB' sequence='1'>
+<created><datetime dst='true'>20090605T162549,23+02</datetime></created>
+<modified><datetime dst='true'>20090605T162549,36+02</datetime></modified>
+<revised><datetime dst='true'>20090605T162549,35+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090605T162549,35+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090605T162549,35+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<wassignedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></wassignedby>
+<designchange><datetime dst='true'>20090527T100127,34+02</datetime></designchange>
+<trigger type='actionsmenu'/>
+<documentset type='selected'/><code event='options'><lotusscript>Option Public
+</lotusscript></code><code event='initialize'><lotusscript>Sub Initialize 
+	Dim session As New NotesSession 
+	Dim db As NotesDatabase 
+	Set db = session.CurrentDatabase 
+	
+REM Open xml file named after current database 
+	Dim stream As NotesStream 
+	Set stream = session.CreateStream 
+	filename$ = "e:\tmp\" &amp; Left(db.FileName, Len(db.FileName) - 3) &amp; "xml" 
+	If Not stream.Open(filename$) Then 
+		Messagebox "Cannot open " &amp; filename$,, "Error" 
+		Exit Sub 
+	End If 
+	Call stream.Truncate 
+	
+REM Export current database as DXL 
+	Dim exporter As NotesDXLExporter 
+	Set exporter = session.CreateDXLExporter 
+	
+   REM Create note collection of actions 
+	Dim nc As NotesNoteCollection 
+	Set nc = db.CreateNoteCollection(False) 
+	'Call nc.SelectAllFormatElements(True)
+	Call nc.SelectAllNotes(True)
+	nc.SelectActions = False 
+	Call nc.BuildCollection 
+	
+REM Set up importer to receive DXL piped from exporter 
+REM and to re-import the documents back into the 
+REM current database as copies. 
+	Set exporter = session.CreateDXLExporter(nc) 
+	
+	Call exporter.SetInput(nc) 
+	Call exporter.SetOutput(stream) 
+   'There are two kinds of XML-valid and well-formed. 
+'Valid XML has a DTD. 
+'Well-formed XML has no DTD, but is properly constructed-all entities are declared, properly closed, and correctly nested. 
+'The XML specification makes a DTD optional. 
+'Well-formed XML is self-documenting and can be processed without a DTD. 
+'Valid XML cannot. 
+	exporter.OutputDOCTYPE = False ' Stops the &lt;!DOCTYPE database SYSTEM 'xmlschemas/domino_7_0.dtd'&gt; from being added to output. 
+	Call exporter.Process 
+End Sub</lotusscript></code>
+<rundata processeddocs='0' exitcode='0' agentdata='50B8DE92639F97BAC12575C3002C15B1'>
+<agentmodified><datetime dst='true'>20090605T153154,12+02</datetime></agentmodified>
+<agentrun><datetime dst='true'>20090605T153243,72+02</datetime></agentrun>
+<runlog>Started running agent 'exporter' on 05/06/2009 15:32:43
+Running on selected documents: 1 total
+Found 1 document(s) that match search criteria
+Ran LotusScript code
+Done running agent 'exporter' on 05/06/2009 15:32:43
+</runlog></rundata></agent>
+<form name='binaryForm' publicaccess='false' designerversion='6.5'>
+<noteinfo noteid='13a' unid='89A7F7A909D1389AC12575CC004F465E' sequence='1'>
+<created><datetime dst='true'>20090605T162553,58+02</datetime></created>
+<modified><datetime dst='true'>20090605T162553,62+02</datetime></modified>
+<revised><datetime dst='true'>20090605T162553,61+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090605T162553,61+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090605T162553,61+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<wassignedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></wassignedby>
+<body><richtext>
+<pardef id='1'/>
+<par def='1'>article:</par>
+<par>
+<field type='richtext' kind='editable' name='article'/></par></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>binaryForm</text></item></form>
+<imageresource name='overlord59-tux-samourai-1773.jpg' publicaccess='false'
+ designerversion='6.5'>
+<noteinfo noteid='146' unid='6607470D47688474C12575CC004F5DA7' sequence='1'>
+<created><datetime dst='true'>20090605T162653,19+02</datetime></created>
+<modified><datetime dst='true'>20090605T162653,31+02</datetime></modified>
+<revised><datetime dst='true'>20090605T162653,30+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090605T162653,30+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090605T162653,30+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<wassignedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></wassignedby><jpeg
+>
+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
+f/vMat/6AUpSgP/Z
+</jpeg>
+<item name='$FlagsExt'><text>D</text></item>
+<item name='$FileSize' sign='true'><number>12666</number></item>
+<item name='$MimeType' sign='true'><text>image/jpeg</text></item>
+<item name='$FileModDT' sign='true'><datetime dst='true'>20090604T142008,24+02</datetime></item></imageresource>
+<document form='binaryForm'>
+<noteinfo noteid='8f6' unid='34271BB6DD504DD9C12575CC004F4EDD' sequence='1'>
+<created><datetime dst='true'>20090605T162615,33+02</datetime></created>
+<modified><datetime dst='true'>20090605T162701,45+02</datetime></modified>
+<revised><datetime dst='true'>20090605T162701,44+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090605T162701,44+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090605T162701,44+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<item name='article'><richtext>
+<pardef id='1'/>
+<par def='1'>Create Image ressource:</par>
+<par><picture width='256px' height='256px'><imageref name='overlord59-tux-samourai-1773.jpg'/></picture></par></richtext></item></document></database>

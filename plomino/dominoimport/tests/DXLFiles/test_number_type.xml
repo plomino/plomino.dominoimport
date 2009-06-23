@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='utf-8'?>
+<database xmlns='http://www.lotus.com/dxl' version='6.5' replicaid='C12575CA002BA39A'
+ path='test_number_field.nsf' title='test_number_field'>
+<databaseinfo dbid='C12575CA002BA39A' odsversion='43' diskspace='327680' percentused='87.1875'
+ numberofdocuments='1'><datamodified><datetime dst='true'>20090603T100118,98+02</datetime></datamodified><designmodified
+><datetime dst='true'>20090603T100322,03+02</datetime></designmodified></databaseinfo>
+<acl maxinternetaccess='editor'>
+<aclentry name='-Default-' default='true' level='noaccess' readpublicdocs='true'
+ writepublicdocs='true'/>
+<aclentry name='CN=Eric BREHAULT/O=Eric BREHAULT' type='person' level='manager'
+ deletedocs='true'/>
+<aclentry name='OtherDomainServers' type='servergroup' level='noaccess' readpublicdocs='false'
+ writepublicdocs='false'/>
+<aclentry name='LocalDomainServers' type='servergroup' level='manager' deletedocs='true'/>
+<logentry>03/06/2009 09:56:39 AM Eric BREHAULT/Eric BREHAULT added OtherDomainServers</logentry>
+<logentry>03/06/2009 09:56:39 AM Eric BREHAULT/Eric BREHAULT added LocalDomainServers</logentry>
+<logentry>03/06/2009 09:56:39 AM Eric BREHAULT/Eric BREHAULT updated Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>03/06/2009 09:56:39 AM Eric BREHAULT/Eric BREHAULT added Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>03/06/2009 09:56:39 AM Eric BREHAULT/Eric BREHAULT updated -Default-</logentry></acl>
+
+<form name='numberForm' publicaccess='false' designerversion='6.5'>
+<noteinfo noteid='132' unid='916626FFF9473443C12575CA002BA63F' sequence='2'>
+<created><datetime dst='true'>20090603T095646,07+02</datetime></created>
+<modified><datetime dst='true'>20090603T100322,03+02</datetime></modified>
+<revised><datetime dst='true'>20090603T100322,02+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090603T100322,02+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090603T095905,91+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<wassignedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></wassignedby>
+<body><richtext>
+<pardef id='1'/>
+<par def='1'>default decimal: 
+<field type='number' kind='editable' name='nb1'><numberformat format='general'
+ digits='2' punctuated='false' parens='false' percent='false'/></field></par>
+<par>decimal placed 0: 
+<field type='number' kind='editable' name='nb2'><numberformat format='fixed'
+ digits='0' punctuated='false' parens='false' percent='false'/></field></par>
+<par>percent: 
+<field type='number' kind='editable' name='nb3'><numberformat format='general'
+ digits='varying' punctuated='false' parens='false' percent='true'/></field></par>
+<par>scientific: 
+<field type='number' kind='editable' name='nb4'><numberformat format='scientific'
+ digits='2' punctuated='false' parens='false' percent='false'/></field></par>
+<par>currency: 
+<field type='number' kind='editable' name='nb5'><numberformat format='currency'
+ digits='2' punctuated='false' parens='false' percent='false'/></field></par></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>numberForm</text></item></form>
+
+<document form='numberForm'>
+<noteinfo noteid='8f6' unid='C18E432776C6B522C12575CA002BEF3C' sequence='7'>
+<created><datetime dst='true'>20090603T095952,92+02</datetime></created>
+<modified><datetime dst='true'>20090603T100118,98+02</datetime></modified>
+<revised><datetime dst='true'>20090603T100118,97+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090603T100118,97+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090603T100033,59+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<revisions><datetime dst='true'>20090603T100033,59+02</datetime><datetime
+ dst='true'>20090603T100045,15+02</datetime><datetime dst='true'>20090603T100049,53+02</datetime><datetime
+ dst='true'>20090603T100102,28+02</datetime><datetime dst='true'>20090603T100107,22+02</datetime><datetime
+ dst='true'>20090603T100116,44+02</datetime></revisions>
+<item name='nb1'><number>12.5</number></item>
+<item name='nb2'><number>13.5</number></item>
+<item name='nb3'><number>0.5</number></item>
+<item name='nb4'><number>123</number></item>
+<item name='nb5'><number>150</number></item></document></database>

@@ -1,0 +1,177 @@
+Plomino importer : test of document import
+==========================================
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    
+Import os to generate file from path
+
+    >>> import os.path
+    >>> dir, _f = os.path.split(os.path.abspath(__file__))
+    
+Create a database
+
+    >>> self.setRoles(['Manager'])
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+    
+    >>> from plomino.dominoimport.interfaces import IDominoImporter
+    >>> i=IDominoImporter(db)
+    >>> i.context.id
+    'mydb'
+    
+Import a DXL File
+-----------------
+
+DXL file imported is the database design one: the file is parsed in a xml object
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "test_documents.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+    
+Create forms with their fields
+------------------------------
+From the DXL xml object, this method will extract the forms elements with their field, 
+and create them in the database
+For the moment, only fields are created as object, but the layout is not set
+
+    >>> i.importForms(dxlDoc)
+    (1, 0)
+
+Forms in the database ?
+    >>> form = db.getForms()[0]
+    
+Fields in the correct forms ?
+    >>> form.getFormName()
+    'info'
+    >>> allFields = form.getFields()
+    >>> allFields
+    [<PlominoField at /plone/Members/test_user_1_/mydb/info/name>, <PlominoField at /plone/Members/test_user_1_/mydb/info/age>]
+    >>> for field in allFields:
+    ...     field.getId()
+    ...     field.getFieldType()
+    'name'
+    'TEXT'
+    'age'
+    'NUMBER'
+    
+    >>> form.getFormLayout()
+    '<p>name: <span class="plominoFieldClass">name</span></p><p>age: <span class="plominoFieldClass">age</span></p>'
+    
+    >>> form.formLayout() #field.setId(field.getId())
+    u'<input type=\'hidden\' name=\'Form\' value=\'info\' /><p>name: <span>\n\t\n\t\t<input type="text" name="name" value="" />\n\t\n\t\n</span>\n</p><p>age: <span>\n\t<input type="text" name="age" value="" />\n</span>\n</p>'
+    
+Create views
+------------
+Views are created with their columns from the DXL xml object
+
+    >>> i.importViews(dxlDoc)
+    (1, 0)
+
+Views in the database ?
+    >>> allViews = db.getViews()
+    >>> allViews
+    [<PlominoView at /plone/Members/test_user_1_/mydb/tous>]
+    
+Columns in the correct view ?
+    >>> for view in allViews:
+    ...     view.getViewName()
+    ...     view.title
+    ...     view.getSelectionFormula()
+    ...     allColumns = view.getColumns()
+    ...     allColumns
+    ...     for column in allColumns:
+    ...         column.getId()
+    ...         column.title
+    ...         column.getFormula()
+    ...         column.getPosition()
+    'tous'
+    u'tous'
+    'True'
+    [<PlominoColumn at /plone/Members/test_user_1_/mydb/tous/name>, <PlominoColumn at /plone/Members/test_user_1_/mydb/tous/age>]
+    'name'
+    u'Name'
+    'plominoDocument.name'
+    1
+    'age'
+    u'Age'
+    'plominoDocument.age'
+    2
+
+Create Documents
+----------------
+from another DXL file, we get the database data
+Documents are created with their item, and also form is set if the attribute 'form' is provided
+
+    >>> i.importDocs(dxlDoc)
+    (2, 0)
+
+Docs in the database ?
+    >>> allDocs = db.getAllDocuments()
+    >>> len(allDocs)
+    2
+    
+    >>> if allDocs[0].id == 'B152B61013440583C12575C90051910C':
+    ...     allDocs.reverse()
+    
+Items in the correct document ?
+    >>> for doc in allDocs:
+    ...     doc.id
+    ...     doc.getForm().getFormName()
+    ...     docItems = doc.getItems()
+    ...     docItems.sort()
+    ...     for itemKey in docItems:
+    ...         str(itemKey) + ": " + str(doc.getItem(itemKey))
+    'D491A14259408B24C12575C9005198B2'
+    'info'
+    'Form: info'
+    "Plomino_Authors: ['test_user_1_']"
+    'age: 24'
+    'name: Ian Curtis'
+    'B152B61013440583C12575C90051910C'
+    'info'
+    'Form: info'
+    "Plomino_Authors: ['test_user_1_']"
+    'age: 58'
+    'name: Joe Strummer'
+        
+Documents not for this form
+---------------------------
+One of the docs has no form, the other has not the correct items
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "test_documents_out.xml")
+    >>> dxlDoc = i.parseDXL(dxlFile)
+    
+    >>> i.importDocs(dxlDoc)
+    (1, 0)
+
+Docs in the database ?
+    >>> allDocs.append(db.getDocument('475B601D414C6173C12575C90052206F'))
+    >>> len(allDocs)
+    3
+    
+Items in the correct document ?
+    >>> for doc in allDocs:
+    ...     doc.id
+    ...     doc.getForm().getFormName()
+    ...     docItems = doc.getItems()
+    ...     docItems.sort()
+    ...     for itemKey in docItems:
+    ...         str(itemKey) + ": " + str(doc.getItem(itemKey))
+    'D491A14259408B24C12575C9005198B2'
+    'info'
+    'Form: info'
+    "Plomino_Authors: ['test_user_1_']"
+    'age: 24'
+    'name: Ian Curtis'
+    'B152B61013440583C12575C90051910C'
+    'info'
+    'Form: info'
+    "Plomino_Authors: ['test_user_1_']"
+    'age: 58'
+    'name: Joe Strummer'
+    '475B601D414C6173C12575C90052206F'
+    'info'
+    'Form: info'
+    "Plomino_Authors: ['test_user_1_']"
+    'place: rue de la joie'
+    'society: Cannonical'
