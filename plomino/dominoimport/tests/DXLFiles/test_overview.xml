@@ -188,7 +188,7 @@ Done running agent 'exporter' on 19/06/2009 15:19:54
  digits='2' punctuated='false' parens='false' percent='false'/></field></par></richtext></body>
 <item name='$$ScriptName' summary='false' sign='true'><text>project</text></item>
 <item name='hours' summary='false'><number>0</number></item></form>
-<view name='allProject' showinmenu='false' noreplace='true' publicaccess='false'
+<view name='allProjects' showinmenu='false' noreplace='true' publicaccess='false'
  designerversion='6.5' unreadmarks='none' onopengoto='lastopened' onrefresh='displayindicator'
  headers='beveled' opencollapsed='false' showresponsehierarchy='true' showmargin='true'
  shrinkrows='false' extendlastcolumn='false' unreadcolor='black' totalscolor='gray'

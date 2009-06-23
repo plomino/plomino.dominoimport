@@ -60,14 +60,6 @@ class DominoImporter(object):
             except:
                 results['resources'][1] += 1
 
-        # create agents
-        for agent in myDxlParser.getAgents():
-            try:
-                myPlominoBuilder.createAgent(agent)
-                results['agents'][0] += 1
-            except:
-                results['agents'][1] += 1
-
         # create forms
         for form in myDxlParser.getForms():
             try:
@@ -75,7 +67,6 @@ class DominoImporter(object):
                 results['forms'][0] += 1
             except:
                 results['forms'][1] += 1
-        print results
 
         # create views
         for view in myDxlParser.getViews():
@@ -93,7 +84,15 @@ class DominoImporter(object):
             except:
                 results['docs'][1] += 1
         
-        return results
+        # create agents
+        for agent in myDxlParser.getAgents():
+            try:
+                myPlominoBuilder.createAgent(agent)
+                results['agents'][0] += 1
+            except:
+                results['agents'][1] += 1
+
+        print results
     
         # Erreurs possibles
         

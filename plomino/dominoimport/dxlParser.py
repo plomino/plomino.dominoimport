@@ -82,6 +82,9 @@ class DXLParser(object):
         if dxlFileContent is not None:
             self.extractResourcesFromDXL(dxlFileContent)
             self.extractForms(dxlFileContent)
+            self.extractViews(dxlFileContent)
+            self.extractDocs(dxlFileContent)
+            self.extractAgents(dxlFileContent)
 
     def extractResourcesFromDXL(self, dxlFileContent):
         """
@@ -90,7 +93,7 @@ class DXLParser(object):
 
         # Get all the image resources of the DXL file
         fileNodes = dxlFileContent.getElementsByTagName("imageresource")
-        print 'extract resource'
+        print 'extracting resource ...'
 
         for fileElement in fileNodes:
             file = {}
@@ -116,7 +119,7 @@ class DXLParser(object):
         Extract forms from the DXL parsed file
         """
         
-        print 'extracting forms'
+        print 'extracting forms ...'
         # For all forms, create them in the current database
         forms = dxlFileContent.getElementsByTagName("form") + dxlFileContent.getElementsByTagName("subform")
 
@@ -130,18 +133,17 @@ class DXLParser(object):
             # set the layout from "body" element
             dico['formLayout'] = self.richtext2Html(form.getElementsByTagName("body")[0])
             
-            self.forms.append(dico)
-            #self.context.getForm(formId).setFormLayout(formLayout)
-            
             # import all the fields included in this form
             # self.extractFields(form)
-        
+            
+            self.forms.append(dico)
+
     def extractViews(self, dxlFileContent):
         """
         Extract views from the DXL parsed file
         """
         
-        print 'extracting views'
+        print 'extracting views ...'
         # For all forms, create them in the current database
         views = dxlFileContent.getElementsByTagName("view")
 
@@ -153,8 +155,43 @@ class DXLParser(object):
             # import all the columns included in this view
             # self.extractColumns(view)
             
-            self.forms.append(dico)
+            self.views.append(dico)
         
+    def extractDocs(self, dxlFileContent):
+        """
+        Extract docs from the DXL parsed file
+        """
+        
+        print 'extracting docs ...'
+        # For all forms, create them in the current database
+        docs = dxlFileContent.getElementsByTagName("doc")
+
+        for doc in docs:
+            dico = {}
+            dico['type'] = 'PlominoDocument'
+            dico['id'], dico['title'] = self.getIdTitleAttributes(doc)
+            
+            # import all the items included in this doc
+            # self.extractItems(doc)
+            
+            self.docs.append(dico)
+
+    def extractAgents(self, dxlFileContent):
+        """
+        Extract agents from the DXL parsed file
+        """
+        
+        print 'extracting agents ...'
+        # For all forms, create them in the current database
+        agents = dxlFileContent.getElementsByTagName("agent")
+
+        for agent in agents:
+            dico = {}
+            dico['type'] = 'PlominoAgent'
+            dico['id'], dico['title'] = self.getIdTitleAttributes(agent)
+            print dico['id']
+            self.agents.append(dico)
+
     def getIdTitleAttributes(self, dxlFileContent):
         """
         Get the Id and the Title from a DXLFileContent

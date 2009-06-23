@@ -10,7 +10,6 @@ Created on 20 may 2009
 
 @author: Emmanuelle Helly
 
-File DxlConfig.py is required
 """
 
 __author__ = """Emmanuelle Helly"""
@@ -38,45 +37,52 @@ class PlominoBuilder(object):
         @author
         """
         
-        print 'creating form:', formInfos['id']
-        formId = self.createElementInDatabase(formInfos)
-        print formId
+        formId = self.plominoDatabase.invokeFactory(formInfos['type'],
+                                              id=formInfos['id'])
+        print 'creating form:', formId
         if formId is not None:
             self.plominoDatabase.getForm(formId).setTitle(formInfos['title'])
             #self.importInsertedFiles(form, self.context.getForm(formId))
             
             # set the layout
             #self.context.getForm(formId).setFormLayout(formLayout)
+            
+            # Create the fields
 
     def createView(self, viewInfos):
         """
-         
+        Create view in the database
 
         @param dict viewInfos : 
         @return string :
         @author
         """
-        pass
+        viewId = self.createElementInDatabase(viewInfos)
+        print 'creating view:', viewId
+        if viewId is not None:
+            self.plominoDatabase.getView(viewId).setTitle(viewInfos['title'])
+            
+            # Create the columns
 
     def createDoc(self, docInfos):
         """
-         
+        Create document in the database
 
         @param dict docInfos : 
         @return string :
-        @author
         """
         pass
 
     def createAgent(self, agentInfos):
         """
-         
+        Create agent in the database
 
         @param dict agentInfos : 
         @return string :
-        @author
         """
-        pass
+        agentId = self.createElementInDatabase(agentInfos)
+        print 'creating agent:', agentId
+        #self.plominoDatabase.at_post_create_script()
 
     def createResource(self, resourceInfos):
         """
