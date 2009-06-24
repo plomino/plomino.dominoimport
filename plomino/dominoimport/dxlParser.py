@@ -119,7 +119,6 @@ class DXLParser(object):
         """
         
         print 'extracting forms ...'
-        # For all forms, create them in the current database
         forms = dxlFileContent.getElementsByTagName("form") + dxlFileContent.getElementsByTagName("subform")
 
         for form in forms:
@@ -127,23 +126,103 @@ class DXLParser(object):
             dico['type'] = 'PlominoForm'
             dico['id'], dico['title'] = self.getIdTitleAttributes(form)
             
-            # self.extractInsertedFiles(form)
-                
             # set the layout from "body" element
-            dico['formLayout'] = self.richtext2Html(form.getElementsByTagName("body")[0])
+            dico['formLayout'] = self.richtextToHtml(form.getElementsByTagName("body")[0])
             
             # import all the fields included in this form
-            # self.extractFields(form)
+            dico['fields'] = self.extractFields(form)
             
+            # self.extractInsertedFiles(form)
             self.forms.append(dico)
 
+    def extractFields(self, dxlFileContent):
+        """
+        Extract fields from the DXL parsed file
+        """
+        
+        extractedFields = []
+        print 'extracting fields ...'
+        fields = dxlFileContent.getElementsByTagName("field")
+        
+        for field in fields:
+            dico = {}
+            settings = {}
+            dico['type'] = 'PlominoField'
+            dico['id'], dico['title'] = self.getIdTitleAttributes(field)
+
+            # Field types ----
+            # set the fieldType from the dict in dxlConfig.py    
+            if field.getAttribute('type') in FIELD_TYPES:
+                dico['FieldType'] = FIELD_TYPES[field.getAttribute('type')]
+            else:
+                dico['FieldType'] = 'TEXT'
+            
+            # import the field settings ----
+            # - Text field
+            if dico['FieldType'] == 'TEXT':
+                # widget
+                if field.getAttribute("multiline"):
+                    settings['widget'] = 'TEXTAREA'
+                else:
+                    settings['widget'] = 'TEXT'
+    
+            # - Number field
+            if dico['FieldType'] == 'NUMBER':
+                settings['type'] = 'FLOAT' # to avoid loosing information from dxl file 
+    
+                    
+            # - Selection field
+            if dico['FieldType'] == 'SELECTION':
+                # widget
+                if field.getElementsByTagName("keywords")[0].getAttribute("ui") in FIELD_TYPES_ATTR:
+                    settings['widget'] = FIELD_TYPES_ATTR[field.getElementsByTagName("keywords")[0].getAttribute('ui')]
+                else:
+                    settings['widget'] = 'SELECT'
+                
+                # list of items
+                if field.getElementsByTagName("textlist")[0].getElementsByTagName("text") is not None:
+                    selectionList = []
+                    for entry in field.getElementsByTagName("textlist")[0].getElementsByTagName("text"):
+                        selectionList.append(entry.firstChild.nodeValue)
+                    
+                    settings['selectionlist'] = selectionList
+                    
+                else:
+                    settings['selectionlist'] = ['Selection list not set']
+                # TODO: tester lorsque les paramètres n'existent pas
+                
+            # - Name field
+            if dico['FieldType'] == 'NAME':
+                # type
+                if field.getAttribute("allowmultivalues"):
+                    settings['type'] = 'MULTI'
+                    # separator
+    #                if field.getAttribute("listinputseparators") in FIELD_TYPES_ATTR:
+    #                    settings['separator'] = FIELD_TYPES_ATTR[field.getAttribute("listinputseparators")]
+    #                else:
+    #                    settings['separator'] = ''
+    
+                else:
+                    settings['type'] = 'SINGLE'
+
+            dico['settings'] = settings
+
+            # Field mode ----
+            if field.getAttribute('kind') in FIELD_MODES:
+                dico['FieldMode'] = FIELD_MODES[field.getAttribute('kind')]
+            else:            
+                dico['FieldMode'] = 'EDITABLE'
+
+            extractedFields.append(dico)
+
+        return extractedFields
+        
     def extractViews(self, dxlFileContent):
         """
         Extract views from the DXL parsed file
         """
         
         #print 'extracting views ...'
-        # For all forms, create them in the current database
         views = dxlFileContent.getElementsByTagName("view")
 
         for view in views:
@@ -209,8 +288,8 @@ class DXLParser(object):
         Extract docs from the DXL parsed file
         """
         
-        print 'extracting docs ...'
-        # For all forms, create them in the current database
+        #print 'extracting docs ...'
+        
         docs = dxlFileContent.getElementsByTagName("document")
 
         for doc in docs:
@@ -229,9 +308,10 @@ class DXLParser(object):
         """
         Extract items from the DXL parsed file
         """
-        
+        #print 'extracting items ...'
         extractedItems = []
         items = dxlFileContent.getElementsByTagName("item")
+        
         for item in items:
             dico = {}
             # Get item type
@@ -250,9 +330,11 @@ class DXLParser(object):
 
             if dico['type'] in FIELD_TYPES:
                 
+                # number ----
                 if dico['type'] == 'number':
                     dico['value'] = child.firstChild.nodeValue
-            
+                
+                # text ----
                 elif dico['type'] == 'text':
                     # there may be some break tag, so get content recursively
                     dico['value'] = ''
@@ -264,13 +346,16 @@ class DXLParser(object):
                             dico['value'] += str(subchild.data).replace('\n', '')
         
                         subchild = subchild.nextSibling
-        
+
+                # richtext ----
                 elif dico['type'] == 'richtext':
                     dico['value'] = '#'
+
+                # else ----
                 else:
                     dico['value'] = '#'
 
-            print dico
+            #print dico
             extractedItems.append(dico)
 
         return extractedItems
@@ -281,7 +366,7 @@ class DXLParser(object):
         """
         
         print 'extracting agents ...'
-        # For all forms, create them in the current database
+
         agents = dxlFileContent.getElementsByTagName("agent")
 
         for agent in agents:

@@ -82,19 +82,19 @@ Fields in the correct forms ?
     'status'
     u'status'
     'SELECTION'
-    '<p>Name:<span class="plominoFieldClass">name</span></p><p>Address:<span class="plominoFieldClass">address</span></p><p>Status:<span class="plominoFieldClass">status</span></p>'
+    '<p>Name: <span class="plominoFieldClass">name</span></p><p>Address:<span class="plominoFieldClass">address</span></p><p>Status: <span class="plominoFieldClass">status</span></p><p><img src="resources/overlord59-tux-samourai-1772.jpg" /></p>'
     'project'
     [<PlominoField at /plone/Members/test_user_1_/mydb/project/startdate>, <PlominoField at /plone/Members/test_user_1_/mydb/project/owner>, <PlominoField at /plone/Members/test_user_1_/mydb/project/hours>]
     'startdate'
     u'startdate'
-    'TEXT'
+    'DATETIME'
     'owner'
     u'owner'
-    'NAMES'
+    'NAME'
     'hours'
     u'hours'
     'NUMBER'
-    '<p>Start date:<span class="plominoFieldClass">startdate</span></p><p>Project Owner:<span class="plominoFieldClass">owner</span></p><p>Hours:<span class="plominoFieldClass">hours</span></p>'
+    '<p>Start Date: <span class="plominoFieldClass">startdate</span></p><p>Owner: <span class="plominoFieldClass">owner</span></p><p>Hours: <span class="plominoFieldClass">hours</span></p>'
 
 Check views
 -----------
@@ -159,6 +159,8 @@ Check Documents
 Docs in the database ?
     >>> allDocs = db.getAllDocuments()
     >>> len(allDocs)
+    1
+    
     3
     
     
@@ -170,6 +172,16 @@ Items in the correct document ?
     ...     docItems.sort()
     ...     for itemKey in docItems:
     ...         str(itemKey) + ": " + str(doc.getItem(itemKey))
+    '2D1845C319A97266C12575DE0031BCF1'
+    'Form: project'
+    "Plomino_Authors: ['test_user_1_']"
+    'hours: 20'
+    'owner: CN=Eric BREHAULT/O=Eric BREHAULT'
+    'startdate: 20090512'
+    
+    
+    
+    
     '2D1845C319A97266C12575DE0031BCF1'
     'infos'
     "Plomino_Authors: ['test_user_1_']"

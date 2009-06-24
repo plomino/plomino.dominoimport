@@ -25,8 +25,7 @@ class PlominoBuilder(object):
 
     def __init__(self, plominoDatabase):
         self.plominoDatabase = plominoDatabase
-    
-    
+
     def createForm(self, formInfos):
         """
         Create form in the database
@@ -40,13 +39,40 @@ class PlominoBuilder(object):
                                               id=formInfos['id'])
         print 'creating form:', formId
         if formId is not None:
-            self.plominoDatabase.getForm(formId).setTitle(formInfos['title'])
+            form = self.plominoDatabase.getForm(formId)
+            form.setTitle(formInfos['title'])
+            form.setFormLayout(formInfos['formLayout'])
             #self.importInsertedFiles(form, self.context.getForm(formId))
-            
-            # set the layout
-            #self.context.getForm(formId).setFormLayout(formLayout)
-            
+
             # Create the fields
+            for fieldInfos in formInfos['fields']:
+                self.createField(fieldInfos, form)
+
+    def createField(self, fieldInfos, container):
+        """
+        Create field in the database
+
+        @param dict fieldInfos : 
+        @param plomino object container : 
+        @return string :
+        """
+        fieldId = container.invokeFactory(fieldInfos['type'], 
+                                           id=fieldInfos['id'])
+        print 'creating field:', fieldId
+        
+        if fieldId is not None:
+            field = container.getFormField(fieldId)
+            field.setTitle(fieldInfos['title'])
+            field.setFieldType(fieldInfos['FieldType'])
+            field.setFieldMode(fieldInfos['FieldMode'])
+
+            adapt=field.getSettings()
+            for key in fieldInfos['settings'].keys():
+                v = fieldInfos['settings'][key]
+                if v is not None:
+                    setattr(adapt, key, v)
+
+            field.at_post_create_script()
 
     def createView(self, viewInfos):
         """
@@ -59,14 +85,14 @@ class PlominoBuilder(object):
                                                     id=viewInfos['id'])
         #print 'creating view:', viewId
         if viewId is not None:
-            obj = self.plominoDatabase.getView(viewId)
-            obj.setTitle(viewInfos['title'])
-            obj.setSelectionFormula(viewInfos['SelectionFormula'])
-            obj.setFormFormula(viewInfos['FormFormula'])
+            view = self.plominoDatabase.getView(viewId)
+            view.setTitle(viewInfos['title'])
+            view.setSelectionFormula(viewInfos['SelectionFormula'])
+            view.setFormFormula(viewInfos['FormFormula'])
             
             # Create the columns
             for columnInfos in viewInfos['columns']:
-                self.createColumn(columnInfos, self.plominoDatabase.getView(viewId))
+                self.createColumn(columnInfos, view)
 
     def createColumn(self, columnInfos, container):
         """
@@ -80,11 +106,11 @@ class PlominoBuilder(object):
                                            id=columnInfos['id'])
         #print 'creating column:', columnId
         if columnId is not None:
-            obj = container.getColumn(columnId)
-            obj.setTitle(columnInfos['title'])
-            obj.setFormula(columnInfos['formula'])
-            obj.setPosition(columnInfos['position'])
-            obj.at_post_create_script()
+            column = container.getColumn(columnId)
+            column.setTitle(columnInfos['title'])
+            column.setFormula(columnInfos['formula'])
+            column.setPosition(columnInfos['position'])
+            column.at_post_create_script()
 
     def createDoc(self, docInfos):
         """
@@ -93,7 +119,7 @@ class PlominoBuilder(object):
         @param dict docInfos : 
         @return string :
         """
-        print 'creating doc:', docInfos['id']
+        #print 'creating doc:', docInfos['id']
         if docInfos['id'] != '':
             newDocId = self.plominoDatabase.invokeFactory(docInfos['type'], 
                                                     id=docInfos['id'])
@@ -119,7 +145,7 @@ class PlominoBuilder(object):
     def createItem(self, itemInfos, container):
         """
         Create document in the database
-
+        (Not used in this version)
         @param dict itemInfos : 
         @return string :
         """
@@ -144,11 +170,8 @@ class PlominoBuilder(object):
         @param dict resourceInfos : 
         @return string :
         """
-        print 'creating resource in database:', resourceInfos['name'] 
-        #if not(hasattr(self.plominoDatabase.resources, resourceInfos['name'])):
-#        self.plominoDatabase.manage_addFile('truc')
-#        bidon1 = getattr(self.plominoDatabase.resources, 'truc')
-#        print bidon1
+        #print 'creating resource in database:', resourceInfos['name'] 
+        
         if not(hasattr(self.plominoDatabase, resourceInfos['name'])):
             self.plominoDatabase.resources.manage_addFile(resourceInfos['name'])
         obj = getattr(self.plominoDatabase.resources, resourceInfos['name'])

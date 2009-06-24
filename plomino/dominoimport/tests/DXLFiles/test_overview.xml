@@ -158,8 +158,7 @@ Done running agent 'exporter' on 19/06/2009 15:19:54
 <pardef id='1'/>
 <par def='1'>Name: 
 <field type='text' kind='editable' name='name'/></par>
-<par>Adress: 
-<field type='richtext' kind='editable' name='adress'/></par>
+<par>Address:<field type='richtext' kind='editable' name='address'></field></par>
 <par>Status: 
 <field type='keyword' allowmultivalues='true' kind='editable' name='status'
  listinputseparators='comma' listdisplayseparator='comma'><keywords helperbutton='false'
