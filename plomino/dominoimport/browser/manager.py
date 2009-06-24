@@ -40,22 +40,23 @@ class DominoImportManager(BrowserView):
         # get file name
         fileToImport = self.request.get('filename', None)
     
-        (formResult, viewResult, docsResult) = importer.processImportDXL(fileToImport)
+#        (formResult, viewResult, docsResult) = importer.processImportDXL(fileToImport)
+        results = importer.processImportDXL(fileToImport)
         
-        if formResult != (0, 0):
+        if results['forms'] != (0, 0):
             infoMsg = infoMsg + 'Forms imported: ' + \
-            str(formResult[0]) + ' succeeded, ' + \
-            str(formResult[1]) + ' failed.' + MSG_SEPARATOR
+            str(results['forms'][0]) + ' succeeded, ' + \
+            str(results['forms'][1]) + ' failed.' + MSG_SEPARATOR
 
-        if viewResult != (0, 0):
+        if results['views'] != (0, 0):
             infoMsg = infoMsg + 'Views imported: ' +  \
-            str(viewResult[0]) + ' succeeded, ' +  \
-            str(viewResult[1]) + ' failed.' + MSG_SEPARATOR
+            str(results['views'][0]) + ' succeeded, ' +  \
+            str(results['views'][1]) + ' failed.' + MSG_SEPARATOR
         
-        if docsResult != (0, 0):
+        if results['docs'] != (0, 0):
             infoMsg = infoMsg + 'Documents imported: ' +  \
-            str(docsResult[0]) + ' succeeded, ' +  \
-            str(docsResult[1]) + ' failed.' + MSG_SEPARATOR
+            str(results['docs'][0]) + ' succeeded, ' +  \
+            str(results['docs'][1]) + ' failed.' + MSG_SEPARATOR
             
 #            except ImportDXLException, e:            
 #                infoMsg = infoMsg + 'error while importing : %s' % (e) + MSG_SEPARATOR 

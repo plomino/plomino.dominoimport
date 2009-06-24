@@ -103,10 +103,10 @@ class DominoImporter(object):
                 results['agents'][1] += 1
                 #print type(inst), inst, inst.args
         
-#        myDxlParser = None
-#        myPlominoBuilder = None
+        myDxlParser = None
+        myPlominoBuilder = None
         
-        print results
+        return results
     
         # Erreurs possibles
         

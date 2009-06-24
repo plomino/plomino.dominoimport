@@ -50,11 +50,11 @@ class DXLParser(object):
         """
         Initialize parser
         """        
-        forms = []
-        views = []
-        docs = []
-        resources = []
-        agents = []
+        self.forms = []
+        self.views = []
+        self.docs = []
+        self.resources = []
+        self.agents = []
 
     def getForms(self):
         return self.forms
