@@ -1,7 +1,7 @@
 Plomino importer
 ================
 
-Create a database
+Check a database
 -----------------
 
     >>> from Products.Five.testbrowser import Browser
@@ -22,6 +22,9 @@ Import os to generate file from path
     >>> i.__class__.__name__
     'DominoImporter'
     
+    
+    >>> i
+    
     >>> i.context.id
     'mydb'
     
@@ -32,8 +35,9 @@ DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabase.xml")
     >>> dxlDoc = i.processImportDXL(dxlFile)
+    {'forms': [2, 0], 'docs': [2, 0], 'agents': [1, 0], 'resources': [0, 0], 'views': [1, 0]}
     
-Create forms with their fields
+Check forms with their fields
 ------------------------------
 
 Forms in the database ?
@@ -76,7 +80,7 @@ Fields in the correct forms ?
     'TEXT'
     '<p></p><p>Enter your name:<span class="plominoFieldClass">desc</span></p><p></p><p>Enter your address:<span class="plominoFieldClass">customer</span></p>'
 
-Create views
+Check views
 ------------
 
 Views in the database ?
@@ -113,7 +117,7 @@ Formula:
 - Selection formula for the view itself : python code returning a boolean value, to select wich document to view
 - Column formula: python code returning the column value
 
-Create Documents
+Check Documents
 ----------------
 from another DXL file, we get the database data
 Documents are created with their item, and also form is set if the attribute 'form' is provided

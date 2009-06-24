@@ -1,7 +1,7 @@
 Plomino importer
 ================
 
-Create a database
+Check a database
 -----------------
 
     >>> from Products.Five.testbrowser import Browser

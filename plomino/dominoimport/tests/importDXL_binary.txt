@@ -11,7 +11,7 @@ Import os to generate file from path
     >>> import os.path
     >>> dir, _f = os.path.split(os.path.abspath(__file__))
 
-Create a database
+Check a database
 -----------------
 A database is created in the plomino instance
 
@@ -33,7 +33,7 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binaries.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
     
 Get binaries
 ------------
@@ -43,10 +43,10 @@ Get binaries
     >>> db.resources._objects
     ({'meta_type': 'File', 'id': 'overlord59-tux-samourai-1772.jpg'},)
     
-Create forms with their fields
+Check forms with their fields
 ------------------------------
 From the DXL xml object, this method will extract the forms elements with their field, 
-and create them in the database
+and Check them in the database
 
 The imported file has an field type error, one field has 'truc' instead of 'text', it should become a TEXT type by default
 
@@ -65,7 +65,7 @@ correct Form name and Layout ?
     >>> form.getFormLayout()
     '<p>article:</p><p><span class="plominoFieldClass">article</span></p>'
 
-Create the docs
+Check the docs
 ---------------
 
     >>> i.importDocs(dxlDoc)
@@ -85,7 +85,7 @@ Items in the correct document ?
     '14AC27B496003398C12575CB0044834E'
     'Form: binaryForm'
     "Plomino_Authors: ['test_user_1_']"
-    'article: <p>image:</p><p><img src="getfile?filename=image1.jpg" /></p><p>Create > Picture</p>'
+    'article: <p>image:</p><p><img src="getfile?filename=image1.jpg" /></p><p>Check > Picture</p>'
     ['overlord59-tux-samourai-1773.png']
     '00EC4B087FB0920CC12575CB00434F9A'
     'Form: binaryForm'
@@ -95,17 +95,17 @@ Items in the correct document ?
     '7513D0AFE47864CBC12575CB00442A05'
     'Form: binaryForm'
     "Plomino_Authors: ['test_user_1_']"
-    'article: <p>image:</p><p><img src="resources/overlord59-tux-samourai-1772.jpg" />caption</p><p>Create > image ressource</p>'
+    'article: <p>image:</p><p><img src="resources/overlord59-tux-samourai-1772.jpg" />caption</p><p>Check > image ressource</p>'
     []
     '7513D0AFE47864CBC12575CB00442A7A'
     'Form: binaryForm'
     "Plomino_Authors: ['test_user_1_']"
-    'article: <p>image:</p><p><img src="resources/overlord59-tux-samourai-1773.jpg" />caption</p><p>Create > Insert ressource</p>'
+    'article: <p>image:</p><p><img src="resources/overlord59-tux-samourai-1773.jpg" />caption</p><p>Check > Insert ressource</p>'
     []
     '7F6DA2761FCEFFF4C12575CB004437CF'
     'Form: binaryForm'
     "Plomino_Authors: ['test_user_1_']"
-    'article: <p>fichier:</p><p><a href="getfile?filename=EXT14519.xml">EXT14519.xml</a></p><p>Create > object</p>'
+    'article: <p>fichier:</p><p><a href="getfile?filename=EXT14519.xml">EXT14519.xml</a></p><p>Check > object</p>'
     ['EXT14519.xml']
 
 
@@ -122,10 +122,10 @@ self.folder.manage_delObjects(["binaryForm"])
          
 Doc with Image ressource created in database
 --------------------------------------------
-rem: it is the same as create > insert Ressource, when ressource has already been created in Domino
+rem: it is the same as Check > insert Ressource, when ressource has already been created in Domino
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binary_3.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
 
     >>> i.importResourcesFromDXL(dxlDoc)
     (1, 0)
@@ -149,7 +149,7 @@ Items in the correct document ?
     ...     str(itemKey) + ": " + str(doc.getItem(itemKey))
     'Form: binaryForm'
     "Plomino_Authors: ['test_user_1_']"
-    'article: <p>Create Image ressource:</p><p><img src="resources/overlord59-tux-samourai-1773.jpg" /></p>'
+    'article: <p>Check Image ressource:</p><p><img src="resources/overlord59-tux-samourai-1773.jpg" /></p>'
 
     >>> doc.getFilenames()
     []
@@ -165,7 +165,7 @@ Doc with file attached
 ----------------------
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binary_1.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
 
     >>> i.importDocs(dxlDoc)
     (1, 0)
@@ -199,7 +199,7 @@ Doc with picture created in richtext
 ------------------------------------
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binary_2.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
 
     >>> i.importDocs(dxlDoc)
     (1, 0)
@@ -215,7 +215,7 @@ Items in the correct document ?
     ...     str(itemKey) + ": " + str(doc.getItem(itemKey))
     'Form: binaryForm'
     "Plomino_Authors: ['test_user_1_']"
-    'article: <p>Create picture:</p><p><img src="getfile?filename=image1.jpeg" /></p>'
+    'article: <p>Check picture:</p><p><img src="getfile?filename=image1.jpeg" /></p>'
     
     >>> doc.getFilenames()
     ['image1.jpeg']
@@ -231,7 +231,7 @@ Doc with File object created in richtext
 ----------------------------------------
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binary_4.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
 
     >>> i.importResourcesFromDXL(dxlDoc)
     (0, 0)
@@ -253,7 +253,7 @@ Items in the correct document ?
     ...     str(itemKey) + ": " + str(doc.getItem(itemKey))
     'Form: binaryForm'
     "Plomino_Authors: ['test_user_1_']"
-    'article: <p>Create object:</p><p><a href="getfile?filename=EXT64403.pdf">EXT64403.pdf</a></p>'
+    'article: <p>Check object:</p><p><a href="getfile?filename=EXT64403.pdf">EXT64403.pdf</a></p>'
     
     >>> doc.getFilenames()
     ['EXT64403.pdf']

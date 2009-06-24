@@ -3,7 +3,7 @@ Plomino importer
 Overview of the dominoimport module features
 For complete tests, please run all specific tests
  
-Create a database
+Check a database
 -----------------
 
     >>> from Products.Five.testbrowser import Browser
@@ -21,7 +21,6 @@ Import os to generate file from path
     
     >>> from plomino.dominoimport.interfaces import IDominoImporter
     >>> i=IDominoImporter(db)
-    >>> i.__class__.__name__
     'DominoImporter'
     
     >>> i.context.id
@@ -34,6 +33,7 @@ DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_overview.xml")
     >>> dxlDoc = i.processImportDXL(dxlFile)
+    {'forms': [2, 0], 'docs': [1, 0], 'agents': [1, 0], 'resources': [1, 0], 'views': [2, 0]}
     
 Check agents
 ------------
@@ -179,7 +179,8 @@ Items in the correct document ?
     'owner: CN=Eric BREHAULT/O=Eric BREHAULT'
     'startdate: 20090512'
     
-    
+Delete database
+    >>> self.folder.manage_delObjects(["mydb"])
     
     
     '2D1845C319A97266C12575DE0031BCF1'

@@ -11,7 +11,7 @@ Import os to generate file from path
     >>> import os.path
     >>> dir, _f = os.path.split(os.path.abspath(__file__))
 
-Create a database
+Check a database
 -----------------
 A database is created in the plomino instance
 
@@ -43,7 +43,7 @@ Error: DXL doc does not exists
 Import DXL file
 ---------------
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseBidon.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
 
 Error: non valid DXL files
 ==========================
@@ -52,11 +52,11 @@ Import DXL file
 ---------------
 File with bad XML
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseBadXML.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
 
 File with correct XML but DXL element which not exists in DTD
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseBadDXL.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
 
 Error: forms with same Id
 =========================
@@ -66,12 +66,12 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseFormsErrorSameId.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
 
-Create forms with their fields
+Check forms with their fields
 ------------------------------
 From the DXL xml object, this method will extract the forms elements with their field, 
-and create them in the database
+and Check them in the database
 For the moment, only fields are created as object, but the layout is not set
 
     >>> i.importForms(dxlDoc)
@@ -118,9 +118,9 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseViewsErrorSameId.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
 
-Create views
+Check views
 ------------
 Views are created with their columns from the DXL xml object
 
@@ -148,9 +148,9 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseColumnErrorSameId.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
 
-Create views
+Check views
 ------------
 Views are created with their columns from the DXL xml object
 
@@ -193,24 +193,24 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseFormsErrorSameId.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
 
-Create forms with their fields
+Check forms with their fields
 ------------------------------
 From the DXL xml object, this method will extract the forms elements with their field, 
-and create them in the database
+and Check them in the database
 For the moment, only fields are created as object, but the layout is not set
 
     >>> i.importForms(dxlDoc)
     (1, 1)
     
-Create Documents
+Check Documents
 ----------------
 from another DXL file, we get the database data
 Documents are created with their item, and also form is set if the attribute 'form' is provided
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDocumentErrorSameId.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
     
     >>> i.importDocs(dxlDoc)
     (2, 1)

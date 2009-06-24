@@ -16,7 +16,7 @@ Add differents user for Plomino database testing : Reader, Designer, Author, Edi
     >>> memberName = 'userManager'
     >>> self.portal.portal_membership.addMember(memberName, memberName, ('Member',), '', {'fullname': memberName, 'email': memberName+'@dummy.fr',} )
     
-Create plomino database and publish it
+Check plomino database and publish it
     >>> self.setRoles(['Manager'])
     >>> id = self.portal.invokeFactory('PlominoDatabase', id='ACLTestsDB')
     >>> db = self.portal.ACLTestsDB
@@ -56,7 +56,7 @@ Add some minimal content to test access (view 1 displays all documents)
     >>> docUrl2 == doc2.absolute_url()
     True
 
-Create the browser object we'll be using.
+Check the browser object we'll be using.
 
     >>> from Products.Five.testbrowser import Browser
     >>> browser = Browser()
@@ -168,7 +168,7 @@ Author cannot edit or delete document created by other users
     >>> InsufficientPrivileges in browser.url
     True
     
-Author can open a form and create a document
+Author can open a form and Check a document
     >>> browser.open(base_url + '/form1/OpenForm')
     >>> InsufficientPrivileges in browser.url
     False

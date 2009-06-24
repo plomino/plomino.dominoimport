@@ -1,7 +1,7 @@
 Plomino importer : test formulas and script import
 ==================================================
 
-Create a database
+Check a database
 -----------------
 
     >>> from Products.Five.testbrowser import Browser

@@ -49,7 +49,12 @@ class DXLParser(object):
     def __init__(self):
         """
         Initialize parser
-        """
+        """        
+        forms = []
+        views = []
+        docs = []
+        resources = []
+        agents = []
 
     def getForms(self):
         return self.forms
@@ -71,6 +76,11 @@ class DXLParser(object):
         Parse dxl file and set resources, forms, views, and agents sequences
         """
         dxlFileContent = None
+        forms = []
+        views = []
+        docs = []
+        resources = []
+        agents = []
         try:
             dxlFileContent = parse(file)
 #        except TypeErrormismatched, e:
@@ -93,7 +103,7 @@ class DXLParser(object):
 
         # Get all the image resources of the DXL file
         fileNodes = dxlFileContent.getElementsByTagName("imageresource")
-        print 'extracting resource ...'
+        #print 'extracting resource ...'
 
         for fileElement in fileNodes:
             file = {}
@@ -118,7 +128,7 @@ class DXLParser(object):
         Extract forms from the DXL parsed file
         """
         
-        print 'extracting forms ...'
+        #print 'extracting forms ...'
         forms = dxlFileContent.getElementsByTagName("form") + dxlFileContent.getElementsByTagName("subform")
 
         for form in forms:
@@ -141,7 +151,7 @@ class DXLParser(object):
         """
         
         extractedFields = []
-        print 'extracting fields ...'
+        #print 'extracting fields ...'
         fields = dxlFileContent.getElementsByTagName("field")
         
         for field in fields:
@@ -365,7 +375,7 @@ class DXLParser(object):
         Extract agents from the DXL parsed file
         """
         
-        print 'extracting agents ...'
+        #print 'extracting agents ...'
 
         agents = dxlFileContent.getElementsByTagName("agent")
 

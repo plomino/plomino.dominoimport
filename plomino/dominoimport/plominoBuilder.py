@@ -37,7 +37,7 @@ class PlominoBuilder(object):
         
         formId = self.plominoDatabase.invokeFactory(formInfos['type'],
                                               id=formInfos['id'])
-        print 'creating form:', formId
+        #print 'creating form:', formId
         if formId is not None:
             form = self.plominoDatabase.getForm(formId)
             form.setTitle(formInfos['title'])
@@ -58,7 +58,7 @@ class PlominoBuilder(object):
         """
         fieldId = container.invokeFactory(fieldInfos['type'], 
                                            id=fieldInfos['id'])
-        print 'creating field:', fieldId
+        #print 'creating field:', fieldId
         
         if fieldId is not None:
             field = container.getFormField(fieldId)
@@ -161,7 +161,7 @@ class PlominoBuilder(object):
         """
         agentId = self.plominoDatabase.invokeFactory(agentInfos['type'], 
                                                      id=agentInfos['id'])
-        print 'creating agent:', agentId
+        #print 'creating agent:', agentId
         #self.plominoDatabase.at_post_create_script()
 
     def createResource(self, resourceInfos):

@@ -11,7 +11,7 @@ Import os to generate file from path
     >>> import os.path
     >>> dir, _f = os.path.split(os.path.abspath(__file__))
 
-Create a database
+Check a database
 -----------------
 A database is created in the plomino instance
 
@@ -33,7 +33,7 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binary_forms.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
     
 Get binaries
 ------------
@@ -43,10 +43,10 @@ Get binaries
     >>> db.resources._objects
     ({'meta_type': 'File', 'id': 'overlord59-tux-samourai-1773.jpg'},)
     
-Create forms with their fields
+Check forms with their fields
 ------------------------------
 From the DXL xml object, this method will extract the forms elements with their field, 
-and create them in the database
+and Check them in the database
 
 The imported file has an field type error, one field has 'truc' instead of 'text', it should become a TEXT type by default
 
@@ -55,7 +55,7 @@ The imported file has an field type error, one field has 'truc' instead of 'text
 
 Form is in the database ?
 
-Form "create > object"
+Form "Check > object"
 ----------------------
 
     >>> form = db.getForm('bfrm1')
@@ -64,12 +64,12 @@ correct Form name and Layout ?
     >>> form.getFormName()
     'bfrm1'
     >>> form.getFormLayout()
-    '<p>create object: <a href="resources/EXT02505.jpg" /></p><p>article:</p><p><span class="plominoFieldClass">article</span></p>'
+    '<p>Check object: <a href="resources/EXT02505.jpg" /></p><p>article:</p><p><span class="plominoFieldClass">article</span></p>'
 
     >>> db.resources._objects
     ({'meta_type': 'File', 'id': 'overlord59-tux-samourai-1773.jpg'}, {'meta_type': 'File', 'id': 'EXT02505.jpg'})
 
-Form "create > resource image"
+Form "Check > resource image"
 ------------------------------
 
     >>> form = db.getForm('bfrm2')
@@ -78,7 +78,7 @@ correct Form name and Layout ?
     >>> form.getFormName()
     'bfrm2'
     >>> form.getFormLayout()
-    '<p>Create image resource: <img src="resources/overlord59-tux-samourai-1773.jpg" /></p><p>article:</p><p><span class="plominoFieldClass">article</span></p>'
+    '<p>Check image resource: <img src="resources/overlord59-tux-samourai-1773.jpg" /></p><p>article:</p><p><span class="plominoFieldClass">article</span></p>'
 
     >>> db.resources._objects
     ({'meta_type': 'File', 'id': 'overlord59-tux-samourai-1773.jpg'}, {'meta_type': 'File', 'id': 'EXT02505.jpg'})
@@ -97,7 +97,7 @@ correct Form name and Layout ?
     >>> db.resources._objects
     ({'meta_type': 'File', 'id': 'overlord59-tux-samourai-1773.jpg'}, {'meta_type': 'File', 'id': 'EXT02505.jpg'}, {'meta_type': 'File', 'id': 'overlord59-tux-samourai-1774.jpg'})
     
-Form "create > picture"
+Form "Check > picture"
 ------------------------------
 
     >>> form = db.getForm('bfrm4')
@@ -106,7 +106,7 @@ correct Form name and Layout ?
     >>> form.getFormName()
     'bfrm4'
     >>> form.getFormLayout()
-    '<p>Create picture: <img src="resources/image1.jpg" /></p><p>article:</p><p><span class="plominoFieldClass">article</span></p>'
+    '<p>Check picture: <img src="resources/image1.jpg" /></p><p>article:</p><p><span class="plominoFieldClass">article</span></p>'
 
     >>> db.resources._objects
     ({'meta_type': 'File', 'id': 'overlord59-tux-samourai-1773.jpg'}, {'meta_type': 'File', 'id': 'EXT02505.jpg'}, {'meta_type': 'File', 'id': 'overlord59-tux-samourai-1774.jpg'}, {'meta_type': 'File', 'id': 'image1.jpg'})

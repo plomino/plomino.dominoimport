@@ -29,13 +29,12 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlComplexForm.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
-    >>> dxlDoc = i.parseDXL('/home/makina/tests/dev/plomino.dominoimport/plomino/dominoimport/tests/DXLFiles/dxlComplexForm.xml')
+    >>> dxlDoc = i.processImportDXL(dxlFile)
 
-Create forms with their fields
+Check forms with their fields
 ------------------------------
 From the DXL xml object, this method will extract the forms elements with their field, 
-and create them in the database
+and Check them in the database
 
 The imported file has an field type error, one field has 'truc' instead of 'text', it should become a TEXT type by default
 
@@ -184,17 +183,15 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_richtext.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
+    {'forms': [1, 0], 'docs': [0, 0], 'agents': [1, 0], 'resources': [0, 0], 'views': [0, 0]}
 
-Create forms with their fields
+Check forms with their fields
 ------------------------------
 From the DXL xml object, this method will extract the forms elements with their field, 
-and create them in the database
+and Check them in the database
 
 The imported file has an field type error, one field has 'truc' instead of 'text', it should become a TEXT type by default
-
-    >>> i.importForms(dxlDoc)
-    (1, 0)
     
 Form is in the database ?
 

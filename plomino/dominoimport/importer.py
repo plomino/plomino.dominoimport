@@ -46,12 +46,18 @@ class DominoImporter(object):
         results = {'resources': [0, 0], 'agents': [0, 0], 'forms': [0, 0], 'views': [0, 0], 'docs': [0, 0]}
         print 'start process'
         # Parse the DXL file ----
-        myDxlParser = DXLParser()        
+        myDxlParser = DXLParser()
         myDxlParser.parseDXLFile(fileToImport)
-        print 'file parsed'
+        
+        print 'file parsed  whit ', myDxlParser
+        print len(myDxlParser.getResources()), 'resources'
+        print len(myDxlParser.getAgents()), 'agents'
+        print len(myDxlParser.getForms()), 'forms'
+        print len(myDxlParser.getViews()), 'views'
+        print len(myDxlParser.getDocs()), 'docs'
         # Create the elements in the Plomino database ----
         myPlominoBuilder = PlominoBuilder(self.context)
-        
+        print myPlominoBuilder
         # create resources
         for resource in myDxlParser.getResources():
             try:
@@ -59,7 +65,7 @@ class DominoImporter(object):
                 results['resources'][0] += 1
             except Exception, inst:
                 results['resources'][1] += 1
-                print type(inst), inst, inst.args
+                #print type(inst), inst, inst.args
 
         # create forms
         for form in myDxlParser.getForms():
@@ -68,7 +74,7 @@ class DominoImporter(object):
                 results['forms'][0] += 1
             except Exception, inst:
                 results['forms'][1] += 1
-                print type(inst), inst, inst.args
+                #print type(inst), inst, inst.args
 
         # create views
         for view in myDxlParser.getViews():
@@ -77,7 +83,7 @@ class DominoImporter(object):
                 results['views'][0] += 1
             except Exception, inst:
                 results['views'][1] += 1
-                print type(inst), inst, inst.args
+                #print type(inst), inst, inst.args
 
         # create docs
         for doc in myDxlParser.getDocs():
@@ -86,7 +92,7 @@ class DominoImporter(object):
                 results['docs'][0] += 1
             except Exception, inst:
                 results['docs'][1] += 1
-                print type(inst), inst, inst.args
+                #print type(inst), inst, inst.args
         
         # create agents
         for agent in myDxlParser.getAgents():
@@ -95,8 +101,11 @@ class DominoImporter(object):
                 results['agents'][0] += 1
             except Exception, inst:
                 results['agents'][1] += 1
-                print type(inst), inst, inst.args
-
+                #print type(inst), inst, inst.args
+        
+#        myDxlParser = None
+#        myPlominoBuilder = None
+        
         print results
     
         # Erreurs possibles

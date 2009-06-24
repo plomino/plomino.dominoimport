@@ -31,18 +31,11 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_fields.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
+    {'forms': [1, 0], 'docs': [0, 0], 'agents': [1, 0], 'resources': [0, 0], 'views': [0, 0]}
 
-Create forms with their fields
+Check forms with their fields
 ------------------------------
-From the DXL xml object, this method will extract the forms elements with their field, 
-and create them in the database
-
-The imported file has an field type error, one field has 'truc' instead of 'text', it should become a TEXT type by default
-
-    >>> i.importForms(dxlDoc)
-    (1, 0)
-
 Form is in the database ?
 
     >>> form = db.getForm("etatCivil")  
@@ -100,16 +93,6 @@ Check the fields ?
     'EDITABLE'
     'SELECT'
     
-Import the views
-----------------
-    >>> i.importViews(dxlDoc)
-    (0, 0)
-    
-Import the docs
----------------
-    >>> i.importDocs(dxlDoc)
-    (0, 0)
-    
     Delete database
     >>> self.folder.manage_delObjects(["mydb"])
     
@@ -127,18 +110,11 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_text_type.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
+    {'forms': [1, 0], 'docs': [1, 0], 'agents': [1, 0], 'resources': [0, 0], 'views': [1, 0]}
 
-Create forms with their fields
+Check forms with their fields
 ------------------------------
-From the DXL xml object, this method will extract the forms elements with their field, 
-and create them in the database
-
-The imported file has an field type error, one field has 'truc' instead of 'text', it should become a TEXT type by default
-
-    >>> i.importForms(dxlDoc)
-    (1, 0)
-
 Form is in the database ?
 
     >>> form = db.getForm("textForm")
@@ -193,15 +169,9 @@ Check the fields ?
     'EDITABLE'
     'TEXTAREA'
     
-Import the views
-----------------
-    >>> i.importViews(dxlDoc)
-    (0, 0)
     
 Import the docs
 ---------------
-    >>> i.importDocs(dxlDoc)
-    (1, 0)
     
 Docs in the database ?
     >>> allDocs = []
@@ -246,18 +216,11 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_number_type.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
+    {'forms': [1, 0], 'docs': [1, 0], 'agents': [1, 0], 'resources': [0, 0], 'views': [0, 0]}
 
-Create forms with their fields
+Check forms with their fields
 ------------------------------
-From the DXL xml object, this method will extract the forms elements with their field, 
-and create them in the database
-
-The imported file has an field type error, one field has 'truc' instead of 'text', it should become a TEXT type by default
-
-    >>> i.importForms(dxlDoc)
-    (1, 0)
-
 Form is in the database ?
 
     >>> form = db.getForm("numberForm")
@@ -321,13 +284,9 @@ Check the fields ?
     
 Import the views
 ----------------
-    >>> i.importViews(dxlDoc)
-    (0, 0)
     
 Import the docs
 ---------------
-    >>> i.importDocs(dxlDoc)
-    (1, 0)
     
 Docs in the database ?
     >>> allDocs = []
@@ -372,17 +331,15 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_selection_type.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
+    {'forms': [1, 0], 'docs': [1, 0], 'agents': [1, 0], 'resources': [0, 0], 'views': [0, 0]}
 
-Create forms with their fields
+Check forms with their fields
 ------------------------------
 From the DXL xml object, this method will extract the forms elements with their field, 
-and create them in the database
+and Check them in the database
 
 The imported file has an field type error, one field has 'truc' instead of 'text', it should become a TEXT type by default
-
-    >>> i.importForms(dxlDoc)
-    (1, 0)
 
 Form is in the database ?
 
@@ -446,15 +403,9 @@ Check the fields ?
     'MULTISELECT'
     [u'item 1', u'item 2', u'item 3']
     
-Import the views
-----------------
-    >>> i.importViews(dxlDoc)
-    (0, 0)
     
 Import the docs
 ---------------
-    >>> i.importDocs(dxlDoc)
-    (0, 0)
     
     Delete database
     >>> self.folder.manage_delObjects(["mydb"])
@@ -473,17 +424,16 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_names_type.xml")
-    >>> dxlDoc = i.parseDXL(dxlFile)
+    >>> dxlDoc = i.processImportDXL(dxlFile)
+    {'forms': [1, 0], 'docs': [4, 0], 'agents': [1, 0], 'resources': [0, 0], 'views': [0, 0]}
 
-Create forms with their fields
+Check forms with their fields
 ------------------------------
 From the DXL xml object, this method will extract the forms elements with their field, 
-and create them in the database
+and Check them in the database
 
 The imported file has an field type error, one field has 'truc' instead of 'text', it should become a TEXT type by default
 
-    >>> i.importForms(dxlDoc)
-    (1, 0)
 
 Form is in the database ?
 
@@ -550,12 +500,10 @@ Separator won't be import in this version.
     
 Import the views
 ----------------
-    >>> i.importViews(dxlDoc)
     (0, 0)
     
 Import the docs
 ---------------
-    >>> i.importDocs(dxlDoc)
     (4, 0)
     
     Delete database
