@@ -93,7 +93,28 @@ class PlominoBuilder(object):
         @param dict docInfos : 
         @return string :
         """
-        pass
+        print 'creating doc:', docInfos['id']
+        if docInfos['id'] != '':
+            newDocId = self.plominoDatabase.invokeFactory(docInfos['type'], 
+                                                    id=docInfos['id'])
+            newDoc = self.plominoDatabase.getDocument(docInfos['id'])
+        else:
+            newDoc = self.plominoDatabase.createDocument()
+            
+        if newDoc is not None:
+            if self.plominoDatabase.getForm(docInfos['form']) is not None:
+                newDoc.setItem('Form', docInfos['form'])
+
+                # TODO: create a default form if form does not exist ? in a later version
+                # REM: doc is not saved if not associated with a existing form
+                
+                # Set the items of this document
+                for itemInfos in docInfos['items']:
+                    newDoc.setItem(itemInfos['name'], itemInfos['value'])
+                    # TODO: check the value before set ?
+                    #self.createItem(itemInfos, newDoc)
+
+                newDoc.save()
 
     def createItem(self, itemInfos, container):
         """
@@ -102,6 +123,7 @@ class PlominoBuilder(object):
         @param dict itemInfos : 
         @return string :
         """
+        
         pass
 
     def createAgent(self, agentInfos):
@@ -124,9 +146,9 @@ class PlominoBuilder(object):
         """
         print 'creating resource in database:', resourceInfos['name'] 
         #if not(hasattr(self.plominoDatabase.resources, resourceInfos['name'])):
-        self.plominoDatabase.manage_addFile('truc')
-        bidon1 = getattr(self.plominoDatabase.ressources, 'truc')
-        print bidon1
+#        self.plominoDatabase.manage_addFile('truc')
+#        bidon1 = getattr(self.plominoDatabase.resources, 'truc')
+#        print bidon1
 
         self.plominoDatabase.manage_addFile(resourceInfos['name'])
         obj = getattr(self.plominoDatabase.resources, resourceInfos['name'])

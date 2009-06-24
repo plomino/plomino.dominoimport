@@ -109,10 +109,9 @@ class DXLParser(object):
 
                 child = child.nextSibling
             
+            print file['name'], file['type']
+            
             self.resources.append(file)
-
-        for r in self.resources:
-            print r['name']
     
     def extractForms(self, dxlFileContent):
         """
@@ -212,15 +211,17 @@ class DXLParser(object):
         
         print 'extracting docs ...'
         # For all forms, create them in the current database
-        docs = dxlFileContent.getElementsByTagName("doc")
+        docs = dxlFileContent.getElementsByTagName("document")
 
         for doc in docs:
             dico = {}
             dico['type'] = 'PlominoDocument'
             dico['id'], dico['title'] = self.getIdTitleAttributes(doc)
-            
+            dico['form'] = doc.getAttribute('form')
             # import all the items included in this doc
-            # dico['items'] = self.extractItems(doc)
+            
+            dico['items'] = []
+            dico['items'] = self.extractItems(doc)
             
             self.docs.append(dico)
 
@@ -228,8 +229,50 @@ class DXLParser(object):
         """
         Extract items from the DXL parsed file
         """
-        extractedItems = []
         
+        extractedItems = []
+        items = dxlFileContent.getElementsByTagName("item")
+        for item in items:
+            dico = {}
+            # Get item type
+            if item.hasChildNodes():
+                # REM: getting first node element could be in a class derivating of minidom ...
+                child = item.firstChild
+                while child is not None and child.nodeType is not child.ELEMENT_NODE:
+                    child = child.nextSibling
+
+                if child is not None:
+                    dico['type'] = child.nodeName
+        
+            # Get item name
+            if item.nodeType is item.ELEMENT_NODE and item.hasAttribute('name'):
+                dico['name'] = item.getAttribute('name')
+
+            if dico['type'] in FIELD_TYPES:
+                
+                if dico['type'] == 'number':
+                    dico['value'] = child.firstChild.nodeValue
+            
+                elif dico['type'] == 'text':
+                    # there may be some break tag, so get content recursively
+                    dico['value'] = ''
+                    subchild = child.firstChild
+                    while subchild is not None:
+                        if subchild.nodeName == 'break':
+                            dico['value'] += '<br />'
+                        elif subchild.nodeName == '#text':
+                            dico['value'] += str(subchild.data).replace('\n', '')
+        
+                        subchild = subchild.nextSibling
+        
+                elif dico['type'] == 'richtext':
+                    dico['value'] = '#'
+                else:
+                    dico['value'] = '#'
+
+            print dico
+            extractedItems.append(dico)
+
         return extractedItems
     
     def extractAgents(self, dxlFileContent):
