@@ -149,19 +149,11 @@ class PlominoBuilder(object):
 #        self.plominoDatabase.manage_addFile('truc')
 #        bidon1 = getattr(self.plominoDatabase.resources, 'truc')
 #        print bidon1
-
-        self.plominoDatabase.manage_addFile(resourceInfos['name'])
+        if not(hasattr(self.plominoDatabase, resourceInfos['name'])):
+            self.plominoDatabase.resources.manage_addFile(resourceInfos['name'])
         obj = getattr(self.plominoDatabase.resources, resourceInfos['name'])
-        print self.plominoDatabase.resources._objects
-        #obj.meta_type = fileMimeType
-        #print resourceInfos['content']
+        #print self.plominoDatabase.resources._objects
         obj.update_data(resourceInfos['content'].decode('base64'), content_type=resourceInfos['type'])
-        print obj.__class__
-#            
-#        except Exception, inst:
-#            print type(inst)     # the exception instance
-#            print inst.args      # arguments stored in .args
-#            print inst           # __str__ allows args to printed directly
 
     def createElementInDatabase(self, elementInfos):
         """
