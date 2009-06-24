@@ -114,6 +114,7 @@ Columns in the correct view ?
     ...     view.getViewName()
     ...     view.title
     ...     view.getSelectionFormula()
+    ...     view.getFormFormula()
     ...     allColumns = view.getColumns()
     ...     allColumns
     ...     for column in allColumns:
@@ -123,32 +124,30 @@ Columns in the correct view ?
     ...         column.getPosition()
     'allCustomers'
     u'allCustomers'
-    '# name != none'
-    [<PlominoColumn at /plone/Members/test_user_1_/mydb/customer/name>, <PlominoColumn at /plone/Members/test_user_1_/mydb/customer/address>]
+    'True'
+    '#'
+    [<PlominoColumn at /plone/Members/test_user_1_/mydb/allCustomers/name>, <PlominoColumn at /plone/Members/test_user_1_/mydb/allCustomers/status>]
     'name'
     u'Name'
     'plominoDocument.name'
     1
-    'address'
-    u'Address'
-    'plominoDocument.address'
+    'status'
+    u'Status'
+    'plominoDocument.status'
     2
     'allProjects'
     u'allProjects'
-    '# owner != none'
-    [<PlominoColumn at /plone/Members/test_user_1_/mydb/customer/startdate>, <PlominoColumn at /plone/Members/test_user_1_/mydb/customer/owner>, <PlominoColumn at /plone/Members/test_user_1_/mydb/customer/hours>]
-    'startdate'
-    u'Start date'
-    'plominoDocument.startdate'
-    1
+    'True'
+    '#'
+    [<PlominoColumn at /plone/Members/test_user_1_/mydb/allProjects/owner>, <PlominoColumn at /plone/Members/test_user_1_/mydb/allProjects/hours>]
     'owner'
     u'Owner'
     'plominoDocument.owner'
-    2
+    1
     'hours'
     u'Hours'
     'plominoDocument.hours'
-    3
+    2
     
 Formula:
 - Selection formula for the view itself : python code returning a boolean value, to select wich document to view
@@ -171,7 +170,7 @@ Items in the correct document ?
     ...     docItems.sort()
     ...     for itemKey in docItems:
     ...         str(itemKey) + ": " + str(doc.getItem(itemKey))
-    ''
+    '2D1845C319A97266C12575DE0031BCF1'
     'infos'
     "Plomino_Authors: ['test_user_1_']"
     'address: 34 Grand Blvd, Oklahoma City'

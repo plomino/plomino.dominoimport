@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 #
-# File: manager.py
+# File: plominoBuilder.py
 #
 # GNU General Public License (GPL)
 #
 
 """
-Created on 20 may 2009
+Created on 22 June 2009
 
 @author: Emmanuelle Helly
 
@@ -21,7 +21,6 @@ import mimetypes
 class PlominoBuilder(object):
     """
     create all elements in the correct database from a dict 
-    (not implemented yet)
     """ 
 
     def __init__(self, plominoDatabase):
@@ -55,20 +54,52 @@ class PlominoBuilder(object):
 
         @param dict viewInfos : 
         @return string :
-        @author
         """
-        viewId = self.createElementInDatabase(viewInfos)
-        print 'creating view:', viewId
+        viewId = self.plominoDatabase.invokeFactory(viewInfos['type'], 
+                                                    id=viewInfos['id'])
+        #print 'creating view:', viewId
         if viewId is not None:
-            self.plominoDatabase.getView(viewId).setTitle(viewInfos['title'])
+            obj = self.plominoDatabase.getView(viewId)
+            obj.setTitle(viewInfos['title'])
+            obj.setSelectionFormula(viewInfos['SelectionFormula'])
+            obj.setFormFormula(viewInfos['FormFormula'])
             
             # Create the columns
+            for columnInfos in viewInfos['columns']:
+                self.createColumn(columnInfos, self.plominoDatabase.getView(viewId))
+
+    def createColumn(self, columnInfos, container):
+        """
+        Create column in the database
+
+        @param dict columnInfos : 
+        @param dict viewId : 
+        @return string :
+        """
+        columnId = container.invokeFactory(columnInfos['type'], 
+                                           id=columnInfos['id'])
+        #print 'creating column:', columnId
+        if columnId is not None:
+            obj = container.getColumn(columnId)
+            obj.setTitle(columnInfos['title'])
+            obj.setFormula(columnInfos['formula'])
+            obj.setPosition(columnInfos['position'])
+            obj.at_post_create_script()
 
     def createDoc(self, docInfos):
         """
         Create document in the database
 
         @param dict docInfos : 
+        @return string :
+        """
+        pass
+
+    def createItem(self, itemInfos, container):
+        """
+        Create document in the database
+
+        @param dict itemInfos : 
         @return string :
         """
         pass
@@ -80,7 +111,8 @@ class PlominoBuilder(object):
         @param dict agentInfos : 
         @return string :
         """
-        agentId = self.createElementInDatabase(agentInfos)
+        agentId = self.plominoDatabase.invokeFactory(agentInfos['type'], 
+                                                     id=agentInfos['id'])
         print 'creating agent:', agentId
         #self.plominoDatabase.at_post_create_script()
 

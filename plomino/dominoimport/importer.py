@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# File: manager.py
+# File: importer.py
 #
 # GNU General Public License (GPL)
 #

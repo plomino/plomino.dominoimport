@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 #
-# File: manager.py
+# File: dxlParser.py
 #
 # GNU General Public License (GPL)
 #
 
 """
-Created on 20 may 2009
+Created on 22 June 2009
 
 @author: Emmanuelle Helly
 
@@ -143,7 +143,7 @@ class DXLParser(object):
         Extract views from the DXL parsed file
         """
         
-        print 'extracting views ...'
+        #print 'extracting views ...'
         # For all forms, create them in the current database
         views = dxlFileContent.getElementsByTagName("view")
 
@@ -151,12 +151,60 @@ class DXLParser(object):
             dico = {}
             dico['type'] = 'PlominoView'
             dico['id'], dico['title'] = self.getIdTitleAttributes(view)
+
+            # get the Form and SelectionFormula attribute
+            codeView = dxlFileContent.getElementsByTagName('code')[0]
+            if codeView.getAttribute('event') == 'selection':
+                if codeView.getElementsByTagName('formula')[0].firstChild.nodeValue == '@All':
+                    dico['SelectionFormula'] = 'True'
+                else:
+                    dico['SelectionFormula'] = '#'#, codeView.getElementsByTagName('formula')[0].firstChild.nodeValue
             
+            dico['FormFormula'] = '#'
+
             # import all the columns included in this view
-            # self.extractColumns(view)
+            dico['columns'] = []
+            dico['columns'] = self.extractColumns(view)
             
             self.views.append(dico)
         
+    def extractColumns(self, dxlFileContent):
+        """
+        Extract columns from the DXL parsed file
+        """
+        extractedCols = []
+        position = 1
+        #print 'extracting columns ...'
+         
+        columns = dxlFileContent.getElementsByTagName('column')
+        
+        for column in columns:
+            dico = {}
+            dico['type'] = 'PlominoColumn'
+            dico['id'] = column.getAttribute('itemname')
+            dico['title'] = column.getElementsByTagName("columnheader")[0].getAttribute('title')
+            dico['position'] = position
+            position += 1
+            
+            # get the Formula attribute for this column
+            if column.getElementsByTagName('code') != []:
+                codeColumns = column.getElementsByTagName('code')[0]
+                if codeColumns.getAttribute('event') == 'value':
+                    dico['formula'] ='plominoDocument.' + \
+                                    codeColumns.getElementsByTagName('formula')[0].firstChild.nodeValue
+            else:
+                dico['formula'] ='plominoDocument.' + dico['id']
+                
+                # TODO: cherche si la formule matche avec un field connu
+                # utiliser les regex pourrait être un bon moyen
+                # comment récupérer les champs field ? 
+                # par self.getFields ou vérifier que self.getField(attValue) existe ?
+                # mais comment récupérer les bon form sans perdre de temps à tout parcourir ?
+            
+            extractedCols.append(dico)
+            
+        return extractedCols
+
     def extractDocs(self, dxlFileContent):
         """
         Extract docs from the DXL parsed file
@@ -172,10 +220,18 @@ class DXLParser(object):
             dico['id'], dico['title'] = self.getIdTitleAttributes(doc)
             
             # import all the items included in this doc
-            # self.extractItems(doc)
+            # dico['items'] = self.extractItems(doc)
             
             self.docs.append(dico)
 
+    def extractItems(self, dxlFileContent):
+        """
+        Extract items from the DXL parsed file
+        """
+        extractedItems = []
+        
+        return extractedItems
+    
     def extractAgents(self, dxlFileContent):
         """
         Extract agents from the DXL parsed file
