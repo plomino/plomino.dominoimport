@@ -17,6 +17,7 @@ __author__ = """Emmanuelle Helly"""
 __docformat__ = 'plaintext'
 
 from xml.dom.minidom import parse, getDOMImplementation
+from Products.CMFPlomino.PlominoUtils import StringToDate
 
 import re
 p_for_id = re.compile('^[A-Za-z0-9][A-Za-z0-9_. ]+$')
@@ -338,13 +339,13 @@ class DXLParser(object):
                 dico['name'] = item.getAttribute('name')
 
             if dico['type'] in FIELD_TYPES:
-                
+                dico['type'] = FIELD_TYPES[dico['type']]
                 # number ----
-                if dico['type'] == 'number':
+                if dico['type'] == 'NUMBER':
                     dico['value'] = child.firstChild.nodeValue
                 
                 # text ----
-                elif dico['type'] == 'text':
+                elif dico['type'] == 'TEXT':
                     # there may be some break tag, so get content recursively
                     dico['value'] = ''
                     subchild = child.firstChild
@@ -357,16 +358,24 @@ class DXLParser(object):
                         subchild = subchild.nextSibling
 
                 # richtext ----
-                elif dico['type'] == 'richtext':
-                    dico['value'] = '#'
+                elif dico['type'] == 'RICHTEXT':
+                    dico['value'] = self.richtextToHtml(item)
 
                 # datetime ----
-                elif dico['type'] == 'datetime':
-                    myDate = str(child.firstChild.nodeValue)
-                    myDate = myDate[:4] + '/' + myDate[4:6] + '/' + myDate[6:]
-                    dico['value'] = 'DateTime(' + myDate + ')'
+                elif dico['type'] == 'DATETIME':
+                    dateValue = str(child.firstChild.nodeValue)
+                    if 'T' not in dateValue:
+                        dateValue = StringToDate(dateValue, '%Y%m%d')
+                    else:
+                        dateValue = StringToDate(dateValue[:15], '%Y%m%dT%H%M%S')
+                    dico['value'] = dateValue
 
                 # selection ----
+                elif dico['type'] == 'SELECTION':
+                    dico['value'] = '#'
+                
+                elif dico['type'] == 'NAME':
+                    dico['value'] = '#'
                 
                 # else ----
                 else:
