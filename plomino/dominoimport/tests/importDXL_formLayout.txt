@@ -30,6 +30,7 @@ DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlComplexForm.xml")
     >>> dxlDoc = i.processImportDXL(dxlFile)
+    {'forms': [3, 0], 'docs': [0, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [0, 0]}
 
 Check forms with their fields
 ------------------------------
@@ -37,9 +38,6 @@ From the DXL xml object, this method will extract the forms elements with their 
 and Check them in the database
 
 The imported file has an field type error, one field has 'truc' instead of 'text', it should become a TEXT type by default
-
-    >>> i.importForms(dxlDoc)
-    (3, 0)
 
 Form is in the database ?
 
@@ -184,7 +182,7 @@ DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_richtext.xml")
     >>> dxlDoc = i.processImportDXL(dxlFile)
-    {'forms': [1, 0], 'docs': [0, 0], 'agents': [1, 0], 'resources': [0, 0], 'views': [0, 0]}
+    {'forms': [1, 0], 'docs': [1, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [1, 0]}
 
 Check forms with their fields
 ------------------------------
@@ -205,4 +203,5 @@ correct Form name and Layout ?
     >>> form.getFormLayout()
     '<h2>Lists</h2><p>Lists</p><ul><li>item 1</li><li>item 2</li></ul><p>ordered list:</p><ol><li>item 1</li><li>item 2</li></ol><p></p><p></p>'
 
-    
+Documents
+---------

@@ -32,7 +32,7 @@ DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_fields.xml")
     >>> dxlDoc = i.processImportDXL(dxlFile)
-    {'forms': [1, 0], 'docs': [0, 0], 'agents': [1, 0], 'resources': [0, 0], 'views': [0, 0]}
+    {'forms': [1, 0], 'docs': [0, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [0, 0]}
 
 Check forms with their fields
 ------------------------------
@@ -111,7 +111,7 @@ DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_text_type.xml")
     >>> dxlDoc = i.processImportDXL(dxlFile)
-    {'forms': [1, 0], 'docs': [1, 0], 'agents': [1, 0], 'resources': [0, 0], 'views': [1, 0]}
+    {'forms': [1, 0], 'docs': [1, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [0, 0]}
 
 Check forms with their fields
 ------------------------------
@@ -176,8 +176,6 @@ Import the docs
 Docs in the database ?
     >>> allDocs = []
     >>> allDocs = db.getAllDocuments()
-    >>> allDocs is not None
-    True
     >>> len(allDocs)
     1
     
@@ -217,7 +215,7 @@ DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_number_type.xml")
     >>> dxlDoc = i.processImportDXL(dxlFile)
-    {'forms': [1, 0], 'docs': [1, 0], 'agents': [1, 0], 'resources': [0, 0], 'views': [0, 0]}
+    {'forms': [1, 0], 'docs': [1, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [0, 0]}
 
 Check forms with their fields
 ------------------------------
@@ -313,7 +311,87 @@ Items in the correct document ?
     'nb3: 0.5'
     'nb4: 123'
     'nb5: 150'
+        
+    Delete database
+    >>> self.folder.manage_delObjects(["mydb"])
     
+Test on date/time type
+======================
+
+New database:
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+    >>> i=IDominoImporter(db)
+
+Import DXL file
+---------------
+DXL file imported is the database design one: the file is parsed in a xml object
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "test_datetime_type.xml")
+    >>> dxlDoc = i.processImportDXL(dxlFile)
+    {'forms': [1, 0], 'docs': [1, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [1, 0]}
+
+Check forms with their fields
+------------------------------
+From the DXL xml object, this method will extract the forms elements with their field, 
+and Check them in the database
+
+The imported file has an field type error, one field has 'truc' instead of 'text', it should become a TEXT type by default
+
+Form is in the database ?
+
+    >>> form = db.getForm("datetimeForm")  
+
+In the form
+-----------
+correct Form name and Layout ?
+    >>> form.getFormName()
+    'datetimeForm'
+    >>> form.getFormLayout()
+    '<p>Date de naissance: <span class="plominoFieldClass">birthdate</span></p>'
+
+Check the fields ?
+
+    >>> allFields = form.getFields()
+    >>> allFields
+    [<PlominoField at /plone/Members/test_user_1_/mydb/datetimeForm/birthdate>]
+    >>> for field in allFields:
+    ...     field.getId()
+    ...     field.title
+    ...     field.getFieldType()
+    ...     field.getFieldMode()
+    ...     settings=field.getSettings()
+    ...     settings.format
+    ...     settings.startingyear
+    'birthdate'
+    u'birthdate'
+    'DATETIME'
+    'EDITABLE'
+    
+rem: settings for datetime type are not implemented yet
+    
+Import the docs
+---------------
+
+Docs in the database ?
+    >>> allDocs = []
+    >>> allDocs = db.getAllDocuments()
+    >>> len(allDocs)
+    1
+    
+Items in the correct document ?
+    >>> doc=allDocs[0]
+    >>> doc.id
+    '9F74D5E602DEA75DC12575E0002CC9EF'
+    >>> docItems = doc.getItems()
+    >>> docItems.sort()
+    >>> for itemKey in docItems:
+    ...     str(itemKey) + ": " + str(doc.getItem(itemKey))
+    'Form: datetimeForm'
+    "Plomino_Authors: ['test_user_1_']"
+    'birthdate: DateTime(1975/05/21)'
+
     Delete database
     >>> self.folder.manage_delObjects(["mydb"])
     
@@ -332,7 +410,7 @@ DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_selection_type.xml")
     >>> dxlDoc = i.processImportDXL(dxlFile)
-    {'forms': [1, 0], 'docs': [1, 0], 'agents': [1, 0], 'resources': [0, 0], 'views': [0, 0]}
+    {'forms': [1, 0], 'docs': [1, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [0, 0]}
 
 Check forms with their fields
 ------------------------------
@@ -425,7 +503,7 @@ DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_names_type.xml")
     >>> dxlDoc = i.processImportDXL(dxlFile)
-    {'forms': [1, 0], 'docs': [4, 0], 'agents': [1, 0], 'resources': [0, 0], 'views': [0, 0]}
+    {'forms': [1, 0], 'docs': [4, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [0, 0]}
 
 Check forms with their fields
 ------------------------------
@@ -500,11 +578,35 @@ Separator won't be import in this version.
     
 Import the views
 ----------------
-    (0, 0)
     
 Import the docs
 ---------------
-    (4, 0)
+    
+Docs in the database ?
+    >>> allDocs = []
+    >>> allDocs = db.getAllDocuments()
+    >>> len(allDocs)
+    4
+    
+Items in the correct document ?
+     doc=allDocs[0]
+    ...     doc.id
+    ...     docItems = doc.getItems()
+    ...     docItems.sort()
+    ...     for itemKey in docItems:
+    ...         str(itemKey) + ": " + str(doc.getItem(itemKey))
+    '27CF070394A919C9C12575C5003E92F5'
+    'Form: namesForm'
+    "Plomino_Authors: ['test_user_1_']"
+    '476C6C0681C4D7C4C12575C5003EC4A6'
+    'Form: namesForm'
+    "Plomino_Authors: ['test_user_1_']"
+    '42A866CED370D04EC12575C5003F058C'
+    'Form: namesForm'
+    "Plomino_Authors: ['test_user_1_']"
+    'B4885CC537C3C6B8C12575C50041CD8B'
+    'Form: namesForm'
+    "Plomino_Authors: ['test_user_1_']"
     
     Delete database
     >>> self.folder.manage_delObjects(["mydb"])

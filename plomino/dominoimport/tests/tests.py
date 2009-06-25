@@ -24,11 +24,11 @@ def test_suite():
             test_class=ExampleFunctionalTestCase,
             optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
             #optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
-#
-#        ztc.ZopeDocFileSuite(
-#            'tests/createDatabase.txt', package='plomino.dominoimport',
-#            test_class=ExampleFunctionalTestCase,
-#            optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
+
+        ztc.ZopeDocFileSuite(
+            'tests/createDatabase.txt', package='plomino.dominoimport',
+            test_class=ExampleFunctionalTestCase,
+            optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
             #optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
 
         ztc.ZopeDocFileSuite(
@@ -36,23 +36,23 @@ def test_suite():
             test_class=ExampleFunctionalTestCase,
             optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
             #optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
-#
-#        ztc.ZopeDocFileSuite(
-#            'tests/importDXL_formLayout.txt', package='plomino.dominoimport',
-#            test_class=ExampleFunctionalTestCase,
-#            optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
-#            #optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
-#
-#        ztc.ZopeDocFileSuite(
-#            'tests/importDXL_fieldform.txt', package='plomino.dominoimport',
-#            test_class=ExampleFunctionalTestCase,
-#            optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
-#            #optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
-#
-#        ztc.ZopeDocFileSuite(
-#            'tests/importDXL_documents.txt', package='plomino.dominoimport',
-#            test_class=ExampleFunctionalTestCase,
-#            optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
+
+        ztc.ZopeDocFileSuite(
+            'tests/importDXL_formLayout.txt', package='plomino.dominoimport',
+            test_class=ExampleFunctionalTestCase,
+            optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
+            #optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
+
+        ztc.ZopeDocFileSuite(
+            'tests/importDXL_fieldform.txt', package='plomino.dominoimport',
+            test_class=ExampleFunctionalTestCase,
+            optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
+            #optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
+
+        ztc.ZopeDocFileSuite(
+            'tests/importDXL_documents.txt', package='plomino.dominoimport',
+            test_class=ExampleFunctionalTestCase,
+            optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
             #optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
 
 #        ztc.ZopeDocFileSuite(

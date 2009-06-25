@@ -30,7 +30,6 @@ logger = logging.getLogger('Plomino')
 class DXLParser(object):
     """
     parser used to transform dxl element to mapping object
-    (not implemented yet)
     """
 
     """ ATTRIBUTES
@@ -119,7 +118,7 @@ class DXLParser(object):
 
                 child = child.nextSibling
             
-            print file['name'], file['type']
+            #print file['name'], file['type']
             
             self.resources.append(file)
     
@@ -361,6 +360,14 @@ class DXLParser(object):
                 elif dico['type'] == 'richtext':
                     dico['value'] = '#'
 
+                # datetime ----
+                elif dico['type'] == 'datetime':
+                    myDate = str(child.firstChild.nodeValue)
+                    myDate = myDate[:4] + '/' + myDate[4:6] + '/' + myDate[6:]
+                    dico['value'] = 'DateTime(' + myDate + ')'
+
+                # selection ----
+                
                 # else ----
                 else:
                     dico['value'] = '#'
@@ -383,7 +390,7 @@ class DXLParser(object):
             dico = {}
             dico['type'] = 'PlominoAgent'
             dico['id'], dico['title'] = self.getIdTitleAttributes(agent)
-            print dico['id']
+            #print dico['id']
             self.agents.append(dico)
 
     def getIdTitleAttributes(self, dxlFileContent):

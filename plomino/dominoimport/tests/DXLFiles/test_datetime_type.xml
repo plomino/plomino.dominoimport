@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='utf-8'?>
+<database xmlns='http://www.lotus.com/dxl' version='6.5' replicaid='C12575E0002CAD6C'
+ path='test_datetime_field.nsf' title='test_datetime_field'>
+<databaseinfo dbid='C12575E0002CAD6C' odsversion='43' diskspace='327680' percentused='86.953125'
+ numberofdocuments='1'><datamodified><datetime dst='true'>20090625T100921,59+02</datetime></datamodified><designmodified
+><datetime dst='true'>20090625T100907,66+02</datetime></designmodified></databaseinfo>
+<acl maxinternetaccess='editor'>
+<aclentry name='-Default-' default='true' level='noaccess' readpublicdocs='true'
+ writepublicdocs='true'/>
+<aclentry name='CN=Eric BREHAULT/O=Eric BREHAULT' type='person' level='manager'
+ deletedocs='true'/>
+<aclentry name='OtherDomainServers' type='servergroup' level='noaccess' readpublicdocs='false'
+ writepublicdocs='false'/>
+<aclentry name='LocalDomainServers' type='servergroup' level='manager' deletedocs='true'/>
+<logentry>25/06/2009 10:08:00 AM Eric BREHAULT/Eric BREHAULT added OtherDomainServers</logentry>
+<logentry>25/06/2009 10:08:00 AM Eric BREHAULT/Eric BREHAULT added LocalDomainServers</logentry>
+<logentry>25/06/2009 10:08:00 AM Eric BREHAULT/Eric BREHAULT updated Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>25/06/2009 10:08:00 AM Eric BREHAULT/Eric BREHAULT added Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>25/06/2009 10:08:00 AM Eric BREHAULT/Eric BREHAULT updated -Default-</logentry></acl>
+<view showinmenu='true' publicaccess='false' default='true' noviewformat='true'>
+<noteinfo noteid='116' unid='CB11B91A82872034C12575E0002CAD96' sequence='1'>
+<created><datetime dst='true'>20090625T100800,22+02</datetime></created>
+<modified><datetime dst='true'>20090625T100907,66+02</datetime></modified>
+<revised><datetime dst='true'>20090625T100800,22+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090625T100907,65+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090625T100800,22+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby><code
+ event='selection'><formula>@All</formula></code></view>
+<note default='true' class='icon'>
+<noteinfo noteid='11a' unid='30184147433F88EBC12575E0002CAD97' sequence='3'>
+<created><datetime dst='true'>20090625T100800,23+02</datetime></created>
+<modified><datetime dst='true'>20090625T100800,26+02</datetime></modified>
+<revised><datetime dst='true'>20090625T100800,25+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090625T100800,22+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090625T100800,22+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<item name='IconBitmap' summary='true'>
+<itemdata type='6'>
+AiAgAQAA///////wD///gAH//gAAf/wAAD/4AAAf8AAAD+AAAAfgAAAHwAAAA8AAAAPAAAADgAAA
+AYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAHAAAADwAAAA8AAAAPgAAAH4AAAB/AAAA/4AAAf
+/AAAP/4AAH//gAH///AP//////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAiIiIiAAAAAAAAAAAAAAI
+jPZmZm/IgAAAAAAAAAAIjGZmZmZmZsiAAAAAAAAAjGZmZmZmZmZmyAAAAAAACMZmZmZmZmZmZmyA
+AAAAAIxmZmZmZmZmZmZmyAAAAAjGZmZmZmZmZmZmZmyAAAAIZmbyL2byL2byL2ZmgAAAjGZmIiJm
+IiJmIiJmZsgAAIZmZiIiZiIiZiIiZmZoAADGZmYiImYiImYiImZmbAAI9mZmIiJmIiJmIiJmZm+A
+CGZmZiIiZiIiZiIiZmZmgAhmZmYiImYiImYiImZmZoAIZmZmIiJmIiJmIiJmZmaACGZvIiIiZiIi
+ZiIiIvZmgAhmYiIiImYiImYiIiImZoAIZm8iIi9m8i9m8iIi9maACPZmZmZmZmZmZmZmZmZvgADG
+ZmbyL2byL2byL2ZmbAAAj2ZmIiJmIiJmIiJmZvgAAIxmZiIiZiIiZiIiZmbIAAAI9mbyL2byL2by
+L2ZvgAAACMZmZmZmZmZmZmZmbIAAAACMZmZmZmZmZmZmZsgAAAAACMZmZmZmZmZmZmyAAAAAAACM
+9mZmZmZmZm/IAAAAAAAACIz2ZmZmZm/IgAAAAAAAAAAIiMZmZmyIgAAAAAAAAAAAAACIiIiIAAAA
+AAAAAAAAAAAAkAAAAIAA5QEmAA==
+</itemdata></item>
+<item name='$Flags'><text>J</text></item>
+<item name='$TITLE'><text>test_datetime_field</text></item></note>
+<form name='datetimeForm' publicaccess='false' designerversion='6.5'>
+<noteinfo noteid='13a' unid='AB3FEC5333BF9BD2C12575E0002CB4E2' sequence='1'>
+<created><datetime dst='true'>20090625T100818,90+02</datetime></created>
+<modified><datetime dst='true'>20090625T100857,34+02</datetime></modified>
+<revised><datetime dst='true'>20090625T100857,33+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090625T100857,33+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090625T100857,33+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<wassignedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></wassignedby>
+<body><richtext>
+<pardef id='1'/>
+<par def='1'>Date de naissance: 
+<field type='datetime' kind='editable' name='birthdate'><datetimeformat show='date'
+ date='yearmonthday' fourdigityearfor21stcentury='true' zone='never'/></field></par></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>datetimeForm</text></item></form>
+<document form='datetimeForm'>
+<noteinfo noteid='8f6' unid='9F74D5E602DEA75DC12575E0002CC9EF' sequence='1'>
+<created><datetime dst='true'>20090625T100912,79+02</datetime></created>
+<modified><datetime dst='true'>20090625T100921,59+02</datetime></modified>
+<revised><datetime dst='true'>20090625T100921,58+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090625T100921,58+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090625T100921,58+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<item name='birthdate'><datetime>19750521</datetime></item></document></database>
