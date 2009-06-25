@@ -323,63 +323,77 @@ class DXLParser(object):
         items = dxlFileContent.getElementsByTagName("item")
         
         for item in items:
-            dico = {}
-            # Get item type
+            dico = {'name': '', 'type': '', 'value': ''}
+            
+            # Get item type ----
             if item.hasChildNodes():
                 # REM: getting first node element could be in a class derivating of minidom ...
-                child = item.firstChild
-                while child is not None and child.nodeType is not child.ELEMENT_NODE:
-                    child = child.nextSibling
+                firstElement = item.firstChild
+                while firstElement is not None and firstElement.nodeType is not firstElement.ELEMENT_NODE:
+                    firstElement = firstElement.nextSibling
 
-                if child is not None:
-                    dico['type'] = child.nodeName
+                if firstElement is not None:
+                    dico['type'] = firstElement.nodeName
         
-            # Get item name
+            # Get item name ----
             if item.nodeType is item.ELEMENT_NODE and item.hasAttribute('name'):
                 dico['name'] = item.getAttribute('name')
 
-            if dico['type'] in FIELD_TYPES:
-                dico['type'] = FIELD_TYPES[dico['type']]
-                # number ----
-                if dico['type'] == 'NUMBER':
-                    dico['value'] = child.firstChild.nodeValue
-                
-                # text ----
-                elif dico['type'] == 'TEXT':
-                    # there may be some break tag, so get content recursively
-                    dico['value'] = ''
-                    subchild = child.firstChild
-                    while subchild is not None:
-                        if subchild.nodeName == 'break':
-                            dico['value'] += '<br />'
-                        elif subchild.nodeName == '#text':
-                            dico['value'] += str(subchild.data).replace('\n', '')
-        
-                        subchild = subchild.nextSibling
+#            if dico['type'] in FIELD_TYPES:
+#                dico['type'] = FIELD_TYPES[dico['type']]
 
-                # richtext ----
-                elif dico['type'] == 'RICHTEXT':
-                    dico['value'] = self.richtextToHtml(item)
 
-                # datetime ----
-                elif dico['type'] == 'DATETIME':
-                    dateValue = str(child.firstChild.nodeValue)
-                    if 'T' not in dateValue:
-                        dateValue = StringToDate(dateValue, '%Y%m%d')
-                    else:
-                        dateValue = StringToDate(dateValue[:15], '%Y%m%dT%H%M%S')
-                    dico['value'] = dateValue
+            # Get item value ----
+            # number ----
+            if dico['type'] == 'number':
+                dico['value'] = firstElement.firstChild.nodeValue
+            
+            # text ----
+            elif dico['type'] == 'text':
+                # there may be some break tag, so get content recursively
+                subchild = firstElement.firstChild
+                while subchild is not None:
+                    if subchild.nodeName == 'break':
+                        dico['value'] += '<br />'
+                    elif subchild.nodeName == '#text':
+                        dico['value'] += unicode(subchild.data).replace('\n', '')
+    
+                    subchild = subchild.nextSibling
 
-                # selection ----
-                elif dico['type'] == 'SELECTION':
-                    dico['value'] = '#'
-                
-                elif dico['type'] == 'NAME':
-                    dico['value'] = '#'
-                
-                # else ----
+            # richtext ----
+            elif dico['type'] == 'richtext':
+                dico['value'] = self.richtextToHtml(item)
+
+            # datetime ----
+            elif dico['type'] == 'datetime':
+                dateValue = str(firstElement.firstChild.nodeValue)
+                if 'T' not in dateValue:
+                    dateValue = StringToDate(dateValue, '%Y%m%d')
                 else:
-                    dico['value'] = '#'
+                    dateValue = StringToDate(dateValue[:15], '%Y%m%dT%H%M%S')
+                dico['value'] = dateValue
+
+            # selection ----
+            elif dico['type'][4:] == 'list':
+                dico['value'] = []
+                
+                subchild = firstElement.firstChild
+                
+                while subchild is not None:
+                    print unicode(subchild.toxml())
+                    
+#                    if subchild.nodeName == 'text':
+#                        dico['value'] += subchild.nodeValue
+#                    if subchild.nodeName == 'break':
+#                        dico['value'] += '<br />'
+#                    elif subchild.nodeName == '#text':
+#                        dico['value'] += unicode(subchild.data).replace('\n', '')
+    
+                    subchild = subchild.nextSibling
+                dico['value'] = '$$$$$$$$$'
+            
+            else:
+                dico['value'] = '#########'
 
             #print dico
             extractedItems.append(dico)

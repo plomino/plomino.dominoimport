@@ -30,7 +30,7 @@ FIELD_TYPES = {"text": "TEXT",
                   "names": "NAME",
                   "authors": "NAME",
                   "readers": "NAME",
-                  "keyword": "SELECTION"
+                  "keyword": "SELECTION",
                   }
 
 FIELD_TYPES_ATTR = {"combobox": "SELECT",

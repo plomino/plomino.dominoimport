@@ -1,0 +1,167 @@
+
+    
+    ''
+    'SELECTION'
+    'EDITABLE'
+    'MULTISELECT'
+    [u'', u'', u'']
+    
+    
+Import the docs
+---------------
+    
+Docs in the database ?
+    >>> allDocs = []
+    >>> allDocs = db.getAllDocuments()
+    >>> len(allDocs)
+    2
+    
+Items in the correct document ?
+    
+    >>> for doc in allDocs:
+    ...     doc.id
+    ...     docItems = doc.getItems()
+    ...     docItems.sort()
+    ...     for itemKey in docItems:
+    ...         unicode(itemKey) + ": " + unicode(doc.getItem(itemKey))
+    '2D8F006ED3579561C12575E0004578ED'
+    'Form: selectionForm'
+    "Plomino_Authors: ['test_user_1_']"
+    'domaines: informatique'
+    'loisirs: musique'
+    "professionel: chef d'entreprise"
+    'situation: vie maritale'
+    '860C7454851E0C3CC12575E0004599AB'
+    'Form: selectionForm'
+    "Plomino_Authors: ['test_user_1_']"
+    'domaines: informatique, bâtiment'
+    'loisirs: cinéma, sport'
+    "professionel: ch\xf4meur"
+    'situation: mari\xe9(e)'
+    
+    
+    Delete database
+    >>> self.folder.manage_delObjects(["mydb"])
+    
+Test on names type
+==================
+
+New database:
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+    >>> i=IDominoImporter(db)
+
+Import DXL file
+---------------
+DXL file imported is the database design one: the file is parsed in a xml object
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "test_names_type.xml")
+    >>> dxlDoc = i.processImportDXL(dxlFile)
+    {'forms': [1, 0], 'docs': [4, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [0, 0]}
+
+Check forms with their fields
+------------------------------
+From the DXL xml object, this method will extract the forms elements with their field, 
+and Check them in the database
+
+The imported file has an field type error, one field has 'truc' instead of 'text', it should become a TEXT type by default
+
+
+Form is in the database ?
+
+    >>> form = db.getForm("namesForm")  
+
+In the form
+-----------
+correct Form name and Layout ?
+    >>> form.getFormName()
+    'namesForm'
+    >>> form.getFormLayout()
+    '<p>article: <span class="plominoFieldClass">article</span></p><p>auteur: <span class="plominoFieldClass">auteur</span></p><p>contributeurs: <span class="plominoFieldClass">contributeurs</span></p><p>auteur2: <span class="plominoFieldClass">auteur2</span></p><p>contributeurs2: <span class="plominoFieldClass">contributeurs2</span></p><p>auteur3: <span class="plominoFieldClass">auteur3</span></p><p>contributeurs3: <span class="plominoFieldClass">contributeurs3</span></p>'
+
+Check the fields ?
+Separator won't be import in this version.
+
+    >>> allFields = form.getFields()
+    >>> allFields
+    [<PlominoField at /plone/Members/test_user_1_/mydb/namesForm/article>, <PlominoField at /plone/Members/test_user_1_/mydb/namesForm/auteur>, <PlominoField at /plone/Members/test_user_1_/mydb/namesForm/contributeurs>, <PlominoField at /plone/Members/test_user_1_/mydb/namesForm/auteur2>, <PlominoField at /plone/Members/test_user_1_/mydb/namesForm/contributeurs2>, <PlominoField at /plone/Members/test_user_1_/mydb/namesForm/auteur3>, <PlominoField at /plone/Members/test_user_1_/mydb/namesForm/contributeurs3>]
+    >>> for field in allFields:
+    ...     field.getId()
+    ...     field.title
+    ...     field.getFieldType()
+    ...     field.getFieldMode()
+    ...     settings=field.getSettings()
+    ...     if hasattr(settings, 'type'):
+    ...         field.getSettings().type
+    ...     if hasattr(settings, 'separator'):
+    ...         field.getSettings().separator
+    'article'
+    u'article'
+    'RICHTEXT'
+    'EDITABLE'
+    'auteur'
+    u'auteur'
+    'NAME'
+    'EDITABLE'
+    'SINGLE'
+    'contributeurs'
+    u'contributeurs'
+    'NAME'
+    'EDITABLE'
+    'MULTI'
+    'auteur2'
+    u'auteur2'
+    'NAME'
+    'EDITABLE'
+    'SINGLE'
+    'contributeurs2'
+    u'contributeurs2'
+    'NAME'
+    'EDITABLE'
+    'MULTI'
+    'auteur3'
+    u'auteur3'
+    'NAME'
+    'EDITABLE'
+    'SINGLE'
+    'contributeurs3'
+    u'contributeurs3'
+    'NAME'
+    'EDITABLE'
+    'MULTI'
+    
+Import the views
+----------------
+    
+Import the docs
+---------------
+    
+Docs in the database ?
+    >>> allDocs = []
+    >>> allDocs = db.getAllDocuments()
+    >>> len(allDocs)
+    4
+    
+Items in the correct document ?
+     doc=allDocs[0]
+    ...     doc.id
+    ...     docItems = doc.getItems()
+    ...     docItems.sort()
+    ...     for itemKey in docItems:
+    ...         unicode(itemKey) + ": " + unicode(doc.getItem(itemKey))
+    '27CF070394A919C9C12575C5003E92F5'
+    'Form: namesForm'
+    "Plomino_Authors: ['test_user_1_']"
+    '476C6C0681C4D7C4C12575C5003EC4A6'
+    'Form: namesForm'
+    "Plomino_Authors: ['test_user_1_']"
+    '42A866CED370D04EC12575C5003F058C'
+    'Form: namesForm'
+    "Plomino_Authors: ['test_user_1_']"
+    'B4885CC537C3C6B8C12575C50041CD8B'
+    'Form: namesForm'
+    "Plomino_Authors: ['test_user_1_']"
+    
+    Delete database
+    >>> self.folder.manage_delObjects(["mydb"])

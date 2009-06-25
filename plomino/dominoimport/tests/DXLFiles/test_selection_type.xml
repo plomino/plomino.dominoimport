@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<database xmlns='http://www.lotus.com/dxl' version='6.5' replicaid='C12575C3002B6B52'
- path='test.nsf' title='test'>
-<databaseinfo dbid='C12575C3002B6B52' odsversion='43' diskspace='458752' percentused='85.2678571428571'
- numberofdocuments='4'><datamodified><datetime dst='true'>20090527T153449,75+02</datetime></datamodified><designmodified
-><datetime dst='true'>20090527T153658,62+02</datetime></designmodified></databaseinfo>
+<database xmlns='http://www.lotus.com/dxl' version='6.5' replicaid='C12575E00044F577'
+ path='test_selection_type.nsf' title='test_selection_type'>
+<databaseinfo dbid='C12575E00044F577' odsversion='43' diskspace='327680' percentused='87.34375'
+ numberofdocuments='2'><datamodified><datetime dst='true'>20090625T144035,99+02</datetime></datamodified><designmodified
+><datetime dst='true'>20090625T144120,49+02</datetime></designmodified></databaseinfo>
 <acl maxinternetaccess='editor'>
 <aclentry name='-Default-' default='true' level='noaccess' readpublicdocs='true'
  writepublicdocs='true'/>
@@ -12,51 +12,90 @@
 <aclentry name='OtherDomainServers' type='servergroup' level='noaccess' readpublicdocs='false'
  writepublicdocs='false'/>
 <aclentry name='LocalDomainServers' type='servergroup' level='manager' deletedocs='true'/>
-<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT added OtherDomainServers</logentry>
-<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT added LocalDomainServers</logentry>
-<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT updated Eric BREHAULT/Eric BREHAULT</logentry>
-<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT added Eric BREHAULT/Eric BREHAULT</logentry>
-<logentry>27/05/2009 09:54:15 AM Eric BREHAULT/Eric BREHAULT updated -Default-</logentry></acl>
-
-
+<logentry>25/06/2009 02:33:13 PM Eric BREHAULT/Eric BREHAULT added OtherDomainServers</logentry>
+<logentry>25/06/2009 02:33:13 PM Eric BREHAULT/Eric BREHAULT added LocalDomainServers</logentry>
+<logentry>25/06/2009 02:33:13 PM Eric BREHAULT/Eric BREHAULT updated Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>25/06/2009 02:33:13 PM Eric BREHAULT/Eric BREHAULT added Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>25/06/2009 02:33:13 PM Eric BREHAULT/Eric BREHAULT updated -Default-</logentry></acl>
+<note default='true' class='icon'>
+<noteinfo noteid='11a' unid='BD4323A39DEDF566C12575E00044F599' sequence='3'>
+<created><datetime dst='true'>20090625T143313,21+02</datetime></created>
+<modified><datetime dst='true'>20090625T143313,24+02</datetime></modified>
+<revised><datetime dst='true'>20090625T143313,23+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090625T143313,23+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090625T143313,21+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<item name='IconBitmap' summary='true'>
+<itemdata type='6'>
+AiAgAQAA///////wD///gAH//gAAf/wAAD/4AAAf8AAAD+AAAAfgAAAHwAAAA8AAAAPAAAADgAAA
+AYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAHAAAADwAAAA8AAAAPgAAAH4AAAB/AAAA/4AAAf
+/AAAP/4AAH//gAH///AP//////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAiIiIiAAAAAAAAAAAAAAI
+jPZmZm/IgAAAAAAAAAAIjGZmZmZmZsiAAAAAAAAAjGZmZmZmZmZmyAAAAAAACMZmZmZmZmZmZmyA
+AAAAAIxmZmZmZmZmZmZmyAAAAAjGZmZmZmZmZmZmZmyAAAAIZmbyL2byL2byL2ZmgAAAjGZmIiJm
+IiJmIiJmZsgAAIZmZiIiZiIiZiIiZmZoAADGZmYiImYiImYiImZmbAAI9mZmIiJmIiJmIiJmZm+A
+CGZmZiIiZiIiZiIiZmZmgAhmZmYiImYiImYiImZmZoAIZmZmIiJmIiJmIiJmZmaACGZvIiIiZiIi
+ZiIiIvZmgAhmYiIiImYiImYiIiImZoAIZm8iIi9m8i9m8iIi9maACPZmZmZmZmZmZmZmZmZvgADG
+ZmbyL2byL2byL2ZmbAAAj2ZmIiJmIiJmIiJmZvgAAIxmZiIiZiIiZiIiZmbIAAAI9mbyL2byL2by
+L2ZvgAAACMZmZmZmZmZmZmZmbIAAAACMZmZmZmZmZmZmZsgAAAAACMZmZmZmZmZmZmyAAAAAAACM
+9mZmZmZmZm/IAAAAAAAACIz2ZmZmZm/IgAAAAAAAAAAIiMZmZmyIgAAAAAAAAAAAAACIiIiIAAAA
+AAAAAAAAAAAAkAAAAIAA5QEmAA==
+</itemdata></item>
+<item name='$Flags'><text>J</text></item>
+<item name='$TITLE'><text>test_selection_type</text></item></note>
 <form name='selectionForm' publicaccess='false' designerversion='6.5'>
-<noteinfo noteid='176' unid='F788820AE3728F2CC12575C30049E5CA' sequence='2'>
-<created><datetime dst='true'>20090527T152709,54+02</datetime></created>
-<modified><datetime dst='true'>20090527T153228,82+02</datetime></modified>
-<revised><datetime dst='true'>20090527T153228,81+02</datetime></revised>
-<lastaccessed><datetime dst='true'>20090527T153228,81+02</datetime></lastaccessed>
-<addedtofile><datetime dst='true'>20090527T152953,01+02</datetime></addedtofile></noteinfo>
+<noteinfo noteid='132' unid='D4C4DB44A35B5B61C12575E000450417' sequence='5'>
+<created><datetime dst='true'>20090625T143350,31+02</datetime></created>
+<modified><datetime dst='true'>20090625T144010,17+02</datetime></modified>
+<revised><datetime dst='true'>20090625T144010,16+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090625T144010,16+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090625T143601,85+02</datetime></addedtofile></noteinfo>
 <updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
 <wassignedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></wassignedby>
 <body><richtext>
 <pardef id='1'/>
-<par def='1'>Liste de choix unique:</par>
-<par>
-<field usenotesstyle='false' height='0.2500in' width='1in' multiline='true'
- type='keyword' kind='editable' name='liste1'><keywords helperbutton='false'
- columns='1' borderstyle='inset' ui='combobox'><textlist><text>item 1</text><text
->item 2</text><text>item 3</text></textlist></keywords></field></par>
-<par>Liste de choix multiple:</par>
-<par>
-<field usenotesstyle='false' height='0.2500in' width='1in' multiline='true'
- type='keyword' kind='editable' name='liste2'><keywords helperbutton='false'
- columns='1' borderstyle='inset' ui='listbox'><textlist><text>item 1</text><text
->item 2</text><text>item 3</text></textlist></keywords></field></par>
-<par>Check boxes:</par>
-<par>
-<field type='keyword' allowmultivalues='true' kind='editable' name='liste3'
+<par def='1'>statut: 
+<field type='keyword' kind='editable' seal='true' name='situation'><keywords
+ helperbutton='false' columns='1' borderstyle='inset' ui='radiobutton'><textlist
+><text>marié(e)</text><text>divorcé(e)</text><text>célibataire</text><text
+>pacsé(e)</text><text>vie maritale</text></textlist></keywords></field></par>
+<par>loisirs: 
+<field type='keyword' allowmultivalues='true' kind='editable' name='loisirs'
  listinputseparators='comma' listdisplayseparator='comma'><keywords helperbutton='false'
- columns='1' borderstyle='inset' ui='checkbox'><textlist><text>item 1</text><text
->item 2</text><text>item 3</text></textlist></keywords></field></par>
-<par>Radioboxes:</par>
-<par>
-<field type='keyword' kind='editable' name='liste4'><keywords helperbutton='false'
- columns='1' borderstyle='inset' ui='radiobutton'><textlist><text>item 1</text><text
->item 2</text><text>item 3</text></textlist></keywords></field></par>
-<par>Dialog list ?</par>
-<par>
-<field type='keyword' kind='editable' name='liste5'><keywords ui='dialoglist'><textlist
-><text>item 1</text><text>item 2</text><text>item 3</text></textlist></keywords></field></par></richtext></body>
+ columns='1' borderstyle='inset' ui='checkbox'><textlist><text>musique</text><text
+>cinéma</text><text>sport</text></textlist></keywords></field></par>
+<par>situation pro: 
+<field usenotesstyle='false' height='0.2500in' width='1in' multiline='true'
+ type='keyword' kind='editable' name='professionel'><keywords helperbutton='false'
+ columns='1' borderstyle='inset' ui='combobox'><textlist><text>salarié(e)</text><text
+>chef d'entreprise</text><text>chômeur</text><text>étudiant</text></textlist></keywords></field></par>
+<par>domaines préférés: 
+<field usenotesstyle='false' height='0.7875in' width='1in' multiline='true'
+ type='keyword' allowmultivalues='true' kind='editable' name='domaines' listinputseparators='comma'
+ listdisplayseparator='comma'><keywords helperbutton='false' columns='1' borderstyle='inset'
+ ui='listbox'><textlist><text>informatique</text><text>spatial</text><text
+>bâtiment</text></textlist></keywords></field></par></richtext></body>
 <item name='$$ScriptName' summary='false' sign='true'><text>selectionForm</text></item></form>
-
-</database>
+<document form='selectionForm'>
+<noteinfo noteid='8fa' unid='2D8F006ED3579561C12575E0004578ED' sequence='1'>
+<created><datetime dst='true'>20090625T143849,41+02</datetime></created>
+<modified><datetime dst='true'>20090625T143924,20+02</datetime></modified>
+<revised><datetime dst='true'>20090625T143924,19+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090625T143924,18+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090625T143924,18+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<item name='situation' seal='true'><text>vie maritale</text></item>
+<item name='loisirs'><text>musique</text></item>
+<item name='professionel'><text>chef d'entreprise</text></item>
+<item name='domaines'><text>informatique</text></item></document>
+<document form='selectionForm'>
+<noteinfo noteid='8fe' unid='860C7454851E0C3CC12575E0004599AB' sequence='1'>
+<created><datetime dst='true'>20090625T144013,23+02</datetime></created>
+<modified><datetime dst='true'>20090625T144025,31+02</datetime></modified>
+<revised><datetime dst='true'>20090625T144025,30+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090625T144025,29+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090625T144025,29+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<item name='situation' seal='true'><text>marié(e)</text></item>
+<item name='loisirs'><textlist><text>cinéma</text><text>sport</text></textlist></item>
+<item name='professionel'><text>chômeur</text></item>
+<item name='domaines'><textlist><text>informatique</text><text>bâtiment</text></textlist></item></document></database>

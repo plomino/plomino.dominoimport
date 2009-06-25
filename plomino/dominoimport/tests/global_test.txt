@@ -103,7 +103,7 @@ Views in the database ?
     >>> len(allViews)
     2
 
-    >>> if allViews[0].getViewName() != 'allCustomer':
+    >>> if allViews[0].getViewName() == 'allProjects':
     ...     allViews.reverse()
     >>> allViews
     [<PlominoView at /plone/Members/test_user_1_/mydb/allCustomers>, <PlominoView at /plone/Members/test_user_1_/mydb/allProjects>]
@@ -176,7 +176,7 @@ Items in the correct document ?
     "Plomino_Authors: ['test_user_1_']"
     'hours: 20'
     'owner: CN=Eric BREHAULT/O=Eric BREHAULT'
-    'startdate: DateTime(2009/05/12)'
+    'startdate: 2009/05/12'
     
 Delete database
     >>> self.folder.manage_delObjects(["mydb"])
