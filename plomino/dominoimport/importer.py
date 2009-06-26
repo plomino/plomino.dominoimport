@@ -103,7 +103,8 @@ class DominoImporter(object):
             except Exception, inst:
                 results['agents'][1] += 1
                 #print type(inst), inst, inst.args
-
+        
+        self.context.getIndex().refresh()
         print results
         
         return results

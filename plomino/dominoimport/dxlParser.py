@@ -239,6 +239,7 @@ class DXLParser(object):
             dico = {}
             dico['type'] = 'PlominoView'
             dico['id'], dico['title'] = self.getIdTitleAttributes(view)
+            print dico
 
             # get the Form and SelectionFormula attribute
             codeView = dxlFileContent.getElementsByTagName('code')[0]
@@ -356,7 +357,7 @@ class DXLParser(object):
                     if subchild.nodeName == 'break':
                         dico['value'] += '<br />'
                     elif subchild.nodeName == '#text':
-                        dico['value'] += unicode(subchild.data).replace('\n', '')
+                        dico['value'] += unicode(subchild.data.replace('\n', ''))
     
                     subchild = subchild.nextSibling
 
@@ -432,7 +433,7 @@ class DXLParser(object):
         if p_for_title.match(dxlFileContent.getAttribute('name')) is not None:
             title = dxlFileContent.getAttribute('name')
         else:
-            title = ''
+            title = 'default'
             
         return (id, title)
 

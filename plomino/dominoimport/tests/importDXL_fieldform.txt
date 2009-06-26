@@ -370,9 +370,14 @@ Check the fields ?
     'EDITABLE'
     
 rem: settings for datetime type are not implemented yet
-    
-Import the docs
+
+Check the views
 ---------------
+    >>> view = db.getViews()[0]
+    >>> view.getAllDocuments()
+
+Check the docs
+--------------
 
 Docs in the database ?
     >>> allDocs = []
@@ -496,10 +501,6 @@ Items in the correct document ?
     
     >>> for doc in allDocs:
     ...     doc.id
-    ...     docItems = doc.getItems()
-    ...     docItems.sort()
-    ...     for itemKey in docItems:
-    ...         unicode(itemKey, 'UTF-8') + ": " + unicode(doc.getItem(itemKey), 'UTF-8')
     '2D8F006ED3579561C12575E0004578ED'
     'Form: selectionForm'
     "Plomino_Authors: ['test_user_1_']"
@@ -515,6 +516,11 @@ Items in the correct document ?
     "professionel: ch\xf4meur"
     'situation: mari\xe9(e)'
     
+    
+    ...     docItems = doc.getItems()
+    ...     docItems.sort()
+    ...     for itemKey in docItems:
+    ...         doc.getItem(itemKey).__class__
     ISO-8859-15
     
     Delete database

@@ -47,6 +47,9 @@ class PlominoBuilder(object):
             # Create the fields
             for fieldInfos in formInfos['fields']:
                 self.createField(fieldInfos, form)
+            
+            form.at_post_create_script()
+            self.plominoDatabase.getIndex().refresh()
 
     def createField(self, fieldInfos, container):
         """
@@ -73,6 +76,7 @@ class PlominoBuilder(object):
                     setattr(adapt, key, v)
 
             field.at_post_create_script()
+            self.plominoDatabase.getIndex().refresh()
 
     def createView(self, viewInfos):
         """
@@ -93,6 +97,9 @@ class PlominoBuilder(object):
             # Create the columns
             for columnInfos in viewInfos['columns']:
                 self.createColumn(columnInfos, view)
+            
+            view.at_post_create_script()
+            self.plominoDatabase.getIndex().refresh()
 
     def createColumn(self, columnInfos, container):
         """
@@ -111,6 +118,8 @@ class PlominoBuilder(object):
             column.setFormula(columnInfos['formula'])
             column.setPosition(columnInfos['position'])
             column.at_post_create_script()
+
+        column.at_post_create_script()
 
     def createDoc(self, docInfos):
         """
