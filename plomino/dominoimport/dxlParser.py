@@ -239,7 +239,7 @@ class DXLParser(object):
             dico = {}
             dico['type'] = 'PlominoView'
             dico['id'], dico['title'] = self.getIdTitleAttributes(view)
-            print dico
+            #print dico
 
             # get the Form and SelectionFormula attribute
             codeView = dxlFileContent.getElementsByTagName('code')[0]
@@ -376,22 +376,12 @@ class DXLParser(object):
 
             # selection ----
             elif dico['type'][4:] == 'list':
-                dico['value'] = []
-                
+                dico['value'] = []                
                 subchild = firstElement.firstChild
                 
                 while subchild is not None:
-                    print unicode(subchild.toxml())
-                    
-#                    if subchild.nodeName == 'text':
-#                        dico['value'] += subchild.nodeValue
-#                    if subchild.nodeName == 'break':
-#                        dico['value'] += '<br />'
-#                    elif subchild.nodeName == '#text':
-#                        dico['value'] += unicode(subchild.data).replace('\n', '')
-    
+                    dico['value'].append(subchild.firstChild.nodeValue)                    
                     subchild = subchild.nextSibling
-                dico['value'] = '$$$$$$$$$'
             
             else:
                 dico['value'] = '#########'
@@ -414,6 +404,7 @@ class DXLParser(object):
             dico = {}
             dico['type'] = 'PlominoAgent'
             dico['id'], dico['title'] = self.getIdTitleAttributes(agent)
+            dico['content'] = ''
             #print dico['id']
             self.agents.append(dico)
 
@@ -589,4 +580,3 @@ class DXLParser(object):
             child = child.nextSibling
             
         return html_content
-

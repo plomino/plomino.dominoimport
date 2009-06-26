@@ -170,7 +170,12 @@ class PlominoBuilder(object):
         """
         agentId = self.plominoDatabase.invokeFactory(agentInfos['type'], 
                                                      id=agentInfos['id'])
-        #print 'creating agent:', agentId
+        print 'creating agent:', agentId
+        
+        if agentId is not None:
+            agent = self.plominoDatabase.getAgent(agentId)
+            agent.setContent(agentInfos['content'])
+            
         #self.plominoDatabase.at_post_create_script()
 
     def createResource(self, resourceInfos):
