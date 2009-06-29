@@ -75,7 +75,7 @@ class DominoImporter(object):
                 results['forms'][0] += 1
             except Exception, inst:
                 results['forms'][1] += 1
-                #print type(inst), inst
+                print type(inst), inst
 
         # create views
         for view in myDxlParser.getViews():
@@ -84,7 +84,7 @@ class DominoImporter(object):
                 results['views'][0] += 1
             except Exception, inst:
                 results['views'][1] += 1
-                #print type(inst), inst
+                print type(inst), inst
 
         # create docs
         for doc in myDxlParser.getDocs():

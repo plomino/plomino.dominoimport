@@ -68,6 +68,8 @@ class PlominoBuilder(object):
             field.setTitle(fieldInfos['title'])
             field.setFieldType(fieldInfos['FieldType'])
             field.setFieldMode(fieldInfos['FieldMode'])
+            field.setFormula(fieldInfos['formula'])
+            field.setValidationFormula(fieldInfos['ValidationFormula'])
 
             adapt=field.getSettings()
             for key in fieldInfos['settings'].keys():

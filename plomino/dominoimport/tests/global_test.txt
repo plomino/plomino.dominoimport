@@ -124,7 +124,7 @@ Columns in the correct view ?
     'allCustomers'
     u'allCustomers'
     'True'
-    '#'
+    ''
     [<PlominoColumn at /plone/Members/test_user_1_/mydb/allCustomers/name>, <PlominoColumn at /plone/Members/test_user_1_/mydb/allCustomers/status>]
     'name'
     u'Name'
@@ -137,7 +137,7 @@ Columns in the correct view ?
     'allProjects'
     u'allProjects'
     'True'
-    '#'
+    ''
     [<PlominoColumn at /plone/Members/test_user_1_/mydb/allProjects/owner>, <PlominoColumn at /plone/Members/test_user_1_/mydb/allProjects/hours>]
     'owner'
     u'Owner'

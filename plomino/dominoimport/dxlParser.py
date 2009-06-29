@@ -222,6 +222,21 @@ class DXLParser(object):
                 dico['FieldMode'] = FIELD_MODES[field.getAttribute('kind')]
             else:            
                 dico['FieldMode'] = 'EDITABLE'
+            
+            # formula and ValidationFormula ----
+            dico['ValidationFormula'] = ''
+            dico['formula'] = ''
+            if dico['FieldMode'] != 'EDITABLE':
+                for code in self.extractCode(field):
+                    if code['event'] == 'inputvalidation':
+                        dico['ValidationFormula'] = '# ' + code['content']
+                    else:
+                        dico['formula'] = '# ' + code['content']
+                    
+#                    '\n#------------ \n# code from lotus domino' + \
+#                                '\n# Event: ' + code['event'] + \
+#                                '\n# code type: ' + code['type']  + \
+#                                '\n#------------ \n# ' + str(code['content']).replace('\n', '\n# ') 
 
             extractedFields.append(dico)
 
@@ -239,20 +254,23 @@ class DXLParser(object):
             dico = {}
             dico['type'] = 'PlominoView'
             dico['id'], dico['title'] = self.getIdTitleAttributes(view)
-            #print dico
 
             # get the Form and SelectionFormula attribute
-            codeView = dxlFileContent.getElementsByTagName('code')[0]
-            if codeView.getAttribute('event') == 'selection':
-                if codeView.getElementsByTagName('formula')[0].firstChild.nodeValue == '@All':
-                    dico['SelectionFormula'] = 'True'
-                else:
-                    dico['SelectionFormula'] = '#'#, codeView.getElementsByTagName('formula')[0].firstChild.nodeValue
-            
-            dico['FormFormula'] = '#'
+            dico['SelectionFormula'] = ''
+            dico['FormFormula'] = ''
+
+            for code in self.extractCode(view):
+                if code['type'] == 'formula':
+                    if code['event'] == 'selection':
+                        if code['content'] == '@All':
+                            dico['SelectionFormula'] = 'True'
+                        else:
+                            dico['SelectionFormula'] = '# ' + code['content']
+
+                    elif code['event'] == 'form':
+                        dico['FormFormula'] = '# ' + code['content']
 
             # import all the columns included in this view
-            dico['columns'] = []
             dico['columns'] = self.extractColumns(view)
             
             self.views.append(dico)
@@ -402,9 +420,14 @@ class DXLParser(object):
             dico = {}
             dico['type'] = 'PlominoAgent'
             dico['id'], dico['title'] = self.getIdTitleAttributes(agent)
+            dico['content'] = ''
+            for code in self.extractCode(agent):
+                dico['content'] += '\n#------------ \n# code from lotus domino' + \
+                                '\n# Event: ' + code['event'] + \
+                                '\n# code type: ' + code['type']  + \
+                                '\n#------------ \n# ' + str(code['content']).replace('\n', '\n# ') 
             
-            
-            dico['content'] = self.extractCode(agent)
+            #dico['content'] = self.extractCode(agent)
             if agent.getElementsByTagName('trigger')[0].getAttribute('type') == 'schedule':
                 dico['scheduled'] = True
                 # TODO : récupérer le contenu de scheduled
@@ -418,15 +441,13 @@ class DXLParser(object):
         Extract code from a DXL parsed content
         """
         
-        extractedCode = ''
+        extractedCode = []
         codeElements = dxlFileContent.getElementsByTagName("code")
+
         for code in codeElements:
-            if code.firstChild.nodeName in DOMINO_CODE_TYPE:
-                extractedCode += '\n#------------ \n# code from lotus domino\n# Event: ' + \
-                                code.getAttribute('event') + \
-                                '\n# code type: ' + code.firstChild.nodeName  + \
-                                '\n#------------ ' + '\n# ' + \
-                                str(code.firstChild.firstChild.data).replace('\n', '\n# ')
+            firstElement = self.getFirstElement(code)
+            if firstElement.nodeName in DOMINO_CODE_TYPE:
+                extractedCode.append({'event': code.getAttribute('event'), 'type': firstElement.nodeName, 'content': firstElement.firstChild.data})
 
         return extractedCode
 
@@ -604,3 +625,23 @@ class DXLParser(object):
             child = child.nextSibling
             
         return html_content
+
+#class minidom2(dom.xml.minidom):
+#    """
+#    Need some more fonctions
+#    """
+    
+    def getFirstElement(self, dxlFileContent):
+        """
+        return the first node of element type
+        """
+        
+        if dxlFileContent.hasChildNodes():
+            firstElement = dxlFileContent.firstChild
+            while firstElement is not None and firstElement.nodeType is not firstElement.ELEMENT_NODE:
+                firstElement = firstElement.nextSibling
+
+            if firstElement is not None:
+                return firstElement
+            else:
+                return None
