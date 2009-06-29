@@ -24,6 +24,7 @@ Import os to generate file from path
     
     >>> i.context.id
     'mydb'
+        
     
 Import a DXL File
 -----------------
@@ -32,11 +33,30 @@ DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_formulas.xml")
     >>> dxlDoc = i.processImportDXL(dxlFile)
-    {"PlominoForm": (2, 0), "PlominoField": (6, 0), "PlominoView": (3, 0), "PlominoColumn": (6, 0), "PlominoAgent": (2, 0), "PlominoAction": (0, 0), "PlominoDocument": (4, 0), "resources": (0, 0), "inserted_files": (0, 0)}
+    {'forms': [2, 0], 'docs': [4, 0], 'agents': [1, 0], 'resources': [0, 0], 'views': [3, 0]}
+    
+Check agent
+-----------
+
+    >>> allAgents = db.getAgents()
+    >>> for agent in allAgents:
+    ...     agent.getId()
+    ...     agent.getContent()
+    ...     agent.getScheduled()
+    ...     agent.getAgentUser()
+    ...     agent.getCron()
+    'exporter'
+    '\n#------------ \n# code from lotus domino\n# Event: options\n# code type: lotusscript\n#------------ \n# Option Public\n# \n#------------ \n# code from lotus domino\n# Event: initialize\n# code type: lotusscript\n#------------ \n# Sub Initialize \n# \tDim session As New NotesSession \n# \tDim db As NotesDatabase \n# \tSet db = session.CurrentDatabase \n# \t\n# REM Open xml file named after current database \n# \tDim stream As NotesStream \n# \tSet stream = session.CreateStream \n# \tfilename$ = "e:\\tmp\\" & Left(db.FileName, Len(db.FileName) - 3) & "xml" \n# \tIf Not stream.Open(filename$) Then \n# \t\tMessagebox "Cannot open " & filename$,, "Error" \n# \t\tExit Sub \n# \tEnd If \n# \tCall stream.Truncate \n# \t\n# REM Export current database as DXL \n# \tDim exporter As NotesDXLExporter \n# \tSet exporter = session.CreateDXLExporter \n# \t\n#    REM Create note collection of actions \n# \tDim nc As NotesNoteCollection \n# \tSet nc = db.CreateNoteCollection(False) \n# \t\'Call nc.SelectAllFormatElements(True)\n# \tCall nc.SelectAllNotes(True)\n# \tnc.SelectActions = False \n# \tCall nc.BuildCollection \n# \t\n# REM Set up importer to receive DXL piped from exporter \n# REM and to re-import the documents back into the \n# REM current database as copies. \n# \tSet exporter = session.CreateDXLExporter(nc) \n# \t\n# \tCall exporter.SetInput(nc) \n# \tCall exporter.SetOutput(stream) \n#    \'There are two kinds of XML-valid and well-formed. \n# \'Valid XML has a DTD. \n# \'Well-formed XML has no DTD, but is properly constructed-all entities are declared, properly closed, and correctly nested. \n# \'The XML specification makes a DTD optional. \n# \'Well-formed XML is self-documenting and can be processed without a DTD. \n# \'Valid XML cannot. \n# \texporter.OutputDOCTYPE = False \' Stops the <!DOCTYPE database SYSTEM \'xmlschemas/domino_7_0.dtd\'> from being added to output. \n# \tCall exporter.Process \n# End Sub'
+    False
+    ''
+    '* 1 * * *'
     
 Forms
-    
+-----
+
     >>> allForms = db.getForms()
+    >>> if allForms[0].getFormName() != 'web':
+    ...     allForms.reverse()
     >>> form = db.getForm('infos')
 
 Fields
@@ -61,10 +81,10 @@ Fields
     'age'
     '# @Year(12/12/2006)
     ''
-    'name'
-    ''
-    ''
     'birthdate'
+    ''
+    ''
+    'name'
     ''
     ''
     
@@ -76,7 +96,7 @@ Views
     >>> allViews = db.getViews()
     >>> allViews.sort()
     >>> allViews
-    [<PlominoView at /plone/Members/test_user_1_/mydb/All>, <PlominoView at /plone/Members/test_user_1_/mydb/biographie>, <PlominoView at /plone/Members/test_user_1_/mydb/C8580A2BBAE54584C12575D90044D63B>]
+    [<PlominoView at /plone/Members/test_user_1_/mydb/All>, <PlominoView at /plone/Members/test_user_1_/mydb/biographie>, <PlominoView at /plone/Members/test_user_1_/mydb/Infos_Mail>]
 
 Check Columns
 -------------
@@ -107,7 +127,7 @@ Check Columns
     'biography'
     'plominoDocument.biography'
     ----
-    'InfosMail'
+    'Infos_Mail'
     'True'
     '# web'
     Columns :
@@ -125,6 +145,24 @@ Docs
     >>> len(allDocs)
     4
     
+    Delete database
+    >>> self.folder.manage_delObjects(["mydb"])
+    
+Import agents
+==============
+
+    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
+    >>> db=self.folder.mydb
+    >>> db.at_post_create_script()
+    >>> i=IDominoImporter(db)
+    
+    
+DXL file imported is the database design one: the file is parsed in a xml object
+
+    >>> dxlFile = os.path.join(dir, "DXLFiles", "test_agents.xml")
+    >>> dxlDoc = i.processImportDXL(dxlFile)
+    {'forms': [1, 0], 'docs': [1, 0], 'agents': [2, 0], 'resources': [0, 0], 'views': [1, 0]}
+    
 Check agent
 -----------
 
@@ -137,31 +175,11 @@ Check agent
     ...     agent.getCron()
     'exporter'
     ''
-    '0'
+    False
     ''
     ''
     'capitalize'
     ''
-    '1'
+    True
     ''
     ''
-
-    Delete database
-    >>> self.folder.manage_delObjects(["mydb"])
-    
-Import actions
-==============
-
-    >>> id=self.folder.invokeFactory('PlominoDatabase', id='mydb')
-    >>> db=self.folder.mydb
-    >>> db.at_post_create_script()
-    >>> i=IDominoImporter(db)
-    
-    
-DXL file imported is the database design one: the file is parsed in a xml object
-
-    >>> dxlFile = os.path.join(dir, "DXLFiles", "test_formulas.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
-    {"PlominoForm": (2, 0), "PlominoField": (2, 0), "PlominoView": (1, 0), "PlominoColumn": (6, 0), "PlominoAgent": (2, 0), "PlominoAction": (2, 0), "PlominoDocument": (2, 0), "resources": (0, 0), "inserted_files": (0, 0)}
-    
-allActions = db.portal_catalog.search({'portal_type': ['PlominoAction'], 'path': '/'.join(view.getPhysicalPath())})

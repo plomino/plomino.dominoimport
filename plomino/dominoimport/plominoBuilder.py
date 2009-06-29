@@ -119,8 +119,6 @@ class PlominoBuilder(object):
             column.setPosition(columnInfos['position'])
             column.at_post_create_script()
 
-        column.at_post_create_script()
-
     def createDoc(self, docInfos):
         """
         Create document in the database
@@ -154,7 +152,9 @@ class PlominoBuilder(object):
     def createItem(self, itemInfos, container):
         """
         Create document in the database
-        (Not used in this version)
+        
+        !!!!!!! Not used in this version !!!!!!!!
+        
         @param dict itemInfos : 
         @return string :
         """
@@ -170,13 +170,13 @@ class PlominoBuilder(object):
         """
         agentId = self.plominoDatabase.invokeFactory(agentInfos['type'], 
                                                      id=agentInfos['id'])
-        print 'creating agent:', agentId
+        #print 'creating agent:', agentId
         
         if agentId is not None:
-            agent = self.plominoDatabase.getAgent(agentId)
+            agent = getattr(self.plominoDatabase, agentId)
             agent.setContent(agentInfos['content'])
-            
-        #self.plominoDatabase.at_post_create_script()
+            agent.setScheduled(agentInfos['scheduled'])
+            agent.at_post_create_script()
 
     def createResource(self, resourceInfos):
         """

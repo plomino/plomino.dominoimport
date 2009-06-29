@@ -67,12 +67,12 @@ def test_suite():
 #            optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
 #            #optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
 
-#        ztc.ZopeDocFileSuite(
-#            'tests/importDXL_formulas_scripts.txt', package='plomino.dominoimport',
-#            test_class=ExampleFunctionalTestCase,
-#            optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
-#            #optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
-#
+        ztc.ZopeDocFileSuite(
+            'tests/importDXL_formulas_scripts.txt', package='plomino.dominoimport',
+            test_class=ExampleFunctionalTestCase,
+            optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
+            #optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
+
 #        ztc.ZopeDocFileSuite(
 #            'tests/importDXL_actions.txt', package='plomino.dominoimport',
 #            test_class=ExampleFunctionalTestCase,

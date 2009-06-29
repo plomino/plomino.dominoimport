@@ -69,3 +69,5 @@ DOMINO_MIME_TYPES = {"Adobe Acrobat Document": "pdf",
              }
 
 DOMINO_IMAGE_FORMAT = ['jpeg', 'gif', 'cfg']
+
+DOMINO_CODE_TYPE = ['lotusscritp', 'formula', 'lotusscript', 'javaproject', 'simpleaction', 'javascript']

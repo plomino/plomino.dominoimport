@@ -395,8 +395,6 @@ class DXLParser(object):
         """
         Extract agents from the DXL parsed file
         """
-        
-        #print 'extracting agents ...'
 
         agents = dxlFileContent.getElementsByTagName("agent")
 
@@ -404,9 +402,33 @@ class DXLParser(object):
             dico = {}
             dico['type'] = 'PlominoAgent'
             dico['id'], dico['title'] = self.getIdTitleAttributes(agent)
-            dico['content'] = ''
-            #print dico['id']
+            
+            
+            dico['content'] = self.extractCode(agent)
+            if agent.getElementsByTagName('trigger')[0].getAttribute('type') == 'schedule':
+                dico['scheduled'] = True
+                # TODO : récupérer le contenu de scheduled
+            else:
+                dico['scheduled'] = False
+
             self.agents.append(dico)
+            
+    def extractCode(self, dxlFileContent):
+        """
+        Extract code from a DXL parsed content
+        """
+        
+        extractedCode = ''
+        codeElements = dxlFileContent.getElementsByTagName("code")
+        for code in codeElements:
+            if code.firstChild.nodeName in DOMINO_CODE_TYPE:
+                extractedCode += '\n#------------ \n# code from lotus domino\n# Event: ' + \
+                                code.getAttribute('event') + \
+                                '\n# code type: ' + code.firstChild.nodeName  + \
+                                '\n#------------ ' + '\n# ' + \
+                                str(code.firstChild.firstChild.data).replace('\n', '\n# ')
+
+        return extractedCode
 
     def getIdTitleAttributes(self, dxlFileContent):
         """
@@ -553,7 +575,9 @@ class DXLParser(object):
 #                
             elif name == 'sectiontitle':
                 deep_header += 1
-                html_content += '<h' + str(deep_header) + '>' + self.richtextToHtml(child, formId, deep_header) + '</h' + str(deep_header) + '>'
+                html_content += '<h' + str(deep_header) + '>' + \
+                                self.richtextToHtml(child, formId, deep_header) + \
+                                '</h' + str(deep_header) + '>'
             
             # field ----
             elif name == 'field':

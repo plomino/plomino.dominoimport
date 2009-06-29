@@ -70,3 +70,5 @@ Actions located in views:
     ...         print '----'
     ...     print '===='
 
+    
+allActions = db.portal_catalog.search({'portal_type': ['PlominoAction'], 'path': '/'.join(view.getPhysicalPath())})
