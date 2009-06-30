@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='utf-8'?>
+<database xmlns='http://www.lotus.com/dxl' version='6.5' replicaid='C12575E5002D720B'
+ path='test_agents.nsf' title='test_agents'>
+<databaseinfo dbid='C12575E5002D720B' odsversion='43' diskspace='327680' percentused='88.59375'
+ numberofdocuments='1'><datamodified><datetime dst='true'>20090630T102148,35+02</datetime></datamodified><designmodified
+><datetime dst='true'>20090630T102040,94+02</datetime></designmodified></databaseinfo>
+<acl maxinternetaccess='editor'>
+<aclentry name='-Default-' default='true' level='noaccess' readpublicdocs='true'
+ writepublicdocs='true'/>
+<aclentry name='CN=Eric BREHAULT/O=Eric BREHAULT' type='person' level='manager'
+ deletedocs='true'/>
+<aclentry name='OtherDomainServers' type='servergroup' level='noaccess' readpublicdocs='false'
+ writepublicdocs='false'/>
+<aclentry name='LocalDomainServers' type='servergroup' level='manager' deletedocs='true'/>
+<logentry>30/06/2009 10:16:24 AM Eric BREHAULT/Eric BREHAULT added OtherDomainServers</logentry>
+<logentry>30/06/2009 10:16:24 AM Eric BREHAULT/Eric BREHAULT added LocalDomainServers</logentry>
+<logentry>30/06/2009 10:16:24 AM Eric BREHAULT/Eric BREHAULT updated Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>30/06/2009 10:16:24 AM Eric BREHAULT/Eric BREHAULT added Eric BREHAULT/Eric BREHAULT</logentry>
+<logentry>30/06/2009 10:16:24 AM Eric BREHAULT/Eric BREHAULT updated -Default-</logentry></acl>
+<view showinmenu='true' publicaccess='false' default='true' noviewformat='true'>
+<noteinfo noteid='116' unid='F3AE28D86379DF93C12575E5002D7288' sequence='1'>
+<created><datetime dst='true'>20090630T101624,40+02</datetime></created>
+<modified><datetime dst='true'>20090630T101859,32+02</datetime></modified>
+<revised><datetime dst='true'>20090630T101624,40+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090630T101859,31+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090630T101624,43+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby><code
+ event='selection'><formula>@All</formula></code></view>
+<note default='true' class='icon'>
+<noteinfo noteid='11a' unid='9669804A97120154C12575E5002D728D' sequence='3'>
+<created><datetime dst='true'>20090630T101624,45+02</datetime></created>
+<modified><datetime dst='true'>20090630T101624,53+02</datetime></modified>
+<revised><datetime dst='true'>20090630T101624,52+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090630T101624,50+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090630T101624,50+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<item name='IconBitmap' summary='true'>
+<itemdata type='6'>
+AiAgAQAA///////wD///gAH//gAAf/wAAD/4AAAf8AAAD+AAAAfgAAAHwAAAA8AAAAPAAAADgAAA
+AYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAHAAAADwAAAA8AAAAPgAAAH4AAAB/AAAA/4AAAf
+/AAAP/4AAH//gAH///AP//////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAiIiIiAAAAAAAAAAAAAAI
+jPZmZm/IgAAAAAAAAAAIjGZmZmZmZsiAAAAAAAAAjGZmZmZmZmZmyAAAAAAACMZmZmZmZmZmZmyA
+AAAAAIxmZmZmZmZmZmZmyAAAAAjGZmZmZmZmZmZmZmyAAAAIZmbyL2byL2byL2ZmgAAAjGZmIiJm
+IiJmIiJmZsgAAIZmZiIiZiIiZiIiZmZoAADGZmYiImYiImYiImZmbAAI9mZmIiJmIiJmIiJmZm+A
+CGZmZiIiZiIiZiIiZmZmgAhmZmYiImYiImYiImZmZoAIZmZmIiJmIiJmIiJmZmaACGZvIiIiZiIi
+ZiIiIvZmgAhmYiIiImYiImYiIiImZoAIZm8iIi9m8i9m8iIi9maACPZmZmZmZmZmZmZmZmZvgADG
+ZmbyL2byL2byL2ZmbAAAj2ZmIiJmIiJmIiJmZvgAAIxmZiIiZiIiZiIiZmbIAAAI9mbyL2byL2by
+L2ZvgAAACMZmZmZmZmZmZmZmbIAAAACMZmZmZmZmZmZmZsgAAAAACMZmZmZmZmZmZmyAAAAAAACM
+9mZmZmZmZm/IAAAAAAAACIz2ZmZmZm/IgAAAAAAAAAAIiMZmZmyIgAAAAAAAAAAAAACIiIiIAAAA
+AAAAAAAAAAAAkAAAAIAA5QEmAA==
+</itemdata></item>
+<item name='$Flags'><text>J</text></item>
+<item name='$TITLE'><text>test_agents</text></item></note>
+<agent name='exporter' hide='v3' publicaccess='false' designerversion='6.5'>
+<noteinfo noteid='136' unid='C2F56A2B14926B7BC12575E5002D7625' sequence='1'>
+<created><datetime dst='true'>20090630T101633,65+02</datetime></created>
+<modified><datetime dst='true'>20090630T101633,74+02</datetime></modified>
+<revised><datetime dst='true'>20090630T101633,73+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090630T101633,73+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090630T101633,73+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<wassignedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></wassignedby>
+<designchange><datetime dst='true'>20090527T100127,34+02</datetime></designchange>
+<trigger type='actionsmenu'/>
+<documentset type='selected'/><code event='options'><lotusscript>Option Public
+</lotusscript></code><code event='initialize'><lotusscript>Sub Initialize 
+	Dim session As New NotesSession 
+	Dim db As NotesDatabase 
+	Set db = session.CurrentDatabase 
+	
+REM Open xml file named after current database 
+	Dim stream As NotesStream 
+	Set stream = session.CreateStream 
+	filename$ = "e:\tmp\" &amp; Left(db.FileName, Len(db.FileName) - 3) &amp; "xml" 
+	If Not stream.Open(filename$) Then 
+		Messagebox "Cannot open " &amp; filename$,, "Error" 
+		Exit Sub 
+	End If 
+	Call stream.Truncate 
+	
+REM Export current database as DXL 
+	Dim exporter As NotesDXLExporter 
+	Set exporter = session.CreateDXLExporter 
+	
+   REM Create note collection of actions 
+	Dim nc As NotesNoteCollection 
+	Set nc = db.CreateNoteCollection(False) 
+	'Call nc.SelectAllFormatElements(True)
+	Call nc.SelectAllNotes(True)
+	nc.SelectActions = False 
+	Call nc.BuildCollection 
+	
+REM Set up importer to receive DXL piped from exporter 
+REM and to re-import the documents back into the 
+REM current database as copies. 
+	Set exporter = session.CreateDXLExporter(nc) 
+	
+	Call exporter.SetInput(nc) 
+	Call exporter.SetOutput(stream) 
+   'There are two kinds of XML-valid and well-formed. 
+'Valid XML has a DTD. 
+'Well-formed XML has no DTD, but is properly constructed-all entities are declared, properly closed, and correctly nested. 
+'The XML specification makes a DTD optional. 
+'Well-formed XML is self-documenting and can be processed without a DTD. 
+'Valid XML cannot. 
+	exporter.OutputDOCTYPE = False ' Stops the &lt;!DOCTYPE database SYSTEM 'xmlschemas/domino_7_0.dtd'&gt; from being added to output. 
+	Call exporter.Process 
+End Sub</lotusscript></code>
+<rundata processeddocs='0' exitcode='0' agentdata='50B8DE92639F97BAC12575C3002C15B1'>
+<agentmodified><datetime dst='true'>20090625T144120,49+02</datetime></agentmodified>
+<agentrun><datetime dst='true'>20090625T144127,63+02</datetime></agentrun>
+<runlog>Started running agent 'exporter' on 30/06/2009 10:20:46
+ERROR: To run this agent you must have at least one document selected
+</runlog></rundata></agent>
+<form name='infos' publicaccess='false' designerversion='6.5'>
+<noteinfo noteid='13a' unid='CFDA6BBC37DC6160C12575E5002D7794' sequence='1'>
+<created><datetime dst='true'>20090630T101637,32+02</datetime></created>
+<modified><datetime dst='true'>20090630T101658,61+02</datetime></modified>
+<revised><datetime dst='true'>20090630T101658,60+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090630T101658,60+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090630T101658,60+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<wassignedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></wassignedby>
+<body><richtext>
+<pardef id='1'/>
+<par def='1'>nom: 
+<field type='text' kind='editable' name='name'/></par></richtext></body>
+<item name='$$ScriptName' summary='false' sign='true'><text>infos</text></item></form>
+<agent name='capitalize' hide='v3' publicaccess='false' designerversion='6.5'
+ activatable='false'>
+<noteinfo noteid='142' unid='1BB897FB478B5100C12575E5002D8257' sequence='1'>
+<created><datetime dst='true'>20090630T101704,87+02</datetime></created>
+<modified><datetime dst='true'>20090630T101846,15+02</datetime></modified>
+<revised><datetime dst='true'>20090630T101846,14+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090630T101846,14+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090630T101846,14+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<wassignedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></wassignedby>
+<designchange><datetime dst='true'>20090630T101846,11+02</datetime></designchange>
+<trigger type='scheduled'>
+<schedule type='daily' onweekends='false' runlocation='local'>
+<starttime><datetime>T010000,00</datetime></starttime></schedule></trigger>
+<documentset type='modified'/><code event='action'>
+<simpleaction action='modifyfield' field='name' value='capitalize(name)'/></code>
+<rundata processeddocs='0' exitcode='0'>
+<agentmodified><datetime dst='true'>20090630T101846,14+02</datetime></agentmodified></rundata></agent>
+<agent name='purgeDb' hide='v3' publicaccess='false' designerversion='6.5'
+ activatable='false'>
+<noteinfo noteid='152' unid='76CDE9279536AF19C12575E5002DB4DE' sequence='1'>
+<created><datetime dst='true'>20090630T101914,22+02</datetime></created>
+<modified><datetime dst='true'>20090630T102040,94+02</datetime></modified>
+<revised><datetime dst='true'>20090630T102040,93+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090630T102040,93+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090630T102040,93+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<wassignedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></wassignedby>
+<designchange><datetime dst='true'>20090630T102040,93+02</datetime></designchange>
+<trigger type='scheduled'>
+<schedule type='byminutes' hours='1' minutes='0' runlocation='local'>
+<enddate><datetime>20090703</datetime></enddate></schedule></trigger>
+<documentset type='modified'/><code event='action'><formula>@GetField(name);
+ @All</formula></code>
+<rundata processeddocs='0' exitcode='0'>
+<agentmodified><datetime dst='true'>20090630T102040,93+02</datetime></agentmodified></rundata></agent>
+<document form='infos'>
+<noteinfo noteid='8f6' unid='065BDCC71AFA0A6AC12575E5002DEF92' sequence='1'>
+<created><datetime dst='true'>20090630T102144,50+02</datetime></created>
+<modified><datetime dst='true'>20090630T102148,35+02</datetime></modified>
+<revised><datetime dst='true'>20090630T102148,34+02</datetime></revised>
+<lastaccessed><datetime dst='true'>20090630T102148,35+02</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20090630T102148,35+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
+<item name='name'><text>truc</text></item></document></database>

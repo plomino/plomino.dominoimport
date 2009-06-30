@@ -52,21 +52,6 @@ AAAAAAAAAAAAkAAAAIAA5QEmAA==
 </itemdata></item>
 <item name='$Flags'><text>J</text></item>
 <item name='$TITLE'><text>test_binary_4</text></item></note>
-<form name='binaryForm' publicaccess='false' designerversion='6.5'>
-<noteinfo noteid='13a' unid='7AD0B4D3FE218D58C12575CF00519134' sequence='1'>
-<created><datetime dst='true'>20090608T165055,88+02</datetime></created>
-<modified><datetime dst='true'>20090608T165055,97+02</datetime></modified>
-<revised><datetime dst='true'>20090608T165055,96+02</datetime></revised>
-<lastaccessed><datetime dst='true'>20090608T165055,96+02</datetime></lastaccessed>
-<addedtofile><datetime dst='true'>20090608T165055,96+02</datetime></addedtofile></noteinfo>
-<updatedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></updatedby>
-<wassignedby><name>CN=Eric BREHAULT/O=Eric BREHAULT</name></wassignedby>
-<body><richtext>
-<pardef id='1'/>
-<par def='1'>article:</par>
-<par>
-<field type='richtext' kind='editable' name='article'/></par></richtext></body>
-<item name='$$ScriptName' summary='false' sign='true'><text>binaryForm</text></item></form>
 <document form='binaryForm'>
 <noteinfo noteid='8f6' unid='8512F274254F9791C12575CF00519817' sequence='3'>
 <created><datetime dst='true'>20090608T165113,51+02</datetime></created>

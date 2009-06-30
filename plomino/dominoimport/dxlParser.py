@@ -318,7 +318,7 @@ class DXLParser(object):
         """
         
         #print 'extracting docs ...'
-        
+
         docs = dxlFileContent.getElementsByTagName("document")
 
         for doc in docs:
@@ -327,10 +327,10 @@ class DXLParser(object):
             dico['id'], dico['title'] = self.getIdTitleAttributes(doc)
             dico['form'] = doc.getAttribute('form')
             # import all the items included in this doc
-            
-            dico['items'] = []
+
             dico['items'] = self.extractItems(doc)
-            
+            dico['files'] = self.extractInsertedFiles(doc)
+
             self.docs.append(dico)
 
     def extractItems(self, dxlFileContent):
@@ -404,10 +404,74 @@ class DXLParser(object):
             else:
                 dico['value'] = '#########'
 
-            #print dico
-            extractedItems.append(dico)
+            #print 'item', dico['name']
+            if dico['name'] != '$FILE':
+                extractedItems.append(dico)
 
         return extractedItems
+    
+    def extractInsertedFiles(self, dxlFileContent):
+        """
+        Extract files from docs
+        """
+        extractedFiles = []
+        tmpFiles = {}
+        file = {'name': '', 'content': '', 'type': '', 'extension': ''}
+        
+        tmpContent = '' 
+        hasFiles = False
+        
+        child = dxlFileContent.firstChild
+        # TODO: tout est à recoder !!
+        
+        while child is not None:
+            if child.nodeType is child.ELEMENT_NODE:
+
+                # objectref or attachmentref ----
+                if child.getAttribute('name') != '$FILE' and child.hasChildNodes():
+
+                    for objectrefNode in child.getElementsByTagName('objectref'):
+                        file['name'] = objectrefNode.getAttribute('name')
+                        if objectrefNode.getAttribute('class') in DOMINO_MIME_TYPES:
+                            file['extension'] = DOMINO_MIME_TYPES[objectrefNode.getAttribute('class')]
+                        tmpFiles[file['name']] = file
+                        file = {}
+
+                    for pictureNode in child.getElementsByTagName('picture'):
+
+                        if pictureNode.parentNode.nodeName != 'attachmentref' and pictureNode.parentNode.nodeName != 'objectref' and pictureNode.parentNode.nodeName != 'imageref':
+
+                            if pictureNode.firstChild.nodeName != 'notesbitmap' and pictureNode.firstChild.nodeName != 'imageref' and pictureNode.firstChild.firstChild is not None:
+                                file['name'] = 'image.' + str(pictureNode.firstChild.nodeName)
+                                file['content'] = str(pictureNode.firstChild.firstChild.data).replace('\n', '')
+                                # TODO: get the correct type from the extension using mimetypes module
+                                file['type'] = 'image/' + str(pictureNode.firstChild.nodeName)
+                                extractedFiles.append(file)
+                                file = {}
+
+                else:
+                    fileNode = child.getElementsByTagName('object')[0].getElementsByTagName('file')[0]
+                    if fileNode.getAttribute('hosttype') == 'bytearraypage':
+                        tmpContent += fileNode.getElementsByTagName('filedata')[0].firstChild.nodeValue
+
+                    elif fileNode.getAttribute('hosttype') == 'bytearrayext':
+                        name = fileNode.getAttribute('name')
+                        tmpFiles[name]['content'] = tmpContent
+                        tmpFiles[name]['name'] += '.' + tmpFiles[fileNode.getAttribute('name')]['extension']
+
+                        extractedFiles.append(tmpFiles[name])
+                        tmpContent = ''
+
+                    else:
+                        file['name'] = fileNode.getAttribute('name')
+                        file['content'] = fileNode.getElementsByTagName('filedata')[0].firstChild.nodeValue
+                        extractedFiles.append(file)
+                        file = {}
+
+            child = child.nextSibling
+
+        #print extractedFiles
+        return extractedFiles
     
     def extractAgents(self, dxlFileContent):
         """
@@ -428,9 +492,9 @@ class DXLParser(object):
                                 '\n#------------ \n# ' + str(code['content']).replace('\n', '\n# ') 
             
             #dico['content'] = self.extractCode(agent)
-            if agent.getElementsByTagName('trigger')[0].getAttribute('type') == 'schedule':
+            if agent.getElementsByTagName('trigger')[0].getAttribute('type') == 'scheduled':
                 dico['scheduled'] = True
-                # TODO : récupérer le contenu de scheduled
+                # TODO : récupérer le contenu de scheduled: prochaine version
             else:
                 dico['scheduled'] = False
 
@@ -445,9 +509,21 @@ class DXLParser(object):
         codeElements = dxlFileContent.getElementsByTagName("code")
 
         for code in codeElements:
+            dico = {}
+            dico['event'] = code.getAttribute('event')
             firstElement = self.getFirstElement(code)
+
             if firstElement.nodeName in DOMINO_CODE_TYPE:
-                extractedCode.append({'event': code.getAttribute('event'), 'type': firstElement.nodeName, 'content': firstElement.firstChild.data})
+                dico['type'] = firstElement.nodeName
+
+                if firstElement.hasChildNodes():
+                    dico['content'] = firstElement.firstChild.data
+                elif firstElement.nodeName == 'simpleaction':
+                    dico['content'] = 'action: ' + firstElement.getAttribute('action') + \
+                                        'field: ' + firstElement.getAttribute('field') + \
+                                        'value: ' + firstElement.getAttribute('value')
+
+            extractedCode.append(dico)
 
         return extractedCode
 

@@ -147,7 +147,7 @@ DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_agents.xml")
     >>> dxlDoc = i.processImportDXL(dxlFile)
-    {'forms': [1, 0], 'docs': [1, 0], 'agents': [2, 0], 'resources': [0, 0], 'views': [1, 0]}
+    {'forms': [1, 0], 'docs': [1, 0], 'agents': [3, 0], 'resources': [0, 0], 'views': [1, 0]}
     
 Check agent
 -----------
@@ -165,7 +165,12 @@ Check agent
     ''
     '* 1 * * *'
     'capitalize'
-    ''
+    '\n#------------ \n# code from lotus domino\n# Event: action\n# code type: simpleaction\n#------------ \n# action: modifyfieldfield: namevalue: capitalize(name)'
     True
     ''
+    '* 1 * * *'
+    'purgeDb'
+    '\n#------------ \n# code from lotus domino\n# Event: action\n# code type: formula\n#------------ \n# @GetField(name);\n#  @All'
+    True
     ''
+    '* 1 * * *'

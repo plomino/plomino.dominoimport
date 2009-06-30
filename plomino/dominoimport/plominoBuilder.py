@@ -149,7 +149,21 @@ class PlominoBuilder(object):
                     # TODO: check the value before set ?
                     #self.createItem(itemInfos, newDoc)
 
+                # Add the files inserted in the document
+                if docInfos['files'] != []:
+                    if not hasattr(newDoc.getForm(), 'imported_files'):
+                        fieldId = newDoc.getForm().invokeFactory('PlominoField', 
+                                                                 id='imported_files',
+                                                                 title='Imported Files',
+                                                                 FieldType='ATTACHMENT')
+                        newDoc.getForm().setFormLayout(newDoc.getForm().getFormLayout() + \
+                                            '<p>Imported files: <span class="plominoFieldClass">imported_files</span></p>')
+                    for fileInfos in docInfos['files']:
+                        newDoc.setfile(a2b_base64(str(fileInfos['content'])), fileInfos['name'])
+
                 newDoc.save()
+
+        self.plominoDatabase.getIndex().refresh()
 
     def createItem(self, itemInfos, container):
         """
