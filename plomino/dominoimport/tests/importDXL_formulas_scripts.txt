@@ -51,7 +51,7 @@ Fields
     'infos'
 
     >>> allFields = form.getFields()
-    >>> allFields.sort()
+    >>> allFields.reverse()
     >>> allFields
     [<PlominoField at /plone/Members/test_user_1_/mydb/infos/biography>, <PlominoField at /plone/Members/test_user_1_/mydb/infos/age>, <PlominoField at /plone/Members/test_user_1_/mydb/infos/birthdate>, <PlominoField at /plone/Members/test_user_1_/mydb/infos/name>]
     

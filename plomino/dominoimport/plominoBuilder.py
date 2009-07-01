@@ -163,19 +163,22 @@ class PlominoBuilder(object):
 
                 newDoc.save()
 
+            else:
+                raise Exception
+
         self.plominoDatabase.getIndex().refresh()
 
-    def createItem(self, itemInfos, container):
-        """
-        Create document in the database
-        
-        !!!!!!! Not used in this version !!!!!!!!
-        
-        @param dict itemInfos : 
-        @return string :
-        """
-        
-        pass
+#    def createItem(self, itemInfos, container):
+#        """
+#        Create document in the database
+#        
+#        !!!!!!! Not used in this version !!!!!!!!
+#        
+#        @param dict itemInfos : 
+#        @return string :
+#        """
+#        
+#        pass
 
     def createAgent(self, agentInfos):
         """
@@ -208,40 +211,40 @@ class PlominoBuilder(object):
         #print self.plominoDatabase.resources._objects
         obj.update_data(resourceInfos['content'].decode('base64'), content_type=resourceInfos['type'])
 
-    def createElementInDatabase(self, elementInfos):
-        """
-
-        @param dict elementInfos : 
-        @return  :
-        """
-        elementId = None
-        
-        try:
-            elementId=self.plominoDatabase.invokeFactory(elementInfos['type'], 
-                                              id=elementInfos['id'])
-    
-        except ImportDXLException, e:
-            logger.info('Error during import ' + elementInfos['type'] + ': ' + str(type(e)) + " - " + str(e))
-            print str(type(e)) + " - " + str(e)
-            
-        except Exception, e:
-            logger.info('Error during import ' + elementInfos['type'] + ': ' + str(type(e)) + " - " + str(e))
-            print str(type(e)) + " - " + str(e)
-        
-        return elementId
-
-    def addFileInDocument(self, fileInfos):
-        """
-
-        @param dict fileInfos : 
-        @return  :
-        """
-        pass
-
-    def addFileToResources(self, fileInfos):
-        """
-
-        @param dict fileInfos : 
-        @return  :
-        """
-        pass
+#    def createElementInDatabase(self, elementInfos):
+#        """
+#
+#        @param dict elementInfos : 
+#        @return  :
+#        """
+#        elementId = None
+#        
+#        try:
+#            elementId=self.plominoDatabase.invokeFactory(elementInfos['type'], 
+#                                              id=elementInfos['id'])
+#    
+#        except ImportDXLException, e:
+#            logger.info('Error during import ' + elementInfos['type'] + ': ' + str(type(e)) + " - " + str(e))
+#            print str(type(e)) + " - " + str(e)
+#            
+#        except Exception, e:
+#            logger.info('Error during import ' + elementInfos['type'] + ': ' + str(type(e)) + " - " + str(e))
+#            print str(type(e)) + " - " + str(e)
+#        
+#        return elementId
+#
+#    def addFileInDocument(self, fileInfos):
+#        """
+#
+#        @param dict fileInfos : 
+#        @return  :
+#        """
+#        pass
+#
+#    def addFileToResources(self, fileInfos):
+#        """
+#
+#        @param dict fileInfos : 
+#        @return  :
+#        """
+#        pass

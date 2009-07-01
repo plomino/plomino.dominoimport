@@ -90,13 +90,13 @@ class DXLParser(object):
             #print str(type(e)) + " - " + str(e)
         
         if dxlFileContent is not None:
-            self.extractResourcesFromDXL(dxlFileContent)
+            self.extractResources(dxlFileContent)
             self.extractForms(dxlFileContent)
             self.extractViews(dxlFileContent)
             self.extractDocs(dxlFileContent)
             self.extractAgents(dxlFileContent)
 
-    def extractResourcesFromDXL(self, dxlFileContent):
+    def extractResources(self, dxlFileContent):
         """
         Extract file resources from the DXL parsed file
         """
@@ -418,7 +418,8 @@ class DXLParser(object):
         tmpFiles = {}
         file = {'name': '', 'content': '', 'type': '', 'extension': ''}
         
-        tmpContent = '' 
+        tmpContent = ''
+        numFile = 1 # used for picture
         hasFiles = False
         
         child = dxlFileContent.firstChild
@@ -442,11 +443,12 @@ class DXLParser(object):
                         if pictureNode.parentNode.nodeName != 'attachmentref' and pictureNode.parentNode.nodeName != 'objectref' and pictureNode.parentNode.nodeName != 'imageref':
 
                             if pictureNode.firstChild.nodeName != 'notesbitmap' and pictureNode.firstChild.nodeName != 'imageref' and pictureNode.firstChild.firstChild is not None:
-                                file['name'] = 'image.' + str(pictureNode.firstChild.nodeName)
+                                file['name'] = 'image' + str(numFile) + '.' + str(pictureNode.firstChild.nodeName)
                                 file['content'] = str(pictureNode.firstChild.firstChild.data).replace('\n', '')
                                 # TODO: get the correct type from the extension using mimetypes module
                                 file['type'] = 'image/' + str(pictureNode.firstChild.nodeName)
                                 extractedFiles.append(file)
+                                numFile += 1
                                 file = {}
 
                 else:
