@@ -32,7 +32,7 @@ DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_actions.xml")
     >>> dxlDoc = i.processImportDXL(dxlFile)
-    {"PlominoForm": (2, 0), "PlominoField": (2, 0), "PlominoView": (1, 0), "PlominoColumn": (6, 0), "PlominoAgent": (1, 0), "PlominoAction": (2, 0), "PlominoDocument": (2, 0), "resources": (0, 0), "inserted_files": (0, 0)}
+    {'forms': [2, 0], 'docs': [4, 0], 'agents': [1, 0], 'resources': [0, 0], 'views': [1, 0]}
 
 Actions located in forms:
 ------------------------

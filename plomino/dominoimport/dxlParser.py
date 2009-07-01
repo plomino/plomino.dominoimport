@@ -268,7 +268,10 @@ class DXLParser(object):
                             dico['SelectionFormula'] = '# ' + code['content']
 
                     elif code['event'] == 'form':
-                        dico['FormFormula'] = '# ' + code['content']
+                        if code['content'] != '':
+                            dico['FormFormula'] = '# ' + code['content']
+                        else:
+                            dico['FormFormula'] = ''
 
             # import all the columns included in this view
             dico['columns'] = self.extractColumns(view)
@@ -419,7 +422,7 @@ class DXLParser(object):
         file = {'name': '', 'content': '', 'type': '', 'extension': ''}
         
         tmpContent = ''
-        numFile = 1 # used for picture
+        numChrono = 1 # used for picture
         hasFiles = False
         
         child = dxlFileContent.firstChild
@@ -443,12 +446,12 @@ class DXLParser(object):
                         if pictureNode.parentNode.nodeName != 'attachmentref' and pictureNode.parentNode.nodeName != 'objectref' and pictureNode.parentNode.nodeName != 'imageref':
 
                             if pictureNode.firstChild.nodeName != 'notesbitmap' and pictureNode.firstChild.nodeName != 'imageref' and pictureNode.firstChild.firstChild is not None:
-                                file['name'] = 'image' + str(numFile) + '.' + str(pictureNode.firstChild.nodeName)
+                                file['name'] = 'image' + str(numChrono) + '.' + str(pictureNode.firstChild.nodeName)
                                 file['content'] = str(pictureNode.firstChild.firstChild.data).replace('\n', '')
                                 # TODO: get the correct type from the extension using mimetypes module
                                 file['type'] = 'image/' + str(pictureNode.firstChild.nodeName)
                                 extractedFiles.append(file)
-                                numFile += 1
+                                numChrono += 1
                                 file = {}
 
                 else:
@@ -565,6 +568,7 @@ class DXLParser(object):
         list = "none"
         defId = 0
         child = node.firstChild
+        numChrono = 1
         
         # parcourt tous les enfants de node, et réapplique la méthode selont les cas
         while child is not None:
@@ -591,11 +595,12 @@ class DXLParser(object):
                 
                 
             elif name == 'jpeg':
-                filename = 'image'
+                filename = 'image' + str(numChrono) + '.' + name
                 if formId is not None:
                     html_content += '<img src="resources/' + filename + '" />'
                 else:
                     html_content += '<img src="getfile?filename=' + filename + '" />'
+                numChrono += 1
 
             # To get the lists ----
             # REM: c'est une sacrée usine à gaz, on devrait utiliser les xls si on veut aller plus loin
