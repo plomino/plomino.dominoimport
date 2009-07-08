@@ -5,9 +5,10 @@ Changelog
 ------
 
 * import formulas as comments
+* code split in several classes
 * bugs fixes
 
-0.1 - Unreleased
-----------------
+0.1dev - Unreleased
+-------------------
 
 * Initial release
