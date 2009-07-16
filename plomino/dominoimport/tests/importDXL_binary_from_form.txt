@@ -33,7 +33,7 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binary_forms.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     
 Get binaries
 ------------

@@ -29,7 +29,7 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlComplexForm.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [3, 0], 'docs': [0, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [0, 0]}
 
 Check forms with their fields
@@ -181,7 +181,7 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_richtext.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [1, 0], 'docs': [1, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [1, 0]}
 
 Check forms with their fields

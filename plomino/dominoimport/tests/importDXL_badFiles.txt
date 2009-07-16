@@ -34,7 +34,7 @@ Error: no DXL to import
 Import DXL file
 ---------------
 DXL file imported is the database design one: the file is parsed in a xml object
-dxlDoc = db.processImportDXL(REQUEST)
+db.processImportDXL(REQUEST)
 Trouver une REQUEST à lui donner
 
 Error: DXL doc does not exists
@@ -43,7 +43,7 @@ Error: DXL doc does not exists
 Import DXL file
 ---------------
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseBidon.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
 
 Error: non valid DXL files
 ==========================
@@ -52,11 +52,11 @@ Import DXL file
 ---------------
 File with bad XML
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseBadXML.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
 
 File with correct XML but DXL element which not exists in DTD
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseBadDXL.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
 
 Error: forms with same Id
 =========================
@@ -66,7 +66,7 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseFormsErrorSameId.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
 
 Check forms with their fields
 ------------------------------
@@ -118,7 +118,7 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseViewsErrorSameId.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
 
 Check views
 ------------
@@ -148,7 +148,7 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseColumnErrorSameId.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
 
 Check views
 ------------
@@ -193,7 +193,7 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabaseFormsErrorSameId.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
 
 Check forms with their fields
 ------------------------------
@@ -210,7 +210,7 @@ from another DXL file, we get the database data
 Documents are created with their item, and also form is set if the attribute 'form' is provided
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDocumentErrorSameId.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     
     >>> i.importDocs(dxlDoc)
     (2, 1)

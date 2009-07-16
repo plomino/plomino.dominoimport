@@ -27,7 +27,7 @@ Import a DXL File
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_documents.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [1, 0], 'docs': [2, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [1, 0]}
     
 Check forms with their fields
@@ -123,7 +123,7 @@ Documents not for this form
 ---------------------------
 One of the docs has no form, the other has not the correct items
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_documents_out.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [0, 0], 'docs': [1, 1], 'agents': [0, 0], 'resources': [0, 0], 'views': [0, 0]}
 
 Docs in the database ?

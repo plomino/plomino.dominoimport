@@ -10,7 +10,7 @@ Created on 20 may 2009
 
 @author: Emmanuelle Helly
 
-File DxlConfig.py is required
+File dxlConfig.py is required
 """
 
 __author__ = """Emmanuelle Helly"""
@@ -75,7 +75,7 @@ class DominoImporter(object):
                 results['forms'][0] += 1
             except Exception, inst:
                 results['forms'][1] += 1
-                print type(inst), inst
+                #print type(inst), inst
 
         # create views
         for view in myDxlParser.getViews():
@@ -84,7 +84,7 @@ class DominoImporter(object):
                 results['views'][0] += 1
             except Exception, inst:
                 results['views'][1] += 1
-                print type(inst), inst
+                #print type(inst), inst
 
         # create docs
         for doc in myDxlParser.getDocs():
@@ -93,7 +93,7 @@ class DominoImporter(object):
                 results['docs'][0] += 1
             except Exception, inst:
                 results['docs'][1] += 1
-                print type(inst), inst
+                #print type(inst), inst
         
         # create agents
         for agent in myDxlParser.getAgents():
@@ -102,10 +102,9 @@ class DominoImporter(object):
                 results['agents'][0] += 1
             except Exception, inst:
                 results['agents'][1] += 1
-                print type(inst), inst
+                #print type(inst), inst
         
         self.context.getIndex().refresh()
-        print results
         
         return results
     

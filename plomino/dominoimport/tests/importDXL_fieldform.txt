@@ -31,7 +31,7 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_fields.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [1, 0], 'docs': [0, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [0, 0]}
 
 Check forms with their fields
@@ -110,7 +110,7 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_text_type.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [1, 0], 'docs': [1, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [0, 0]}
 
 Check forms with their fields
@@ -214,7 +214,7 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_number_type.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [1, 0], 'docs': [1, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [0, 0]}
 
 Check forms with their fields
@@ -329,7 +329,7 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_datetime_type.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [1, 0], 'docs': [1, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [1, 0]}
 
 Check forms with their fields
@@ -415,7 +415,7 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_selection_type.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [1, 0], 'docs': [2, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [0, 0]}
 
 Check forms with their fields
@@ -542,7 +542,7 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_names_type.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [1, 0], 'docs': [4, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [0, 0]}
 
 Check forms with their fields

@@ -33,7 +33,7 @@ Import DXL file
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binaries.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [1, 0], 'docs': [5, 0], 'agents': [0, 0], 'resources': [1, 0], 'views': [1, 0]}
     
     
@@ -119,7 +119,7 @@ Doc with Image ressource created in database
 rem: it is the same as Check > insert Ressource, when ressource has already been created in Domino
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binary_3.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [0, 0], 'docs': [1, 0], 'agents': [0, 0], 'resources': [1, 0], 'views': [1, 0]}
     
     >>> db.resources._objects
@@ -152,7 +152,7 @@ Doc with file attached
 ----------------------
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binary_1.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [0, 0], 'docs': [1, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [1, 0]}
     
     >>> doc = db.getAllDocuments()[6]
@@ -184,7 +184,7 @@ Doc with picture created in richtext
 ------------------------------------
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binary_2.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [0, 0], 'docs': [1, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [1, 0]}
 
     >>> doc = db.getAllDocuments()[7]
@@ -214,7 +214,7 @@ Doc with File object created in richtext
 ----------------------------------------
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binary_4.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [0, 0], 'docs': [1, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [1, 0]}
 
     >>> db.resources._objects

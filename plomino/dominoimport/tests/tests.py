@@ -83,8 +83,8 @@ def test_suite():
 #            'tests/importDXL_badFiles.txt', package='plomino.dominoimport',
 #            test_class=ExampleFunctionalTestCase,
 #            optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
-#            #optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
-#            
+            #optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
+            
 #        ztc.ZopeDocFileSuite(
 #            'tests/importDXL_100docs.txt', package='plomino.dominoimport',
 #            test_class=ExampleFunctionalTestCase,

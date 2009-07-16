@@ -31,7 +31,7 @@ Import a DXL File
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDatabase.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [2, 0], 'docs': [0, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [1, 0]}
     
 Check forms with their fields
@@ -120,7 +120,7 @@ from another DXL file, we get the database data
 Documents are created with their item, and also form is set if the attribute 'form' is provided
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDocument.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [0, 0], 'docs': [2, 0], 'agents': [0, 0], 'resources': [0, 0], 'views': [0, 0]}
 
 Docs in the database ?

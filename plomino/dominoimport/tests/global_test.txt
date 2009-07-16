@@ -3,7 +3,7 @@ Plomino importer
 Overview of the dominoimport module features
 For complete tests, please run all specific tests
  
-Check a database
+Create a database
 -----------------
 
     >>> from Products.Five.testbrowser import Browser
@@ -31,7 +31,7 @@ Import a DXL File
 DXL file imported is the database design one: the file is parsed in a xml object
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_overview.xml")
-    >>> dxlDoc = i.processImportDXL(dxlFile)
+    >>> i.processImportDXL(dxlFile)
     {'forms': [2, 0], 'docs': [1, 0], 'agents': [1, 0], 'resources': [1, 0], 'views': [2, 0]}
     
 Check agents
