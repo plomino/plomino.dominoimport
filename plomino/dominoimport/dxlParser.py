@@ -87,7 +87,6 @@ class DXLParser(object):
 #            print str(TypeError) + str(e)
         except Exception, e:
             logger.info(str(type(e)) + " - " + str(e))
-            #print str(type(e)) + " - " + str(e)
         
         if dxlFileContent is not None:
             self.extractResources(dxlFileContent)
@@ -103,7 +102,6 @@ class DXLParser(object):
 
         # Get all the image resources of the DXL file
         fileNodes = dxlFileContent.getElementsByTagName("imageresource")
-        #print 'extracting resource ...'
 
         for fileElement in fileNodes:
             file = {}
@@ -119,8 +117,6 @@ class DXLParser(object):
 
                 child = child.nextSibling
             
-            #print file['name'], file['type']
-            
             self.resources.append(file)
     
     def extractForms(self, dxlFileContent):
@@ -128,7 +124,6 @@ class DXLParser(object):
         Extract forms from the DXL parsed file
         """
         
-        #print 'extracting forms ...'
         forms = dxlFileContent.getElementsByTagName("form") + dxlFileContent.getElementsByTagName("subform")
 
         for form in forms:
@@ -151,7 +146,6 @@ class DXLParser(object):
         """
         
         extractedFields = []
-        #print 'extracting fields ...'
         fields = dxlFileContent.getElementsByTagName("field")
         
         for field in fields:
@@ -247,7 +241,6 @@ class DXLParser(object):
         Extract views from the DXL parsed file
         """
         
-        #print 'extracting views ...'
         views = dxlFileContent.getElementsByTagName("view")
 
         for view in views:
@@ -284,7 +277,6 @@ class DXLParser(object):
         """
         extractedCols = []
         position = 1
-        #print 'extracting columns ...'
          
         columns = dxlFileContent.getElementsByTagName('column')
         
@@ -320,8 +312,6 @@ class DXLParser(object):
         Extract docs from the DXL parsed file
         """
         
-        #print 'extracting docs ...'
-
         docs = dxlFileContent.getElementsByTagName("document")
 
         for doc in docs:
@@ -407,7 +397,6 @@ class DXLParser(object):
             else:
                 dico['value'] = '#########'
 
-            #print 'item', dico['name']
             if dico['name'] != '$FILE':
                 extractedItems.append(dico)
 
@@ -426,7 +415,6 @@ class DXLParser(object):
         hasFiles = False
         
         child = dxlFileContent.firstChild
-        # TODO: tout est à recoder !!
         
         while child is not None:
             if child.nodeType is child.ELEMENT_NODE:
@@ -475,7 +463,6 @@ class DXLParser(object):
 
             child = child.nextSibling
 
-        #print extractedFiles
         return extractedFiles
     
     def extractAgents(self, dxlFileContent):
@@ -496,7 +483,6 @@ class DXLParser(object):
                                 '\n# code type: ' + code['type']  + \
                                 '\n#------------ \n# ' + str(code['content']).replace('\n', '\n# ') 
             
-            #dico['content'] = self.extractCode(agent)
             if agent.getElementsByTagName('trigger')[0].getAttribute('type') == 'scheduled':
                 dico['scheduled'] = True
                 # TODO : récupérer le contenu de scheduled: prochaine version
@@ -603,9 +589,8 @@ class DXLParser(object):
                 numChrono += 1
 
             # To get the lists ----
-            # REM: c'est une sacrée usine à gaz, on devrait utiliser les xls si on veut aller plus loin
+            # REM: should use xsl
             elif name == 'pardef':
-                #defId = child.getAttribute('id')
                 if child.hasAttribute('list'):
                     defId = child.getAttribute('id')
                     list = child.getAttribute('list')

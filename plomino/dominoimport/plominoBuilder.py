@@ -31,18 +31,15 @@ class PlominoBuilder(object):
         Create form in the database
 
         @param dict formInfos : 
-        @return string :
-        @author
         """
         
         formId = self.plominoDatabase.invokeFactory(formInfos['type'],
                                               id=formInfos['id'])
-        #print 'creating form:', formId
+
         if formId is not None:
             form = self.plominoDatabase.getForm(formId)
             form.setTitle(formInfos['title'])
             form.setFormLayout(formInfos['formLayout'])
-            #self.importInsertedFiles(form, self.context.getForm(formId))
 
             # Create the fields
             for fieldInfos in formInfos['fields']:
@@ -57,11 +54,9 @@ class PlominoBuilder(object):
 
         @param dict fieldInfos : 
         @param plomino object container : 
-        @return string :
         """
         fieldId = container.invokeFactory(fieldInfos['type'], 
                                            id=fieldInfos['id'])
-        #print 'creating field:', fieldId
         
         if fieldId is not None:
             field = container.getFormField(fieldId)
@@ -71,6 +66,7 @@ class PlominoBuilder(object):
             field.setFormula(fieldInfos['formula'])
             field.setValidationFormula(fieldInfos['ValidationFormula'])
 
+            # Update the settings
             adapt=field.getSettings()
             for key in fieldInfos['settings'].keys():
                 v = fieldInfos['settings'][key]
@@ -85,11 +81,10 @@ class PlominoBuilder(object):
         Create view in the database
 
         @param dict viewInfos : 
-        @return string :
         """
         viewId = self.plominoDatabase.invokeFactory(viewInfos['type'], 
                                                     id=viewInfos['id'])
-        #print 'creating view:', viewId
+
         if viewId is not None:
             view = self.plominoDatabase.getView(viewId)
             view.setTitle(viewInfos['title'])
@@ -108,12 +103,11 @@ class PlominoBuilder(object):
         Create column in the database
 
         @param dict columnInfos : 
-        @param dict viewId : 
-        @return string :
+        @param plomino object container : 
         """
         columnId = container.invokeFactory(columnInfos['type'], 
                                            id=columnInfos['id'])
-        #print 'creating column:', columnId
+
         if columnId is not None:
             column = container.getColumn(columnId)
             column.setTitle(columnInfos['title'])
@@ -126,9 +120,7 @@ class PlominoBuilder(object):
         Create document in the database
 
         @param dict docInfos : 
-        @return string :
         """
-        #print 'creating doc:', docInfos['id']
         if docInfos['id'] != '':
             newDocId = self.plominoDatabase.invokeFactory(docInfos['type'], 
                                                     id=docInfos['id'])
@@ -173,9 +165,6 @@ class PlominoBuilder(object):
 #        Create document in the database
 #        
 #        !!!!!!! Not used in this version !!!!!!!!
-#        
-#        @param dict itemInfos : 
-#        @return string :
 #        """
 #        
 #        pass
@@ -185,11 +174,9 @@ class PlominoBuilder(object):
         Create agent in the database
 
         @param dict agentInfos : 
-        @return string :
         """
         agentId = self.plominoDatabase.invokeFactory(agentInfos['type'], 
                                                      id=agentInfos['id'])
-        #print 'creating agent:', agentId
         
         if agentId is not None:
             agent = getattr(self.plominoDatabase, agentId)
@@ -201,21 +188,16 @@ class PlominoBuilder(object):
         """
         Add files into the database "resources" folder
         @param dict resourceInfos : 
-        @return string :
         """
-        #print 'creating resource in database:', resourceInfos['name'] 
         
         if not(hasattr(self.plominoDatabase, resourceInfos['name'])):
             self.plominoDatabase.resources.manage_addFile(resourceInfos['name'])
         obj = getattr(self.plominoDatabase.resources, resourceInfos['name'])
-        #print self.plominoDatabase.resources._objects
         obj.update_data(resourceInfos['content'].decode('base64'), content_type=resourceInfos['type'])
 
 #    def createElementInDatabase(self, elementInfos):
 #        """
-#
-#        @param dict elementInfos : 
-#        @return  :
+#        !!!!!!! Not used in this version !!!!!!!!
 #        """
 #        elementId = None
 #        
@@ -232,19 +214,3 @@ class PlominoBuilder(object):
 #            print str(type(e)) + " - " + str(e)
 #        
 #        return elementId
-#
-#    def addFileInDocument(self, fileInfos):
-#        """
-#
-#        @param dict fileInfos : 
-#        @return  :
-#        """
-#        pass
-#
-#    def addFileToResources(self, fileInfos):
-#        """
-#
-#        @param dict fileInfos : 
-#        @return  :
-#        """
-#        pass
