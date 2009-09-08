@@ -1,7 +1,10 @@
 Plomino importer
 ================
 
-Check a database
+This test import a simple DXL file included a database with 2 forms and a view.
+The second simple DXL include two documents. 
+
+Create a database
 -----------------
 
     >>> from Products.Five.testbrowser import Browser
@@ -116,7 +119,7 @@ Formula:
 
 Check Documents
 ----------------
-from another DXL file, we get the database data
+From another DXL file, we get the database data.
 Documents are created with their item, and also form is set if the attribute 'form' is provided
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "dxlDocument.xml")

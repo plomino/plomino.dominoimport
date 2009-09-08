@@ -1,0 +1,131 @@
+
+<!doctype html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module dxlParser</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>dxlParser</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/manue/Realisations/plone/plomino.dominoimport/plomino/dominoimport/dxlParser.py">/home/manue/Realisations/plone/plomino.dominoimport/plomino/dominoimport/dxlParser.py</a></font></td></tr></table>
+    <p><tt>Created&nbsp;on&nbsp;22&nbsp;June&nbsp;2009<br>
+&nbsp;<br>
+@author:&nbsp;Emmanuelle&nbsp;Helly<br>
+&nbsp;<br>
+File&nbsp;DxlConfig.py&nbsp;is&nbsp;required</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="logging.html">logging</a><br>
+</td><td width="25%" valign=top><a href="re.html">re</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="dxlParser.html#DXLParser">DXLParser</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DXLParser">class <strong>DXLParser</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>parser&nbsp;used&nbsp;to&nbsp;transform&nbsp;dxl&nbsp;element&nbsp;to&nbsp;mapping&nbsp;<a href="__builtin__.html#object">object</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DXLParser-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initialize&nbsp;parser</tt></dd></dl>
+
+<dl><dt><a name="DXLParser-extractAgents"><strong>extractAgents</strong></a>(self, dxlFileContent)</dt><dd><tt>Extract&nbsp;agents&nbsp;from&nbsp;the&nbsp;DXL&nbsp;parsed&nbsp;file</tt></dd></dl>
+
+<dl><dt><a name="DXLParser-extractCode"><strong>extractCode</strong></a>(self, dxlFileContent)</dt><dd><tt>Extract&nbsp;code&nbsp;from&nbsp;a&nbsp;DXL&nbsp;parsed&nbsp;content</tt></dd></dl>
+
+<dl><dt><a name="DXLParser-extractColumns"><strong>extractColumns</strong></a>(self, dxlFileContent)</dt><dd><tt>Extract&nbsp;columns&nbsp;from&nbsp;the&nbsp;DXL&nbsp;parsed&nbsp;file</tt></dd></dl>
+
+<dl><dt><a name="DXLParser-extractDocs"><strong>extractDocs</strong></a>(self, dxlFileContent)</dt><dd><tt>Extract&nbsp;docs&nbsp;from&nbsp;the&nbsp;DXL&nbsp;parsed&nbsp;file</tt></dd></dl>
+
+<dl><dt><a name="DXLParser-extractFields"><strong>extractFields</strong></a>(self, dxlFileContent)</dt><dd><tt>Extract&nbsp;fields&nbsp;from&nbsp;the&nbsp;DXL&nbsp;parsed&nbsp;file</tt></dd></dl>
+
+<dl><dt><a name="DXLParser-extractForms"><strong>extractForms</strong></a>(self, dxlFileContent)</dt><dd><tt>Extract&nbsp;forms&nbsp;from&nbsp;the&nbsp;DXL&nbsp;parsed&nbsp;file</tt></dd></dl>
+
+<dl><dt><a name="DXLParser-extractInsertedFiles"><strong>extractInsertedFiles</strong></a>(self, dxlFileContent)</dt><dd><tt>Extract&nbsp;files&nbsp;from&nbsp;docs</tt></dd></dl>
+
+<dl><dt><a name="DXLParser-extractItems"><strong>extractItems</strong></a>(self, dxlFileContent)</dt><dd><tt>Extract&nbsp;items&nbsp;from&nbsp;the&nbsp;DXL&nbsp;parsed&nbsp;file</tt></dd></dl>
+
+<dl><dt><a name="DXLParser-extractResources"><strong>extractResources</strong></a>(self, dxlFileContent)</dt><dd><tt>Extract&nbsp;file&nbsp;resources&nbsp;from&nbsp;the&nbsp;DXL&nbsp;parsed&nbsp;file</tt></dd></dl>
+
+<dl><dt><a name="DXLParser-extractViews"><strong>extractViews</strong></a>(self, dxlFileContent)</dt><dd><tt>Extract&nbsp;views&nbsp;from&nbsp;the&nbsp;DXL&nbsp;parsed&nbsp;file</tt></dd></dl>
+
+<dl><dt><a name="DXLParser-getAgents"><strong>getAgents</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DXLParser-getDocs"><strong>getDocs</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DXLParser-getFirstElement"><strong>getFirstElement</strong></a>(self, dxlFileContent)</dt><dd><tt>return&nbsp;the&nbsp;first&nbsp;node&nbsp;of&nbsp;element&nbsp;type</tt></dd></dl>
+
+<dl><dt><a name="DXLParser-getForms"><strong>getForms</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DXLParser-getIdTitleAttributes"><strong>getIdTitleAttributes</strong></a>(self, dxlFileContent)</dt><dd><tt>Get&nbsp;the&nbsp;Id&nbsp;and&nbsp;the&nbsp;Title&nbsp;from&nbsp;a&nbsp;DXLFileContent<br>
+@return&nbsp;tuple&nbsp;:</tt></dd></dl>
+
+<dl><dt><a name="DXLParser-getResources"><strong>getResources</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DXLParser-getViews"><strong>getViews</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DXLParser-parseDXLFile"><strong>parseDXLFile</strong></a>(self, file)</dt><dd><tt>Parse&nbsp;dxl&nbsp;file&nbsp;and&nbsp;set&nbsp;resources,&nbsp;forms,&nbsp;views,&nbsp;and&nbsp;agents&nbsp;sequences</tt></dd></dl>
+
+<dl><dt><a name="DXLParser-richtext2Html"><strong>richtext2Html</strong></a>(self, dxlFileContent)</dt><dd><tt>transform&nbsp;a&nbsp;richtext&nbsp;element&nbsp;from&nbsp;dxl&nbsp;to&nbsp;html,&nbsp;using&nbsp;an&nbsp;xsl&nbsp;stylesheet<br>
+@return&nbsp;string&nbsp;:</tt></dd></dl>
+
+<dl><dt><a name="DXLParser-richtextToHtml"><strong>richtextToHtml</strong></a>(self, node, formId<font color="#909090">=None</font>, deep_header<font color="#909090">=1</font>, gettext<font color="#909090">=True</font>)</dt><dd><tt>transform&nbsp;a&nbsp;richtext&nbsp;in&nbsp;a&nbsp;html&nbsp;(String)<br>
+@return&nbsp;string&nbsp;:</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__dict__</strong> = &lt;dictproxy object&gt;<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dl>
+
+<dl><dt><strong>__weakref__</strong> = &lt;attribute '__weakref__' of 'DXLParser' objects&gt;<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;(if&nbsp;defined)</tt></dl>
+
+<dl><dt><strong>agents</strong> = []</dl>
+
+<dl><dt><strong>docs</strong> = []</dl>
+
+<dl><dt><strong>forms</strong> = []</dl>
+
+<dl><dt><strong>resources</strong> = []</dl>
+
+<dl><dt><strong>views</strong> = []</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__author__</strong> = 'Emmanuelle Helly'<br>
+<strong>__docformat__</strong> = 'plaintext'<br>
+<strong>logger</strong> = &lt;logging.Logger instance&gt;<br>
+<strong>p_for_id</strong> = &lt;_sre.SRE_Pattern object&gt;<br>
+<strong>p_for_title</strong> = &lt;_sre.SRE_Pattern object&gt;</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#7799ee">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Author</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#7799ee"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Emmanuelle&nbsp;Helly</td></tr></table>
+</body></html>

@@ -79,7 +79,7 @@ Items in the correct document ?
     '14AC27B496003398C12575CB0044834E'
     'Form: binaryForm'
     "Plomino_Authors: ['test_user_1_']"
-    'article: <p>image:</p><p><img src="getfile?filename=image1.jpg" /></p><p>Check > Picture</p>'
+    'article: <p>image:</p><p><img src="getfile?filename=image1.jpg" /></p><p>Create > Picture</p>'
     ['overlord59-tux-samourai-1773.png']
     '00EC4B087FB0920CC12575CB00434F9A'
     'Form: binaryForm'
@@ -89,17 +89,17 @@ Items in the correct document ?
     '7513D0AFE47864CBC12575CB00442A05'
     'Form: binaryForm'
     "Plomino_Authors: ['test_user_1_']"
-    'article: <p>image:</p><p><img src="resources/overlord59-tux-samourai-1772.jpg" />caption</p><p>Check > image ressource</p>'
+    'article: <p>image:</p><p><img src="resources/overlord59-tux-samourai-1772.jpg" />caption</p><p>Create > image ressource</p>'
     []
     '7513D0AFE47864CBC12575CB00442A7A'
     'Form: binaryForm'
     "Plomino_Authors: ['test_user_1_']"
-    'article: <p>image:</p><p><img src="resources/overlord59-tux-samourai-1773.jpg" />caption</p><p>Check > Insert ressource</p>'
+    'article: <p>image:</p><p><img src="resources/overlord59-tux-samourai-1773.jpg" />caption</p><p>Create > Insert ressource</p>'
     []
     '7F6DA2761FCEFFF4C12575CB004437CF'
     'Form: binaryForm'
     "Plomino_Authors: ['test_user_1_']"
-    'article: <p>fichier:</p><p><a href="getfile?filename=EXT14519.xml">EXT14519.xml</a></p><p>Check > object</p>'
+    'article: <p>fichier:</p><p><a href="getfile?filename=EXT14519.xml">EXT14519.xml</a></p><p>Create > object</p>'
     ['EXT14519.xml']
 
 
@@ -116,7 +116,7 @@ self.folder.manage_delObjects(["binaryForm"])
          
 Doc with Image ressource created in database
 --------------------------------------------
-rem: it is the same as Check > insert Ressource, when ressource has already been created in Domino
+rem: it is the same as Create > insert Ressource, when ressource has already been created in Domino
 
     >>> dxlFile = os.path.join(dir, "DXLFiles", "test_binary_3.xml")
     >>> i.processImportDXL(dxlFile)
