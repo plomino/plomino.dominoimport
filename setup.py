@@ -26,6 +26,7 @@ setup(name='plomino.dominoimport',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'Products.CMFPlomino',
       ],
       entry_points="""
       # -*- Entry points: -*-
